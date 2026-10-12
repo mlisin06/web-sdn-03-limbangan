@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal - SDN 03 Limbangan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-slate-800">Portal Pengelola</h1>
+      <p class="text-slate-500 text-sm">SDN 03 Limbangan</p>
+    </div>
+
+    <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm"></div>
+
+    <form id="login-form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Email Admin/Guru</label>
+        <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="admin@sekolah.sch.id">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+        <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="••••••••">
+      </div>
+      <button type="submit" id="btn-login" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+        Masuk ke Portal
+      </button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
+      authDomain: "sdn03limbangan-portal.firebaseapp.com",
+      projectId: "sdn03limbangan-portal",
+      storageBucket: "sdn03limbangan-portal.firebasestorage.app",
+      messagingSenderId: "940789591995",
+      appId: "1:940789591995:web:cc8355aa291e41a2d29e9e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
+    const btnLogin = document.getElementById('btn-login');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      btnLogin.disabled = true;
+      btnLogin.innerText = 'Memproses...';
+      errorMessage.classList.add('hidden');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = 'admin.html';
+      } catch (error) {
+        errorMessage.innerText = 'Email atau password salah!';
+        errorMessage.classList.remove('hidden');
+        btnLogin.disabled = false;
+        btnLogin.innerText = 'Masuk ke Portal';
+      }
+    });
+  </script>
+</body>
+</html>
