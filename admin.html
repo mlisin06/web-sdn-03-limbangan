@@ -49,7 +49,7 @@
                 <i class="fa-solid fa-calendar-days mr-2"></i> Agenda Kegiatan
             </button>
             <button id="tab-settings-btn" onclick="switchTab('settings')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-sliders mr-2"></i> Pengaturan Profil, Program & Kontak
+                <i class="fa-solid fa-sliders mr-2"></i> Pengaturan Logo, Profil & Kontak
             </button>
         </div>
 
@@ -65,10 +65,14 @@
                         <input type="text" id="news-title" required placeholder="Contoh: Pengumuman Pembagian Rapor" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
                     </div>
                     <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Upload Gambar Pendukung (Opsional)</label>
+                        <input type="file" id="news-image-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-navy file:text-gold hover:file:bg-navy-dark cursor-pointer">
+                    </div>
+                    <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Isi Pesan / Informasi</label>
                         <textarea id="news-content" rows="5" required placeholder="Tuliskan rinci informasi pengumuman..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
+                    <button type="submit" id="submit-news-btn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i> Terbitkan ke Web Utama
                     </button>
                 </form>
@@ -119,18 +123,32 @@
             </div>
         </div>
 
-        <!-- TAB 3: PENGATURAN PROFIL, HERO, PROGRAM & KONTAK -->
+        <!-- TAB 3: PENGATURAN LOGO, PROFIL & KONTAK -->
         <div id="tab-settings" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hidden">
             <h2 class="text-xl font-bold text-navy mb-6 pb-2 border-b flex items-center justify-between">
-                <span><i class="fa-solid fa-sliders text-gold mr-2"></i> Pengaturan Lengkap Konten Web</span>
-                <span id="save-status" class="text-xs text-emerald-600 font-bold hidden"><i class="fa-solid fa-check-circle mr-1"></i> Perubahan berhasil disimpan!</span>
+                <span><i class="fa-solid fa-sliders text-gold mr-2"></i> Pengaturan Logo, Profil & Kontak</span>
+                <span id="save-status" class="text-xs text-emerald-600 font-bold hidden"><i class="fa-solid fa-check-circle mr-1"></i> Berhasil disimpan!</span>
             </h2>
 
             <form id="settings-form" class="space-y-8">
-                <!-- Section 1: Hero Banner Utama -->
+                <!-- Section Logo -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
                     <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-desktop text-gold"></i> 1. Banner Utama (Hero Section)
+                        <i class="fa-solid fa-image text-gold"></i> Logo Sekolah
+                    </h3>
+                    <div class="flex items-center gap-4">
+                        <img id="logo-preview" src="" alt="Preview Logo" class="w-16 h-16 object-cover rounded-full border bg-white hidden">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Upload Logo Baru (Format PNG/JPG)</label>
+                            <input type="file" id="logo-file" accept="image/*" class="text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-navy file:text-gold hover:file:bg-navy-dark cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-desktop text-gold"></i> Banner Utama (Hero Section)
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -148,37 +166,37 @@
                     </div>
                 </div>
 
-                <!-- Section 2: Program / Pilar Utama -->
+                <!-- Program / Pilar -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
                     <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-award text-gold"></i> 2. Pilar Pendidikan / Program Unggulan
+                        <i class="fa-solid fa-award text-gold"></i> Pilar Pendidikan / Program Unggulan
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="bg-white p-3 rounded-lg border space-y-2">
                             <label class="block text-xs font-bold text-navy">Program 1 (Judul)</label>
                             <input type="text" id="cfg-p1-title" class="w-full border rounded p-2 text-xs">
-                            <label class="block text-xs font-bold text-navy">Deskripsi Program 1</label>
+                            <label class="block text-xs font-bold text-navy">Deskripsi</label>
                             <textarea id="cfg-p1-desc" rows="3" class="w-full border rounded p-2 text-xs"></textarea>
                         </div>
                         <div class="bg-white p-3 rounded-lg border space-y-2">
                             <label class="block text-xs font-bold text-navy">Program 2 (Judul)</label>
                             <input type="text" id="cfg-p2-title" class="w-full border rounded p-2 text-xs">
-                            <label class="block text-xs font-bold text-navy">Deskripsi Program 2</label>
+                            <label class="block text-xs font-bold text-navy">Deskripsi</label>
                             <textarea id="cfg-p2-desc" rows="3" class="w-full border rounded p-2 text-xs"></textarea>
                         </div>
                         <div class="bg-white p-3 rounded-lg border space-y-2">
                             <label class="block text-xs font-bold text-navy">Program 3 (Judul)</label>
                             <input type="text" id="cfg-p3-title" class="w-full border rounded p-2 text-xs">
-                            <label class="block text-xs font-bold text-navy">Deskripsi Program 3</label>
+                            <label class="block text-xs font-bold text-navy">Deskripsi</label>
                             <textarea id="cfg-p3-desc" rows="3" class="w-full border rounded p-2 text-xs"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section 3: Kontak & Alamat Sekolah -->
+                <!-- Kontak & Alamat -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
                     <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-address-book text-gold"></i> 3. Kontak & Alamat Sekolah
+                        <i class="fa-solid fa-address-book text-gold"></i> Kontak & Alamat Sekolah
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -187,40 +205,40 @@
                         </div>
                         <div class="space-y-3">
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-1">Nomor Telepon / WhatsApp Humas</label>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Nomor Telepon / WhatsApp</label>
                                 <input type="text" id="cfg-phone" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 mb-1">Email Resmi Sekolah</label>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Email Resmi</label>
                                 <input type="email" id="cfg-email" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Section 4: Link Media Sosial & Footer -->
+                <!-- Sosmed -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
                     <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-share-nodes text-gold"></i> 4. Link Media Sosial & Footer
+                        <i class="fa-solid fa-share-nodes text-gold"></i> Link Media Sosial
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-gray-700 mb-1">Link Facebook</label>
-                            <input type="url" id="cfg-fb" placeholder="https://facebook.com/..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
+                            <input type="url" id="cfg-fb" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-700 mb-1">Link Instagram</label>
-                            <input type="url" id="cfg-ig" placeholder="https://instagram.com/..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
+                            <input type="url" id="cfg-ig" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-700 mb-1">Link YouTube</label>
-                            <input type="url" id="cfg-yt" placeholder="https://youtube.com/..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
+                            <input type="url" id="cfg-yt" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-gold font-bold py-4 rounded-xl text-sm transition shadow-lg flex justify-center items-center gap-2 uppercase tracking-wider">
-                    <i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan Konten
+                <button type="submit" id="save-settings-btn" class="w-full bg-navy hover:bg-navy-dark text-gold font-bold py-4 rounded-xl text-sm transition shadow-lg flex justify-center items-center gap-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan
                 </button>
             </form>
         </div>
@@ -230,6 +248,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, deleteDoc, doc, setDoc, getDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
@@ -243,11 +262,11 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                window.location.href = "login.html";
-            } else {
+            if (!user) window.location.href = "login.html";
+            else {
                 document.getElementById('user-email').innerText = user.email;
                 loadSettings();
             }
@@ -278,76 +297,108 @@
             }
         };
 
-        // --- LOAD & SAVE SETTINGS ---
-        const settingsDocRef = doc(db, "settings", "site_config");
+        let currentLogoUrl = "";
 
         async function loadSettings() {
-            const snap = await getDoc(settingsDocRef);
+            const snap = await getDoc(doc(db, "settings", "site_config"));
             if (snap.exists()) {
                 const data = snap.data();
-                document.getElementById('cfg-badge').value = data.badge || "Unggul & Berkarakter Islami";
-                document.getElementById('cfg-hero-title').value = data.heroTitle || "MENCETAK ANAK BERAKHLAK MULIA DAN BERPRESTASI DUNIA & AKHIRAT.";
-                document.getElementById('cfg-hero-desc').value = data.heroDesc || "Selamat datang di portal resmi SD Negeri 03 Limbangan. Kami mengintegrasikan kurikulum nasional bermutu tinggi dengan pembentukan karakter mulia untuk masa depan gemilang.";
-                
-                document.getElementById('cfg-p1-title').value = data.p1Title || "AKADEMIK UNGGUL";
-                document.getElementById('cfg-p1-desc').value = data.p1Desc || "Kurikulum nasional dipadu nilai keagamaan, pembiasaan sholat dhuha, tahfidz Al-Qur'an, dan sains modern.";
-                
-                document.getElementById('cfg-p2-title').value = data.p2Title || "KARAKTER & PRESTASI";
-                document.getElementById('cfg-p2-desc').value = data.p2Desc || "Pengembangan bakat siswa melalui ekstrakurikuler pramuka, seni qiro'ah, olahraga, olimpiade sains, dan bahasa.";
-                
-                document.getElementById('cfg-p3-title').value = data.p3Title || "PPDB ONLINE";
-                document.getElementById('cfg-p3-desc').value = data.p3Desc || "Kemudahan akses pendaftaran siswa baru secara online, transparan, dan terintegrasi langsung dengan panitia sekolah.";
-                
-                document.getElementById('cfg-address').value = data.address || "Jl. Raya Limbangan No. 03, Kec. Limbangan, Kabupaten Kendal, Jawa Tengah";
-                document.getElementById('cfg-phone').value = data.phone || "+62 812-3456-7890";
-                document.getElementById('cfg-email').value = data.email || "info@sdnegeri03limbangan.sch.id";
-                
-                document.getElementById('cfg-fb').value = data.fb || "#";
-                document.getElementById('cfg-ig').value = data.ig || "#";
-                document.getElementById('cfg-yt').value = data.yt || "#";
+                currentLogoUrl = data.logoUrl || "";
+                if(currentLogoUrl) {
+                    const prev = document.getElementById('logo-preview');
+                    prev.src = currentLogoUrl;
+                    prev.classList.remove('hidden');
+                }
+                document.getElementById('cfg-badge').value = data.badge || "";
+                document.getElementById('cfg-hero-title').value = data.heroTitle || "";
+                document.getElementById('cfg-hero-desc').value = data.heroDesc || "";
+                document.getElementById('cfg-p1-title').value = data.p1Title || "";
+                document.getElementById('cfg-p1-desc').value = data.p1Desc || "";
+                document.getElementById('cfg-p2-title').value = data.p2Title || "";
+                document.getElementById('cfg-p2-desc').value = data.p2Desc || "";
+                document.getElementById('cfg-p3-title').value = data.p3Title || "";
+                document.getElementById('cfg-p3-desc').value = data.p3Desc || "";
+                document.getElementById('cfg-address').value = data.address || "";
+                document.getElementById('cfg-phone').value = data.phone || "";
+                document.getElementById('cfg-email').value = data.email || "";
+                document.getElementById('cfg-fb').value = data.fb || "";
+                document.getElementById('cfg-ig').value = data.ig || "";
+                document.getElementById('cfg-yt').value = data.yt || "";
             }
         }
 
         document.getElementById('settings-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const configData = {
-                badge: document.getElementById('cfg-badge').value,
-                heroTitle: document.getElementById('cfg-hero-title').value,
-                heroDesc: document.getElementById('cfg-hero-desc').value,
-                p1Title: document.getElementById('cfg-p1-title').value,
-                p1Desc: document.getElementById('cfg-p1-desc').value,
-                p2Title: document.getElementById('cfg-p2-title').value,
-                p2Desc: document.getElementById('cfg-p2-desc').value,
-                p3Title: document.getElementById('cfg-p3-title').value,
-                p3Desc: document.getElementById('cfg-p3-desc').value,
-                address: document.getElementById('cfg-address').value,
-                phone: document.getElementById('cfg-phone').value,
-                email: document.getElementById('cfg-email').value,
-                fb: document.getElementById('cfg-fb').value,
-                ig: document.getElementById('cfg-ig').value,
-                yt: document.getElementById('cfg-yt').value,
-            };
+            const btn = document.getElementById('save-settings-btn');
+            btn.innerText = "Menyimpan & Mengunggah Logo...";
 
             try {
-                await setDoc(settingsDocRef, configData);
+                const logoFileInput = document.getElementById('logo-file');
+                if (logoFileInput.files.length > 0) {
+                    const file = logoFileInput.files[0];
+                    const fileRef = ref(storage, 'logos/school_logo_' + Date.now());
+                    const snapshot = await uploadBytes(fileRef, file);
+                    currentLogoUrl = await getDownloadURL(snapshot.ref);
+                }
+
+                const configData = {
+                    logoUrl: currentLogoUrl,
+                    badge: document.getElementById('cfg-badge').value,
+                    heroTitle: document.getElementById('cfg-hero-title').value,
+                    heroDesc: document.getElementById('cfg-hero-desc').value,
+                    p1Title: document.getElementById('cfg-p1-title').value,
+                    p1Desc: document.getElementById('cfg-p1-desc').value,
+                    p2Title: document.getElementById('cfg-p2-title').value,
+                    p2Desc: document.getElementById('cfg-p2-desc').value,
+                    p3Title: document.getElementById('cfg-p3-title').value,
+                    p3Desc: document.getElementById('cfg-p3-desc').value,
+                    address: document.getElementById('cfg-address').value,
+                    phone: document.getElementById('cfg-phone').value,
+                    email: document.getElementById('cfg-email').value,
+                    fb: document.getElementById('cfg-fb').value,
+                    ig: document.getElementById('cfg-ig').value,
+                    yt: document.getElementById('cfg-yt').value,
+                };
+
+                await setDoc(doc(db, "settings", "site_config"), configData);
                 const status = document.getElementById('save-status');
                 status.classList.remove('hidden');
                 setTimeout(() => status.classList.add('hidden'), 3000);
             } catch (err) {
-                alert("Gagal menyimpan pengaturan: " + err.message);
+                alert("Gagal menyimpan: " + err.message);
+            } finally {
+                btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan';
             }
         });
 
-        // --- BERITA ---
+        // --- BERITA DENGAN GAMBAR ---
         const newsForm = document.getElementById('news-form');
         newsForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            await addDoc(collection(db, "announcements"), {
-                title: document.getElementById('news-title').value,
-                content: document.getElementById('news-content').value,
-                createdAt: serverTimestamp()
-            });
-            newsForm.reset();
+            const submitBtn = document.getElementById('submit-news-btn');
+            submitBtn.innerText = "Mengunggah Berita...";
+
+            try {
+                let imageUrl = "";
+                const imageFile = document.getElementById('news-image-file').files[0];
+                if (imageFile) {
+                    const imgRef = ref(storage, 'news/' + Date.now() + '_' + imageFile.name);
+                    const snap = await uploadBytes(imgRef, imageFile);
+                    imageUrl = await getDownloadURL(snap.ref);
+                }
+
+                await addDoc(collection(db, "announcements"), {
+                    title: document.getElementById('news-title').value,
+                    content: document.getElementById('news-content').value,
+                    imageUrl: imageUrl,
+                    createdAt: serverTimestamp()
+                });
+                newsForm.reset();
+            } catch (err) {
+                alert("Gagal terbit: " + err.message);
+            } finally {
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Terbitkan ke Web Utama';
+            }
         });
 
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
@@ -360,9 +411,10 @@
             snapshot.forEach((docSnap) => {
                 const data = docSnap.data();
                 html += `
-                    <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex justify-between items-start">
+                    <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 flex justify-between items-start gap-4">
                         <div>
                             <h3 class="font-bold text-navy text-sm">${data.title}</h3>
+                            ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-20 h-14 object-cover rounded my-2">` : ''}
                             <p class="text-xs text-gray-600 mt-1 whitespace-pre-line">${data.content}</p>
                         </div>
                         <button onclick="deleteItem('announcements', '${docSnap.id}')" class="text-red-500 hover:text-red-700 text-xs font-bold p-1">
@@ -413,9 +465,7 @@
         });
 
         window.deleteItem = async function(collName, id) {
-            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
-                await deleteDoc(doc(db, collName, id));
-            }
+            if (confirm("Hapus item ini?")) await deleteDoc(doc(db, collName, id));
         };
     </script>
 </body>
