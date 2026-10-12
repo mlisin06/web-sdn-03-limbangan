@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Negeri 03 Limbangan - Portal Resmi</title>
     
-    <meta property="og:title" content="SD Negeri 03 Limbangan">
-    <meta property="og:description" content="Mencetak anak berakhlak mulia dan berprestasi Dunia dan Akhirat.">
-    <meta property="og:type" content="website">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,8 +32,8 @@
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md">
-                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                <div id="logo-container" class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md overflow-hidden">
+                    <i class="fa-solid fa-graduation-cap text-2xl" id="default-logo-icon"></i>
                 </div>
                 <div>
                     <h1 class="font-serif text-white text-lg sm:text-xl font-bold tracking-wider leading-tight">SD NEGERI 03</h1>
@@ -61,9 +57,7 @@
             </div>
 
             <div class="lg:hidden flex items-center">
-                <button id="menu-btn" class="text-white focus:outline-none text-2xl">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <button id="menu-btn" class="text-white focus:outline-none text-2xl"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
 
@@ -73,13 +67,13 @@
             <a href="#academics" class="block text-gray-300 hover:text-gold">Academics</a>
             <a href="#news" class="block text-gray-300 hover:text-gold">News & Events</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold">Contact Us</a>
-            <div class="pt-3 border-t border-navy-light flex flex-col space-y-2">
-                <a href="login.html" class="bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
+            <div class="pt-3 border-t border-navy-light">
+                <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION (DINAMIS) -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6">
@@ -92,38 +86,27 @@
                 <p id="dyn-hero-desc" class="text-gray-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
                     Selamat datang di portal resmi SD Negeri 03 Limbangan.
                 </p>
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#academics" class="bg-gold hover:bg-gold-light text-navy font-bold px-8 py-4 rounded-lg shadow-xl transition uppercase tracking-wider text-xs flex items-center space-x-2">
-                        <span>Explore Our Programs</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
             </div>
-
             <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-gold/30 shadow-2xl space-y-6">
                 <div class="border-b border-navy pb-4">
                     <span class="text-gold text-xs font-bold tracking-widest uppercase">Administrative Management</span>
                     <h3 class="font-serif text-white text-xl font-bold mt-1">FACULTY & STAFF PORTAL</h3>
-                    <p class="text-gray-300 text-xs mt-1">Akses sumber daya internal, data siswa, dan manajemen alat pembelajaran.</p>
                 </div>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a href="login.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md">
-                        <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2"></i>
                         <h4 class="text-white font-bold text-sm">GURU LOGIN</h4>
-                        <span class="text-[10px] text-gray-400 block mt-1">Require credentials</span>
                     </a>
                     <a href="login.html" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md">
-                        <i class="fa-solid fa-user-shield text-navy text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <i class="fa-solid fa-user-shield text-navy text-2xl mb-2"></i>
                         <h4 class="font-bold text-sm">ADMIN LOGIN</h4>
-                        <span class="text-[10px] text-navy/80 block mt-1">Require credentials</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION PROGRAM / PILAR (DINAMIS) -->
+    <!-- SECTION PROGRAM -->
     <section id="academics" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -131,112 +114,78 @@
                 <h2 class="font-serif text-3xl font-bold text-navy mt-2">Pilar Pendidikan SD Negeri 03 Limbangan</h2>
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-book-open-reader"></i>
-                    </div>
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-book-open-reader"></i></div>
                     <h3 id="dyn-p1-title" class="font-serif text-xl font-bold text-navy mb-3">AKADEMIK UNGGUL</h3>
-                    <p id="dyn-p1-desc" class="text-gray-600 text-sm leading-relaxed mb-4">Kurikulum nasional dipadu nilai keagamaan.</p>
+                    <p id="dyn-p1-desc" class="text-gray-600 text-sm leading-relaxed">Kurikulum nasional dipadu nilai keagamaan.</p>
                 </div>
-
-                <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-globe"></i>
-                    </div>
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-globe"></i></div>
                     <h3 id="dyn-p2-title" class="font-serif text-xl font-bold text-navy mb-3">KARAKTER & PRESTASI</h3>
-                    <p id="dyn-p2-desc" class="text-gray-600 text-sm leading-relaxed mb-4">Pengembangan bakat siswa melalui ekstrakurikuler.</p>
+                    <p id="dyn-p2-desc" class="text-gray-600 text-sm leading-relaxed">Pengembangan bakat siswa melalui ekstrakurikuler.</p>
                 </div>
-
-                <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6">
-                        <i class="fa-solid fa-user-graduate"></i>
-                    </div>
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-user-graduate"></i></div>
                     <h3 id="dyn-p3-title" class="font-serif text-xl font-bold text-navy mb-3">PPDB ONLINE</h3>
-                    <p id="dyn-p3-desc" class="text-gray-600 text-sm leading-relaxed mb-4">Kemudahan akses pendaftaran siswa baru secara online.</p>
+                    <p id="dyn-p3-desc" class="text-gray-600 text-sm leading-relaxed">Kemudahan akses pendaftaran siswa baru secara online.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION BERITA & AGENDA -->
-    <section id="news" class="py-16 bg-gray-100 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-                <div>
-                    <span class="text-gold font-bold text-xs tracking-widest uppercase">Informasi Terkini</span>
-                    <h2 class="font-serif text-3xl font-bold text-navy mt-2">Latest News & Events</h2>
+    <!-- BERITA & AGENDA -->
+    <section id="news" class="py-16 bg-gray-100 border-t">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-xl shadow-sm">
+                <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b flex items-center space-x-3">
+                    <i class="fa-solid fa-bullhorn text-gold"></i><span>SCHOOL NEWS & ANNOUNCEMENTS</span>
+                </h3>
+                <div id="firebase-news-list" class="space-y-6">
+                    <p class="text-gray-400 text-xs italic">Memuat berita...</p>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b border-gray-200 flex items-center space-x-3">
-                        <i class="fa-solid fa-bullhorn text-gold"></i>
-                        <span>SCHOOL NEWS & ANNOUNCEMENTS</span>
-                    </h3>
-                    <div id="firebase-news-list" class="space-y-6">
-                        <p class="text-gray-400 text-xs italic">Memuat berita terbaru...</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                    <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b border-gray-200 flex items-center space-x-3">
-                        <i class="fa-solid fa-calendar-days text-gold"></i>
-                        <span>UPCOMING EVENTS</span>
-                    </h3>
-                    <div id="firebase-events-list" class="space-y-6">
-                        <p class="text-gray-400 text-xs italic">Memuat agenda kegiatan...</p>
-                    </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm">
+                <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b flex items-center space-x-3">
+                    <i class="fa-solid fa-calendar-days text-gold"></i><span>UPCOMING EVENTS</span>
+                </h3>
+                <div id="firebase-events-list" class="space-y-6">
+                    <p class="text-gray-400 text-xs italic">Memuat agenda...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION CONTACT & FOOTER (DINAMIS) -->
+    <!-- CONTACT & FOOTER -->
     <section id="contact" class="py-16 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
                 <span class="text-gold font-bold text-xs tracking-widest uppercase">Penerimaan Siswa Baru</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold">Bergabunglah Bersama Keluarga Besar SD Negeri 03 Limbangan</h2>
-                <p class="text-gray-300 text-sm leading-relaxed">
-                    Kami membuka pintu seluas-luasnya bagi putra-putri terbaik bangsa untuk tumbuh dalam lingkungan pendidikan yang religius, disiplin, dan berprestasi.
-                </p>
             </div>
-
-            <div class="bg-navy-light p-8 rounded-2xl border border-gold/30 space-y-4">
+            <div class="bg-navy-light p-8 rounded-2xl border border-gold/35 space-y-4">
                 <h3 class="font-serif text-xl font-bold text-gold">Kontak & Lokasi Sekolah</h3>
                 <div class="space-y-3 text-sm text-gray-300">
-                    <p class="flex items-start space-x-3">
-                        <i class="fa-solid fa-location-dot text-gold mt-1"></i>
-                        <span id="dyn-address">Jl. Raya Limbangan No. 03, Kec. Limbangan, Kabupaten Kendal, Jawa Tengah</span>
-                    </p>
-                    <p class="flex items-center space-x-3">
-                        <i class="fa-solid fa-phone text-gold"></i>
-                        <span id="dyn-phone">+62 812-3456-7890</span>
-                    </p>
-                    <p class="flex items-center space-x-3">
-                        <i class="fa-solid fa-envelope text-gold"></i>
-                        <span id="dyn-email">info@sdnegeri03limbangan.sch.id</span>
-                    </p>
+                    <p class="flex items-start space-x-3"><i class="fa-solid fa-location-dot text-gold mt-1"></i><span id="dyn-address">Jl. Raya Limbangan No. 03</span></p>
+                    <p class="flex items-center space-x-3"><i class="fa-solid fa-phone text-gold"></i><span id="dyn-phone">+62 812...</span></p>
+                    <p class="flex items-center space-x-3"><i class="fa-solid fa-envelope text-gold"></i><span id="dyn-email">info@...</span></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-navy-dark text-gray-400 py-8 border-t border-navy-light text-xs text-center space-y-4">
+    <footer class="bg-navy-dark text-gray-400 py-8 border-t text-xs text-center space-y-4">
         <div class="flex justify-center space-x-4">
-            <a id="dyn-fb" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-            <a id="dyn-ig" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-instagram"></i></a>
-            <a id="dyn-yt" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-youtube"></i></a>
+            <a id="dyn-fb" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-facebook-f"></i></a>
+            <a id="dyn-ig" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-instagram"></i></a>
+            <a id="dyn-yt" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <p>&copy; 2026 SD Negeri 03 Limbangan. Powered by GitHub Pages & Firebase.</p>
     </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, doc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
@@ -250,36 +199,36 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Fetch Dynamic Site Settings
+        // Fetch Settings & Logo
         onSnapshot(doc(db, "settings", "site_config"), (snap) => {
             if (snap.exists()) {
                 const data = snap.data();
+                if(data.logoUrl) {
+                    document.getElementById('logo-container').innerHTML = `<img src="${data.logoUrl}" class="w-full h-full object-cover">`;
+                }
                 if(data.badge) document.getElementById('dyn-badge').innerText = data.badge;
                 if(data.heroTitle) document.getElementById('dyn-hero-title').innerText = data.heroTitle;
                 if(data.heroDesc) document.getElementById('dyn-hero-desc').innerText = data.heroDesc;
-                
                 if(data.p1Title) document.getElementById('dyn-p1-title').innerText = data.p1Title;
                 if(data.p1Desc) document.getElementById('dyn-p1-desc').innerText = data.p1Desc;
                 if(data.p2Title) document.getElementById('dyn-p2-title').innerText = data.p2Title;
                 if(data.p2Desc) document.getElementById('dyn-p2-desc').innerText = data.p2Desc;
                 if(data.p3Title) document.getElementById('dyn-p3-title').innerText = data.p3Title;
                 if(data.p3Desc) document.getElementById('dyn-p3-desc').innerText = data.p3Desc;
-
                 if(data.address) document.getElementById('dyn-address').innerText = data.address;
                 if(data.phone) document.getElementById('dyn-phone').innerText = data.phone;
                 if(data.email) document.getElementById('dyn-email').innerText = data.email;
-
                 if(data.fb) document.getElementById('dyn-fb').href = data.fb;
                 if(data.ig) document.getElementById('dyn-ig').href = data.ig;
                 if(data.yt) document.getElementById('dyn-yt').href = data.yt;
             }
         });
 
-        // Fetch Berita
+        // Fetch Berita + Gambar
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
             const container = document.getElementById('firebase-news-list');
             if (snapshot.empty) {
-                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman/berita terbaru.</p>';
+                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman.</p>';
                 return;
             }
             let html = '', isFirst = true;
@@ -287,9 +236,10 @@
                 const data = docSnap.data();
                 const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
                 html += `
-                    <div class="${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
+                    <div class="${isFirst ? '' : 'pt-4 border-t'}">
                         <span class="text-gold text-xs font-semibold">${tgl}</span>
                         <h4 class="font-bold text-navy mt-1">${data.title}</h4>
+                        ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
                         <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
                     </div>
                 `;
@@ -302,14 +252,14 @@
         onSnapshot(query(collection(db, "events"), orderBy("createdAt", "desc")), (snapshot) => {
             const container = document.getElementById('firebase-events-list');
             if (snapshot.empty) {
-                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada agenda kegiatan mendatang.</p>';
+                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada agenda.</p>';
                 return;
             }
             let html = '', isFirst = true;
             snapshot.forEach((docSnap) => {
                 const data = docSnap.data();
                 html += `
-                    <div class="${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
+                    <div class="${isFirst ? '' : 'pt-4 border-t'}">
                         <span class="text-gold text-xs font-semibold">${data.dateStr}</span>
                         <h4 class="font-bold text-navy mt-1">${data.title}</h4>
                         <p class="text-gray-600 text-xs mt-1">${data.description}</p>
