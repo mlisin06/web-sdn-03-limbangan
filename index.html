@@ -17,16 +17,8 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: {
-                            DEFAULT: '#0f1f38',
-                            dark: '#081120',
-                            light: '#1b335a'
-                        },
-                        gold: {
-                            DEFAULT: '#d4af37',
-                            light: '#f3e5ab',
-                            dark: '#aa8c2c'
-                        }
+                        navy: { DEFAULT: '#0f1f38', dark: '#081120', light: '#1b335a' },
+                        gold: { DEFAULT: '#d4af37', light: '#f3e5ab', dark: '#aa8c2c' }
                     },
                     fontFamily: {
                         serif: ['Cinzel', 'serif'],
@@ -37,9 +29,7 @@
         }
     </script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
@@ -47,8 +37,6 @@
     <!-- TOP BAR NAVIGASI -->
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo & Nama Sekolah -->
             <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md">
                     <i class="fa-solid fa-graduation-cap text-2xl"></i>
@@ -59,7 +47,6 @@
                 </div>
             </div>
 
-            <!-- Menu Navigasi Tengah (Desktop) -->
             <nav class="hidden lg:flex items-center space-x-7">
                 <a href="#home" class="text-gold text-sm font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">About Us</a>
@@ -69,9 +56,8 @@
                 <a href="#contact" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Contact Us</a>
             </nav>
 
-            <!-- Tombol Aksi Kanan (Public Access & Admin Login) -->
             <div class="hidden sm:flex items-center space-x-3">
-                <a href="#public-portal" class="bg-white text-navy hover:bg-gold hover:text-navy px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-sm">
+                <a href="#news" class="bg-white text-navy hover:bg-gold hover:text-navy px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-sm">
                     Public Access
                 </a>
                 <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
@@ -80,7 +66,6 @@
                 </a>
             </div>
 
-            <!-- Hamburger Menu Mobile -->
             <div class="lg:hidden flex items-center">
                 <button id="menu-btn" class="text-white focus:outline-none text-2xl">
                     <i class="fa-solid fa-bars"></i>
@@ -88,7 +73,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
             <a href="#home" class="block text-gold font-medium">Home</a>
             <a href="#about" class="block text-gray-300 hover:text-gold">About Us</a>
@@ -97,7 +81,6 @@
             <a href="#news" class="block text-gray-300 hover:text-gold">News & Events</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold">Contact Us</a>
             <div class="pt-3 border-t border-navy-light flex flex-col space-y-2">
-                <a href="#public-portal" class="bg-white text-navy text-center py-2 rounded font-bold text-xs">Public Access</a>
                 <a href="login.html" class="bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
             </div>
         </div>
@@ -106,8 +89,6 @@
     <!-- HERO SECTION -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Teks Kiri -->
             <div class="lg:col-span-7 space-y-6">
                 <span class="inline-block bg-gold/20 text-gold border border-gold/30 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
                     Unggul & Berkarakter Islami
@@ -123,14 +104,9 @@
                         <span>Explore Our Programs</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <button id="install-pwa-btn" class="hidden bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-4 rounded-lg transition uppercase tracking-wider text-xs items-center space-x-2">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Install Aplikasi</span>
-                    </button>
                 </div>
             </div>
 
-            <!-- Kotak Kanan / Quick Panel -->
             <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-gold/30 shadow-2xl space-y-6">
                 <div class="border-b border-navy pb-4">
                     <span class="text-gold text-xs font-bold tracking-widest uppercase">Administrative Management</span>
@@ -151,7 +127,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -165,49 +140,34 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
                 <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition group">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-gold group-hover:text-navy transition">
                         <i class="fa-solid fa-book-open-reader"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-navy mb-3">AKADEMIK UNGGUL</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-4">Kurikulum nasional dipadu nilai keagamaan, pembiasaan sholat dhuha, tahfidz Al-Qur'an, dan sains modern.</p>
-                    <a href="#contact" class="text-navy font-bold text-xs uppercase tracking-wider flex items-center space-x-1 group-hover:text-gold transition">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition group">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-gold group-hover:text-navy transition">
                         <i class="fa-solid fa-globe"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-navy mb-3">KARAKTER & PRESTASI</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-4">Pengembangan bakat siswa melalui ekstrakurikuler pramuka, seni qiro'ah, olahraga, olimpiade sains, dan bahasa.</p>
-                    <a href="#contact" class="text-navy font-bold text-xs uppercase tracking-wider flex items-center space-x-1 group-hover:text-gold transition">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="bg-gray-50 border border-gray-200 p-8 rounded-xl shadow-sm hover:shadow-lg transition group">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6 group-hover:bg-gold group-hover:text-navy transition">
                         <i class="fa-solid fa-user-graduate"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-navy mb-3">PPDB ONLINE</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-4">Kemudahan akses pendaftaran siswa baru secara online, transparan, dan terintegrasi langsung dengan panitia sekolah.</p>
-                    <a href="#admissions" class="text-navy font-bold text-xs uppercase tracking-wider flex items-center space-x-1 group-hover:text-gold transition">
-                        <span>Learn More</span>
-                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION BERITA & PENGUMUMAN (DIBACA DARI FIREBASE) -->
+    <!-- SECTION BERITA & AGENDA (OTOMATIS DARI FIREBASE) -->
     <section id="news" class="py-16 bg-gray-100 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
@@ -215,14 +175,10 @@
                     <span class="text-gold font-bold text-xs tracking-widest uppercase">Informasi Terkini</span>
                     <h2 class="font-serif text-3xl font-bold text-navy mt-2">Latest News & Events</h2>
                 </div>
-                <a href="#contact" class="mt-4 md:mt-0 text-navy font-bold text-xs uppercase tracking-wider hover:text-gold transition flex items-center space-x-2">
-                    <span>Lihat Semua Berita</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- School News Box (Otomatis Terhubung Firebase) -->
+                <!-- School News Box -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                     <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b border-gray-200 flex items-center space-x-3">
                         <i class="fa-solid fa-bullhorn text-gold"></i>
@@ -239,25 +195,16 @@
                         <i class="fa-solid fa-calendar-days text-gold"></i>
                         <span>UPCOMING EVENTS</span>
                     </h3>
-                    <div class="space-y-6">
-                        <div class="group cursor-pointer">
-                            <span class="text-gold text-xs font-semibold">Nov 20, 2026 - 08:00 AM</span>
-                            <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">Open House & Sosialisasi Program Unggulan untuk Calon Wali Murid Baru.</h4>
-                            <p class="text-gray-600 text-xs mt-1">Undangan terbuka bagi orang tua calon siswa untuk meninjau fasilitas dan sistem belajar sekolah.</p>
-                        </div>
-                        <div class="group cursor-pointer pt-4 border-t border-gray-100">
-                            <span class="text-gold text-xs font-semibold">Dec 5, 2026 - 09:00 AM</span>
-                            <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">Penerimaan Rapor Semester Ganjil & Pameran Hasil Karya Siswa.</h4>
-                            <p class="text-gray-600 text-xs mt-1">Penyerahan hasil belajar siswa sekaligus pameran proyek P5 (Proyek Penguatan Profil Pelajar Pancasila).</p>
-                        </div>
+                    <div id="firebase-events-list" class="space-y-6">
+                        <p class="text-gray-400 text-xs italic">Memuat agenda kegiatan...</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION ADMISSIONS & CONTACT -->
-    <section id="admissions" class="py-16 bg-navy text-white">
+    <!-- SECTION CONTACT -->
+    <section id="contact" class="py-16 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
                 <span class="text-gold font-bold text-xs tracking-widest uppercase">Penerimaan Siswa Baru</span>
@@ -265,17 +212,9 @@
                 <p class="text-gray-300 text-sm leading-relaxed">
                     Kami membuka pintu seluas-luasnya bagi putra-putri terbaik bangsa untuk tumbuh dalam lingkungan pendidikan yang religius, disiplin, dan berprestasi.
                 </p>
-                <div class="flex items-center space-x-4">
-                    <a href="https://forms.gle" target="_blank" class="bg-gold hover:bg-gold-light text-navy font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-wider transition">
-                        Formulir PPDB Online
-                    </a>
-                    <a href="#contact" class="border border-white/30 hover:bg-white/10 text-white font-bold px-6 py-3 rounded-lg text-xs uppercase tracking-wider transition">
-                        Hubungi Panitia
-                    </a>
-                </div>
             </div>
 
-            <div id="contact" class="bg-navy-light p-8 rounded-2xl border border-gold/30 space-y-4">
+            <div class="bg-navy-light p-8 rounded-2xl border border-gold/30 space-y-4">
                 <h3 class="font-serif text-xl font-bold text-gold">Kontak & Lokasi Sekolah</h3>
                 <div class="space-y-3 text-sm text-gray-300">
                     <p class="flex items-start space-x-3">
@@ -295,75 +234,11 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-navy-dark text-gray-400 py-12 border-t border-navy-light text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="space-y-3">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 rounded-full bg-gold flex items-center justify-center text-navy">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <span class="font-serif text-white text-base font-bold">SDN 03 LIMBANGAN</span>
-                </div>
-                <p>Mencetak anak berakhlak mulia dan berprestasi Dunia dan Akhirat.</p>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Navigasi</h4>
-                <ul class="space-y-2">
-                    <li><a href="#home" class="hover:text-gold transition">Home</a></li>
-                    <li><a href="#about" class="hover:text-gold transition">About Us</a></li>
-                    <li><a href="#academics" class="hover:text-gold transition">Academics</a></li>
-                    <li><a href="#admissions" class="hover:text-gold transition">Admissions</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Portal Internal</h4>
-                <ul class="space-y-2">
-                    <li><a href="login.html" class="hover:text-gold transition">Guru Login</a></li>
-                    <li><a href="login.html" class="hover:text-gold transition">Admin Login</a></li>
-                    <li><a href="https://forms.gle" target="_blank" class="hover:text-gold transition">PPDB Online</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Social Media</h4>
-                <div class="flex space-x-3">
-                    <a href="#" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-navy-light text-center">
-            <p>&copy; 2026 SD Negeri 03 Limbangan. All rights reserved. Powered by GitHub Pages & Firebase.</p>
-        </div>
+    <footer class="bg-navy-dark text-gray-400 py-8 border-t border-navy-light text-xs text-center">
+        <p>&copy; 2026 SD Negeri 03 Limbangan. Powered by GitHub Pages & Firebase.</p>
     </footer>
 
-    <!-- SCRIPT MOBILE MENU & PWA -->
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        let deferredPrompt;
-        const installBtn = document.getElementById('install-pwa-btn');
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        });
-        installBtn.addEventListener('click', () => {
-            installBtn.classList.add('hidden');
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                deferredPrompt = null;
-            });
-        });
-    </script>
-
-    <!-- INTEGRASI FIREBASE KE HAKAMAN PUBLIC -->
+    <!-- SCRIPT FIREBASE AUTO-SYNC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -380,36 +255,49 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Ambil Data Berita Secara Realtime
-        const newsContainer = document.getElementById('firebase-news-list');
-        const q = query(collection(db, "announcements"), orderBy("createdAt", "desc"));
-
-        onSnapshot(q, (snapshot) => {
+        // Fetch Berita
+        onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
+            const container = document.getElementById('firebase-news-list');
             if (snapshot.empty) {
-                newsContainer.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman/berita terbaru.</p>';
+                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman/berita terbaru.</p>';
                 return;
             }
-
-            let html = '';
-            let isFirst = true;
-
+            let html = '', isFirst = true;
             snapshot.forEach((doc) => {
                 const data = doc.data();
-                const tanggal = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', {
-                    day: 'numeric', month: 'long', year: 'numeric'
-                }) : 'Baru saja';
-
+                const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
                 html += `
-                    <div class="group cursor-pointer ${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
-                        <span class="text-gold text-xs font-semibold">${tanggal}</span>
-                        <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">${data.title}</h4>
+                    <div class="${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
+                        <span class="text-gold text-xs font-semibold">${tgl}</span>
+                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
                         <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
                     </div>
                 `;
                 isFirst = false;
             });
+            container.innerHTML = html;
+        });
 
-            newsContainer.innerHTML = html;
+        // Fetch Agenda (Upcoming Events)
+        onSnapshot(query(collection(db, "events"), orderBy("createdAt", "desc")), (snapshot) => {
+            const container = document.getElementById('firebase-events-list');
+            if (snapshot.empty) {
+                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada agenda kegiatan mendatang.</p>';
+                return;
+            }
+            let html = '', isFirst = true;
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                html += `
+                    <div class="${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
+                        <span class="text-gold text-xs font-semibold">${data.dateStr}</span>
+                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
+                        <p class="text-gray-600 text-xs mt-1">${data.description}</p>
+                    </div>
+                `;
+                isFirst = false;
+            });
+            container.innerHTML = html;
         });
     </script>
 </body>
