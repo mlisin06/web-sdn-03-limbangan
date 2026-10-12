@@ -44,7 +44,7 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
-    <!-- TOP BAR NAVIGASI KELAS DUNIA (Sesuai Contoh Gambar) -->
+    <!-- TOP BAR NAVIGASI -->
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
@@ -74,7 +74,7 @@
                 <a href="#public-portal" class="bg-white text-navy hover:bg-gold hover:text-navy px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-sm">
                     Public Access
                 </a>
-                <a href="https://forms.gle" target="_blank" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
+                <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
                     <i class="fa-solid fa-lock text-[10px]"></i>
                     <span>Admin Login</span>
                 </a>
@@ -98,7 +98,7 @@
             <a href="#contact" class="block text-gray-300 hover:text-gold">Contact Us</a>
             <div class="pt-3 border-t border-navy-light flex flex-col space-y-2">
                 <a href="#public-portal" class="bg-white text-navy text-center py-2 rounded font-bold text-xs">Public Access</a>
-                <a href="https://forms.gle" target="_blank" class="bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
+                <a href="login.html" class="bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
             </div>
         </div>
     </header>
@@ -139,12 +139,12 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="https://forms.gle" target="_blank" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md">
+                    <a href="login.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md">
                         <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
                         <h4 class="text-white font-bold text-sm">GURU LOGIN</h4>
                         <span class="text-[10px] text-gray-400 block mt-1">Require credentials</span>
                     </a>
-                    <a href="https://forms.gle" target="_blank" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md">
+                    <a href="login.html" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md">
                         <i class="fa-solid fa-user-shield text-navy text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
                         <h4 class="font-bold text-sm">ADMIN LOGIN</h4>
                         <span class="text-[10px] text-navy/80 block mt-1">Require credentials</span>
@@ -155,7 +155,7 @@
         </div>
     </section>
 
-    <!-- SECTION FITUR UTAMA / ACADEMIC EXCELLENCE -->
+    <!-- SECTION FITUR UTAMA -->
     <section id="academics" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -207,7 +207,7 @@
         </div>
     </section>
 
-    <!-- SECTION BERITA & PENGUMUMAN -->
+    <!-- SECTION BERITA & PENGUMUMAN (DIBACA DARI FIREBASE) -->
     <section id="news" class="py-16 bg-gray-100 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
@@ -222,23 +222,14 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- School News Box -->
+                <!-- School News Box (Otomatis Terhubung Firebase) -->
                 <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                     <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b border-gray-200 flex items-center space-x-3">
                         <i class="fa-solid fa-bullhorn text-gold"></i>
-                        <span>SCHOOL NEWS</span>
+                        <span>SCHOOL NEWS & ANNOUNCEMENTS</span>
                     </h3>
-                    <div class="space-y-6">
-                        <div class="group cursor-pointer">
-                            <span class="text-gold text-xs font-semibold">November 5, 2026</span>
-                            <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">Siswa SD Negeri 03 Limbangan Raih Juara 1 Olimpiade Matematika tingkat Kecamatan.</h4>
-                            <p class="text-gray-600 text-xs mt-1">Prestasi membanggakan kembali diraih oleh perwakilan siswa kelas V dalam ajang OSN tingkat regional.</p>
-                        </div>
-                        <div class="group cursor-pointer pt-4 border-t border-gray-100">
-                            <span class="text-gold text-xs font-semibold">November 12, 2026</span>
-                            <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">Peringatan Hari Santri Nasional dan Maulid Nabi Muhammad SAW di Halaman Sekolah.</h4>
-                            <p class="text-gray-600 text-xs mt-1">Kegiatan diisi dengan doa bersama, penampilan dai cilik, serta santunan anak yatim piatu.</p>
-                        </div>
+                    <div id="firebase-news-list" class="space-y-6">
+                        <p class="text-gray-400 text-xs italic">Memuat berita terbaru...</p>
                     </div>
                 </div>
 
@@ -328,8 +319,8 @@
             <div>
                 <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Portal Internal</h4>
                 <ul class="space-y-2">
-                    <li><a href="https://forms.gle" target="_blank" class="hover:text-gold transition">Guru Login</a></li>
-                    <li><a href="https://forms.gle" target="_blank" class="hover:text-gold transition">Admin Login</a></li>
+                    <li><a href="login.html" class="hover:text-gold transition">Guru Login</a></li>
+                    <li><a href="login.html" class="hover:text-gold transition">Admin Login</a></li>
                     <li><a href="https://forms.gle" target="_blank" class="hover:text-gold transition">PPDB Online</a></li>
                 </ul>
             </div>
@@ -343,20 +334,18 @@
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-navy-light text-center">
-            <p>&copy; 2026 SD Negeri 03 Limbangan. All rights reserved. Powered by GitHub Pages.</p>
+            <p>&copy; 2026 SD Negeri 03 Limbangan. All rights reserved. Powered by GitHub Pages & Firebase.</p>
         </div>
     </footer>
 
     <!-- SCRIPT MOBILE MENU & PWA -->
     <script>
-        // Toggle Mobile Menu
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // PWA Install Prompt Simpel
         let deferredPrompt;
         const installBtn = document.getElementById('install-pwa-btn');
         window.addEventListener('beforeinstallprompt', (e) => {
@@ -369,11 +358,58 @@
             installBtn.classList.add('hidden');
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                }
                 deferredPrompt = null;
             });
+        });
+    </script>
+
+    <!-- INTEGRASI FIREBASE KE HAKAMAN PUBLIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
+            authDomain: "sdn03limbangan-portal.firebaseapp.com",
+            projectId: "sdn03limbangan-portal",
+            storageBucket: "sdn03limbangan-portal.firebasestorage.app",
+            messagingSenderId: "940789591995",
+            appId: "1:940789591995:web:cc8355aa291e41a2d29e9e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Ambil Data Berita Secara Realtime
+        const newsContainer = document.getElementById('firebase-news-list');
+        const q = query(collection(db, "announcements"), orderBy("createdAt", "desc"));
+
+        onSnapshot(q, (snapshot) => {
+            if (snapshot.empty) {
+                newsContainer.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman/berita terbaru.</p>';
+                return;
+            }
+
+            let html = '';
+            let isFirst = true;
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const tanggal = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                }) : 'Baru saja';
+
+                html += `
+                    <div class="group cursor-pointer ${isFirst ? '' : 'pt-4 border-t border-gray-100'}">
+                        <span class="text-gold text-xs font-semibold">${tanggal}</span>
+                        <h4 class="font-bold text-navy group-hover:text-gold transition mt-1">${data.title}</h4>
+                        <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
+                    </div>
+                `;
+                isFirst = false;
+            });
+
+            newsContainer.innerHTML = html;
         });
     </script>
 </body>
