@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Negeri 03 Limbangan - Portal Resmi</title>
     
-    <!-- Tag Default Favicon (Akan di-update otomatis oleh JS sesuai logo di Admin) -->
-    <link id="dynamic-favicon" rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/graduation-cap.svg">
+    <!-- Favicon Default (Ikon Tab Browser) -->
+    <link id="dynamic-favicon" rel="icon" type="image/jpeg" href="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg">
 
-    <!-- Open Graph untuk Preview WhatsApp & Sosial Media -->
+    <!-- Open Graph untuk WhatsApp & Social Media Preview -->
     <meta property="og:title" content="SD Negeri 03 Limbangan">
     <meta property="og:description" content="Portal Resmi SD Negeri 03 Limbangan - Mencetak anak berakhlak mulia dan berprestasi Dunia & Akhirat.">
+    <meta property="og:image" content="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,7 +45,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div id="logo-container" class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md overflow-hidden">
-                    <i class="fa-solid fa-graduation-cap text-2xl" id="default-logo-icon"></i>
+                    <img src="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg" class="w-full h-full object-cover" alt="Logo SD Negeri 03 Limbangan">
                 </div>
                 <div>
                     <h1 class="font-serif text-white text-lg sm:text-xl font-bold tracking-wider leading-tight">SD NEGERI 03</h1>
@@ -212,11 +216,10 @@
             if (snap.exists()) {
                 const data = snap.data();
                 
-                // Update Logo Header & Tab Favicon
+                // Update Logo Header & Tab Favicon jika diisi di Admin
                 if(data.logoUrl) {
                     document.getElementById('logo-container').innerHTML = `<img src="${data.logoUrl}" class="w-full h-full object-cover">`;
                     
-                    // Ganti Favicon Tab Browser
                     let favicon = document.getElementById('dynamic-favicon');
                     if (favicon) {
                         favicon.href = data.logoUrl;
@@ -255,8 +258,7 @@
                 html += `
                     <div class="${isFirst ? '' : 'pt-4 border-t'}">
                         <span class="text-gold text-xs font-semibold">${tgl}</span>
-                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
-                        ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
+                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
                         <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
                     </div>
                 `;
