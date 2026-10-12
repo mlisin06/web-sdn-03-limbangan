@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Negeri 03 Limbangan - Portal Resmi</title>
     
+    <!-- Tag Default Favicon (Akan di-update otomatis oleh JS sesuai logo di Admin) -->
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/graduation-cap.svg">
+
+    <!-- Open Graph untuk Preview WhatsApp & Sosial Media -->
+    <meta property="og:title" content="SD Negeri 03 Limbangan">
+    <meta property="og:description" content="Portal Resmi SD Negeri 03 Limbangan - Mencetak anak berakhlak mulia dan berprestasi Dunia & Akhirat.">
+    <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -199,13 +207,22 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Fetch Settings & Logo
+        // Fetch Settings & Logo + Favicon Auto-Update
         onSnapshot(doc(db, "settings", "site_config"), (snap) => {
             if (snap.exists()) {
                 const data = snap.data();
+                
+                // Update Logo Header & Tab Favicon
                 if(data.logoUrl) {
                     document.getElementById('logo-container').innerHTML = `<img src="${data.logoUrl}" class="w-full h-full object-cover">`;
+                    
+                    // Ganti Favicon Tab Browser
+                    let favicon = document.getElementById('dynamic-favicon');
+                    if (favicon) {
+                        favicon.href = data.logoUrl;
+                    }
                 }
+                
                 if(data.badge) document.getElementById('dyn-badge').innerText = data.badge;
                 if(data.heroTitle) document.getElementById('dyn-hero-title').innerText = data.heroTitle;
                 if(data.heroDesc) document.getElementById('dyn-hero-desc').innerText = data.heroDesc;
