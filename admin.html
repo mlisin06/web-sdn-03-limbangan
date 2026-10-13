@@ -74,12 +74,36 @@
 
                         <div class="form-group">
                             <label class="small font-weight-bold">Judul Utama Halaman Depan (Hero Title)</label>
-                            <input type="text" id="cfg-hero-title" class="form-control" placeholder="MENCETAK ANAK BERAKHLAK MULIA...">
+                            <input type="text" id="cfg-hero-title" class="form-control" placeholder="SDN 03 LIMBANGAN">
                         </div>
 
                         <div class="form-group">
                             <label class="small font-weight-bold">Deskripsi Singkat Beranda</label>
                             <textarea id="cfg-hero-desc" class="form-control" rows="2"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-danger"><i class="fa-solid fa-bullhorn mr-1"></i> Teks Berjalan (Running Text / Slogan Atas)</label>
+                            <input type="text" id="cfg-running-text" class="form-control" placeholder="Contoh: SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi">
+                        </div>
+
+                        <hr>
+                        <!-- PENGATURAN SAMBUTAN KEPALA SEKOLAH -->
+                        <h5 class="text-secondary font-weight-bold mb-3">👨‍🏫 Sambutan & Pesan Kepala Sekolah</h5>
+                        <div class="form-group">
+                            <label class="small font-weight-bold">Teks Kutipan Sambutan Kepala Sekolah</label>
+                            <textarea id="cfg-kepsek-quote" class="form-control" rows="3" placeholder="Pendidikan bukan sekadar transfer ilmu, melainkan pembentukan karakter..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="small font-weight-bold">Nama Kepala Sekolah & Gelar</label>
+                                <input type="text" id="cfg-kepsek-name" class="form-control" placeholder="Contoh: H. Ahmad, S.Pd., M.M.">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small font-weight-bold">Jabatan / Keterangan</label>
+                                <input type="text" id="cfg-kepsek-role" class="form-control" placeholder="Contoh: Kepala Sekolah SDN 03 Limbangan">
+                            </div>
                         </div>
 
                         <hr>
@@ -116,17 +140,21 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label class="small font-weight-bold">Link Facebook</label>
                                 <input type="text" id="cfg-fb" class="form-control">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label class="small font-weight-bold">Link Instagram</label>
                                 <input type="text" id="cfg-ig" class="form-control">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label class="small font-weight-bold">Link YouTube</label>
                                 <input type="text" id="cfg-yt" class="form-control">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="small font-weight-bold">Link TikTok</label>
+                                <input type="text" id="cfg-tt" class="form-control" placeholder="https://tiktok.com/@...">
                             </div>
                         </div>
 
@@ -357,6 +385,10 @@
                     if(data.badge) document.getElementById('cfg-badge').value = data.badge;
                     if(data.heroTitle) document.getElementById('cfg-hero-title').value = data.heroTitle;
                     if(data.heroDesc) document.getElementById('cfg-hero-desc').value = data.heroDesc;
+                    if(data.runningText) document.getElementById('cfg-running-text').value = data.runningText;
+                    if(data.kepsekQuote) document.getElementById('cfg-kepsek-quote').value = data.kepsekQuote;
+                    if(data.kepsekName) document.getElementById('cfg-kepsek-name').value = data.kepsekName;
+                    if(data.kepsekRole) document.getElementById('cfg-kepsek-role').value = data.kepsekRole;
                     if(data.ppdbStatus) document.getElementById('cfg-ppdb-status').value = data.ppdbStatus;
                     if(data.ppdbLink) document.getElementById('cfg-ppdb-link').value = data.ppdbLink;
                     if(data.address) document.getElementById('cfg-address').value = data.address;
@@ -365,6 +397,7 @@
                     if(data.fb) document.getElementById('cfg-fb').value = data.fb;
                     if(data.ig) document.getElementById('cfg-ig').value = data.ig;
                     if(data.yt) document.getElementById('cfg-yt').value = data.yt;
+                    if(data.tt) document.getElementById('cfg-tt').value = data.tt;
                 }
             } catch (err) {
                 console.error("Gagal muat config: ", err);
@@ -379,6 +412,10 @@
                     badge: document.getElementById('cfg-badge').value.trim(),
                     heroTitle: document.getElementById('cfg-hero-title').value.trim(),
                     heroDesc: document.getElementById('cfg-hero-desc').value.trim(),
+                    runningText: document.getElementById('cfg-running-text').value.trim(),
+                    kepsekQuote: document.getElementById('cfg-kepsek-quote').value.trim(),
+                    kepsekName: document.getElementById('cfg-kepsek-name').value.trim(),
+                    kepsekRole: document.getElementById('cfg-kepsek-role').value.trim(),
                     ppdbStatus: document.getElementById('cfg-ppdb-status').value,
                     ppdbLink: document.getElementById('cfg-ppdb-link').value.trim(),
                     address: document.getElementById('cfg-address').value.trim(),
@@ -387,8 +424,9 @@
                     fb: document.getElementById('cfg-fb').value.trim(),
                     ig: document.getElementById('cfg-ig').value.trim(),
                     yt: document.getElementById('cfg-yt').value.trim(),
+                    tt: document.getElementById('cfg-tt').value.trim(),
                     updatedAt: serverTimestamp()
-                });
+                }, { merge: true });
                 alert("🎉 Konfigurasi website berhasil disimpan!");
             } catch (err) {
                 alert("Gagal menyimpan: " + err.message);
@@ -556,7 +594,7 @@
             let info = document.getElementById('input-org-info').value.trim();
 
             if (!role || !name) {
-                alert("Jabatan dan Nama wajib diisi!");
+                alert("Jabatan dan nama anggota wajib diisi!");
                 return;
             }
 
@@ -564,13 +602,13 @@
                 await addDoc(collection(db, "organization"), {
                     role, name, info, createdAt: serverTimestamp()
                 });
-                alert("🎉 Anggota organisasi berhasil ditambahkan!");
+                alert("🎉 Anggota organisasi berhasil disimpan!");
                 document.getElementById('input-org-role').value = "";
                 document.getElementById('input-org-name').value = "";
                 document.getElementById('input-org-info').value = "";
                 tampilkanDaftarOrganisasi();
             } catch (err) {
-                alert("Gagal menyimpan: " + err.message);
+                alert("Gagal menyimpan organisasi: " + err.message);
             }
         };
 
@@ -587,27 +625,32 @@
                     let tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${count}</td>
-                        <td><span class="badge badge-primary">${o.role}</span></td>
+                        <td class="font-weight-bold text-primary">${o.role}</td>
                         <td class="font-weight-bold">${o.name}</td>
                         <td class="small text-muted">${o.info || '-'}</td>
                         <td><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('organization', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
                     `;
                     tbody.appendChild(tr);
                 });
-                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada data organisasi.</td></tr>`;
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada data struktur organisasi.</td></tr>`;
             } catch (e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat data organisasi.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat organisasi.</td></tr>`;
             }
         };
 
-        // FUNSI HAPUS ITEM UMUM
-        window.hapusAdminItem = async function(coll, id) {
+        // --- FUNGSI GLOBAL HAPUS ITEM ---
+        window.hapusAdminItem = async function(collectionName, docId) {
             if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-                await deleteDoc(doc(db, coll, id));
-                if(coll === 'announcements') tampilkanDaftarBerita();
-                if(coll === 'events') tampilkanDaftarAgenda();
-                if(coll === 'habits') tampilkanDaftarPembiasaan();
-                if(coll === 'organization') tampilkanDaftarOrganisasi();
+                try {
+                    await deleteDoc(doc(db, collectionName, docId));
+                    alert("🗑️ Data berhasil dihapus.");
+                    if(collectionName === 'announcements') tampilkanDaftarBerita();
+                    if(collectionName === 'events') tampilkanDaftarAgenda();
+                    if(collectionName === 'habits') tampilkanDaftarPembiasaan();
+                    if(collectionName === 'organization') tampilkanDaftarOrganisasi();
+                } catch (err) {
+                    alert("Gagal menghapus: " + err.message);
+                }
             }
         };
     </script>
