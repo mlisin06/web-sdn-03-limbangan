@@ -55,7 +55,7 @@
                 <i class="fa-solid fa-sitemap mr-2"></i> Struktur Organisasi
             </button>
             <button id="tab-settings-btn" onclick="switchTab('settings')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-sliders mr-2"></i> Pengaturan Web & Profil
+                <i class="fa-solid fa-sliders mr-2"></i> Pengaturan Logo, Profil & Kontak
             </button>
         </div>
 
@@ -67,24 +67,24 @@
                 </h2>
                 <form id="news-form" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Berita</label>
-                        <input type="text" id="news-title" required placeholder="Contoh: Pengumuman Rapor" class="w-full border rounded-lg p-2.5 text-sm outline-none focus:ring-2 focus:ring-navy">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Berita / Pengumuman</label>
+                        <input type="text" id="news-title" required placeholder="Contoh: Pengumuman Pembagian Rapor" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Link Foto (Opsional)</label>
-                        <input type="url" id="news-image-url" placeholder="https://i.ibb.co/xxxxx/foto.jpg" class="w-full border rounded-lg p-2.5 text-sm outline-none focus:ring-2 focus:ring-navy">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Link/URL Foto Kegiatan (Opsional)</label>
+                        <input type="url" id="news-image-url" placeholder="https://i.ibb.co/xxxxx/foto.jpg" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Isi Berita</label>
-                        <textarea id="news-content" rows="5" required placeholder="Tulis informasi..." class="w-full border rounded-lg p-2.5 text-sm outline-none focus:ring-2 focus:ring-navy"></textarea>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Isi Pesan / Informasi</label>
+                        <textarea id="news-content" rows="5" required placeholder="Tuliskan rinci informasi pengumuman..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-sm transition">
-                        Terbitkan Berita
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Terbitkan ke Web Utama
                     </button>
                 </form>
             </div>
             <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Berita</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-list-check text-gold"></i> Daftar Berita Terbit</h2>
                 <div id="news-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
             </div>
         </div>
@@ -92,25 +92,29 @@
         <!-- TAB 2: KELOLA AGENDA -->
         <div id="tab-events" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Tambah Agenda</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-plus text-gold"></i> Tambah Agenda Kegiatan
+                </h2>
                 <form id="events-form" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Agenda</label>
-                        <input type="text" id="event-title" required placeholder="Contoh: Ujian Praktek" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Agenda / Kegiatan</label>
+                        <input type="text" id="event-title" required placeholder="Contoh: Open House & Sosialisasi" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Tanggal & Waktu</label>
-                        <input type="text" id="event-date" required placeholder="Nov 20, 2026 - 08:00 WIB" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Tanggal & Waktu Kegiatan</label>
+                        <input type="text" id="event-date" required placeholder="Contoh: Nov 20, 2026 - 08:00 WIB" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi</label>
-                        <textarea id="event-desc" rows="4" required class="w-full border rounded-lg p-2.5 text-sm outline-none"></textarea>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi Singkat</label>
+                        <textarea id="event-desc" rows="4" required placeholder="Keterangan singkat kegiatan..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3 rounded-lg text-sm transition">Simpan Agenda</button>
+                    <button type="submit" class="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i> Simpan Agenda
+                    </button>
                 </form>
             </div>
             <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Agenda</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-calendar-day text-gold"></i> Daftar Agenda Terbit</h2>
                 <div id="events-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
             </div>
         </div>
@@ -118,25 +122,27 @@
         <!-- TAB 3: KELOLA PEMBIASAAN -->
         <div id="tab-habits" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-mosque text-gold mr-2"></i>Tambah Pembiasaan Siswa</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
+                    <i class="fa-solid fa-mosque text-gold"></i> Tambah Pembiasaan Siswa
+                </h2>
                 <form id="habits-form" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Nama Kegiatan</label>
-                        <input type="text" id="habit-title" required placeholder="Contoh: Sholat Dhuha" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <input type="text" id="habit-title" required placeholder="Contoh: Sholat Dhuha Berjamaah" class="w-full border rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Ikon FontAwesome (Opsional)</label>
-                        <input type="text" id="habit-icon" placeholder="fa-solid fa-mosque" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Ikon FontAwesome</label>
+                        <input type="text" id="habit-icon" placeholder="Contoh: fa-solid fa-mosque" class="w-full border rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi Singkat</label>
-                        <textarea id="habit-desc" rows="3" required class="w-full border rounded-lg p-2.5 text-sm outline-none"></textarea>
+                        <textarea id="habit-desc" rows="3" required placeholder="Penjelasan kegiatan..." class="w-full border rounded-lg p-2.5 text-sm outline-none"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-navy text-gold font-bold py-3 rounded-lg text-sm transition">Simpan Pembiasaan</button>
                 </form>
             </div>
             <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Pembiasaan Aktif</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Pembiasaan</h2>
                 <div id="habits-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
             </div>
         </div>
@@ -144,54 +150,110 @@
         <!-- TAB 4: KELOLA STRUKTUR ORGANISASI -->
         <div id="tab-org" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-sitemap text-gold mr-2"></i>Tambah Anggota Organisasi</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
+                    <i class="fa-solid fa-sitemap text-gold"></i> Tambah Struktur Organisasi
+                </h2>
                 <form id="org-form" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Jabatan</label>
-                        <input type="text" id="org-role" required placeholder="Contoh: Guru Kelas 1 / Komite" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <input type="text" id="org-role" required placeholder="Contoh: Kepala Sekolah / Komite" class="w-full border rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap & Gelar</label>
-                        <input type="text" id="org-name" required placeholder="Contoh: Budi Santoso, S.Pd." class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <input type="text" id="org-name" required placeholder="Contoh: Dra. Hj. Siti Aminah, M.Pd." class="w-full border rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Keterangan / NIP / Info Tambahan</label>
-                        <input type="text" id="org-info" placeholder="NIP. 19800101..." class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">Informasi Tambahan / NIP</label>
+                        <input type="text" id="org-info" placeholder="Contoh: NIP. 19680512..." class="w-full border rounded-lg p-2.5 text-sm outline-none">
                     </div>
                     <button type="submit" class="w-full bg-navy text-gold font-bold py-3 rounded-lg text-sm transition">Simpan Anggota</button>
                 </form>
             </div>
             <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Struktur Organisasi</h2>
+                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Organisasi</h2>
                 <div id="org-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
             </div>
         </div>
 
-        <!-- TAB 5: PENGATURAN LOGO, PROFIL & KONTAK -->
+        <!-- TAB 5: PENGATURAN LENGKAP (LOGO, HERO, PILAR 1-3, KONTAK, SOSMED) -->
         <div id="tab-settings" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hidden">
             <h2 class="text-xl font-bold text-navy mb-6 pb-2 border-b flex items-center justify-between">
-                <span><i class="fa-solid fa-sliders text-gold mr-2"></i> Pengaturan Web, Profil & Kontak</span>
+                <span><i class="fa-solid fa-sliders text-gold mr-2"></i> Pengaturan Logo, Profil & Kontak</span>
                 <span id="save-status" class="text-xs text-emerald-600 font-bold hidden"><i class="fa-solid fa-check-circle mr-1"></i> Berhasil disimpan!</span>
             </h2>
 
             <form id="settings-form" class="space-y-8">
+                <!-- Section Logo -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase">Logo Sekolah</h3>
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-image text-gold"></i> Logo Sekolah
+                    </h3>
                     <input type="url" id="cfg-logo-url" placeholder="https://i.ibb.co/xxxxx/logo.png" class="w-full border rounded-lg p-2.5 text-sm outline-none">
                 </div>
+
+                <!-- Hero Section -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase">Banner Utama (Hero)</h3>
-                    <input type="text" id="cfg-badge" placeholder="Tagline" class="w-full border rounded-lg p-2.5 text-sm mb-3">
-                    <input type="text" id="cfg-hero-title" placeholder="Judul Utama" class="w-full border rounded-lg p-2.5 text-sm mb-3">
-                    <textarea id="cfg-hero-desc" rows="3" placeholder="Deskripsi" class="w-full border rounded-lg p-2.5 text-sm"></textarea>
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-desktop text-gold"></i> Banner Utama (Hero Section)
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="cfg-badge" placeholder="Tagline Atas" class="w-full border rounded-lg p-2.5 text-sm">
+                        <input type="text" id="cfg-hero-title" placeholder="Judul Utama" class="w-full border rounded-lg p-2.5 text-sm">
+                    </div>
+                    <textarea id="cfg-hero-desc" rows="3" placeholder="Deskripsi Singkat" class="w-full border rounded-lg p-2.5 text-sm"></textarea>
                 </div>
+
+                <!-- Pilar / Program 1, 2, 3 -->
                 <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase">Kontak & Alamat</h3>
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-award text-gold"></i> Pilar Pendidikan / Program Unggulan
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-3 rounded-lg border space-y-2">
+                            <label class="block text-xs font-bold text-navy">Program 1</label>
+                            <input type="text" id="cfg-p1-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
+                            <textarea id="cfg-p1-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border space-y-2">
+                            <label class="block text-xs font-bold text-navy">Program 2</label>
+                            <input type="text" id="cfg-p2-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
+                            <textarea id="cfg-p2-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border space-y-2">
+                            <label class="block text-xs font-bold text-navy">Program 3</label>
+                            <input type="text" id="cfg-p3-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
+                            <textarea id="cfg-p3-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontak & Alamat -->
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-address-book text-gold"></i> Kontak & Alamat Sekolah
+                    </h3>
                     <textarea id="cfg-address" rows="2" placeholder="Alamat" class="w-full border rounded-lg p-2.5 text-sm mb-3"></textarea>
-                    <input type="text" id="cfg-phone" placeholder="Telepon/WA" class="w-full border rounded-lg p-2.5 text-sm mb-3">
-                    <input type="email" id="cfg-email" placeholder="Email" class="w-full border rounded-lg p-2.5 text-sm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="cfg-phone" placeholder="Nomor Telepon / WhatsApp" class="w-full border rounded-lg p-2.5 text-sm">
+                        <input type="email" id="cfg-email" placeholder="Email Resmi" class="w-full border rounded-lg p-2.5 text-sm">
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-navy text-gold font-bold py-4 rounded-xl text-sm transition uppercase tracking-wider">Simpan Pengaturan</button>
+
+                <!-- Media Sosial -->
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
+                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-share-nodes text-gold"></i> Link Media Sosial
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <input type="url" id="cfg-fb" placeholder="Link Facebook" class="w-full border rounded-lg p-2.5 text-sm">
+                        <input type="url" id="cfg-ig" placeholder="Link Instagram" class="w-full border rounded-lg p-2.5 text-sm">
+                        <input type="url" id="cfg-yt" placeholder="Link YouTube" class="w-full border rounded-lg p-2.5 text-sm">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-gold font-bold py-4 rounded-xl text-sm transition uppercase tracking-wider">
+                    Simpan Semua Perubahan
+                </button>
             </form>
         </div>
     </div>
@@ -323,9 +385,18 @@
                 document.getElementById('cfg-badge').value = data.badge || "";
                 document.getElementById('cfg-hero-title').value = data.heroTitle || "";
                 document.getElementById('cfg-hero-desc').value = data.heroDesc || "";
+                document.getElementById('cfg-p1-title').value = data.p1Title || "";
+                document.getElementById('cfg-p1-desc').value = data.p1Desc || "";
+                document.getElementById('cfg-p2-title').value = data.p2Title || "";
+                document.getElementById('cfg-p2-desc').value = data.p2Desc || "";
+                document.getElementById('cfg-p3-title').value = data.p3Title || "";
+                document.getElementById('cfg-p3-desc').value = data.p3Desc || "";
                 document.getElementById('cfg-address').value = data.address || "";
                 document.getElementById('cfg-phone').value = data.phone || "";
                 document.getElementById('cfg-email').value = data.email || "";
+                document.getElementById('cfg-fb').value = data.fb || "";
+                document.getElementById('cfg-ig').value = data.ig || "";
+                document.getElementById('cfg-yt').value = data.yt || "";
             }
         }
 
@@ -336,9 +407,18 @@
                 badge: document.getElementById('cfg-badge').value,
                 heroTitle: document.getElementById('cfg-hero-title').value,
                 heroDesc: document.getElementById('cfg-hero-desc').value,
+                p1Title: document.getElementById('cfg-p1-title').value,
+                p1Desc: document.getElementById('cfg-p1-desc').value,
+                p2Title: document.getElementById('cfg-p2-title').value,
+                p2Desc: document.getElementById('cfg-p2-desc').value,
+                p3Title: document.getElementById('cfg-p3-title').value,
+                p3Desc: document.getElementById('cfg-p3-desc').value,
                 address: document.getElementById('cfg-address').value,
                 phone: document.getElementById('cfg-phone').value,
-                email: document.getElementById('cfg-email').value
+                email: document.getElementById('cfg-email').value,
+                fb: document.getElementById('cfg-fb').value,
+                ig: document.getElementById('cfg-ig').value,
+                yt: document.getElementById('cfg-yt').value
             }, { merge: true });
             const status = document.getElementById('save-status');
             status.classList.remove('hidden');
