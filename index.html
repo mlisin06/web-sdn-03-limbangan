@@ -62,10 +62,15 @@
                 <a href="#contact" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Kontak</a>
             </nav>
 
+            <!-- Tombol Navigasi Desktop (Sudut Kanan Atas) -->
             <div class="hidden sm:flex items-center space-x-3">
                 <a href="siswa.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3.5 py-2.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span>Portal Siswa</span>
+                </a>
+                <a href="guru.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3.5 py-2.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span>Guru Login</span>
                 </a>
                 <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
                     <i class="fa-solid fa-lock text-[10px]"></i>
@@ -73,8 +78,10 @@
                 </a>
             </div>
 
+            <!-- Tombol Tampilan Mobile / HP -->
             <div class="lg:hidden flex items-center space-x-2">
-                <a href="siswa.html" class="bg-gold text-navy text-xs font-bold px-2 py-1.5 rounded"><i class="fa-solid fa-user-graduate"></i> Siswa</a>
+                <a href="siswa.html" class="bg-gold text-navy text-xs font-bold px-2.5 py-1.5 rounded"><i class="fa-solid fa-user-graduate"></i> Siswa</a>
+                <a href="guru.html" class="bg-navy-light text-gold border border-gold/30 text-xs font-bold px-2.5 py-1.5 rounded"><i class="fa-solid fa-chalkboard-user"></i> Guru</a>
                 <button id="menu-btn" onclick="toggleMobileMenu()" class="text-white focus:outline-none text-2xl"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
@@ -88,6 +95,7 @@
             <a href="#contact" class="block text-gray-300 hover:text-gold">Kontak</a>
             <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
                 <a href="siswa.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-user-graduate"></i> Portal Siswa & Nilai</a>
+                <a href="guru.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-chalkboard-user"></i> Panel Guru</a>
                 <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-lock"></i> Admin Login</a>
             </div>
         </div>
@@ -118,10 +126,10 @@
                         <h4 class="text-white font-bold text-sm">PORTAL SISWA</h4>
                         <span class="text-[10px] text-gray-400">Ulangan & Cek Nilai</span>
                     </a>
-                    <a href="login.html" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-user-shield text-navy text-2xl mb-2"></i>
-                        <h4 class="font-bold text-sm">ADMIN LOGIN</h4>
-                        <span class="text-[10px] text-navy/70">Kelola Sekolah</span>
+                    <a href="guru.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2"></i>
+                        <h4 class="text-white font-bold text-sm">PANEL GURU</h4>
+                        <span class="text-[10px] text-gray-400">Kelola Soal & Nilai</span>
                     </a>
                 </div>
             </div>
@@ -165,7 +173,6 @@
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
             <div id="firebase-habits-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Data Dinamis dari Firestore -->
                 <p class="text-gray-400 text-xs italic col-span-full text-center">Memuat pembiasaan...</p>
             </div>
         </div>
@@ -180,7 +187,6 @@
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
             <div id="firebase-org-list" class="max-w-3xl mx-auto space-y-4">
-                <!-- Data Dinamis dari Firestore -->
                 <p class="text-gray-400 text-xs italic text-center">Memuat struktur organisasi...</p>
             </div>
         </div>
