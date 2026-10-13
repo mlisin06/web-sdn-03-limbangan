@@ -182,17 +182,17 @@
         </div>
     </section>
 
-    <!-- SECTION STRUKTUR ORGANISASI (BAGAN BERJENJANG ELEGANKU) -->
-    <section id="org" class="py-16 bg-white border-t">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+    <!-- SECTION STRUKTUR ORGANISASI (UKURAN RINGKAS 50% & TEMA SUPER ELEGAN) -->
+    <section id="org" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white border-t">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-xl mx-auto mb-10">
                 <span class="text-gold font-bold text-xs tracking-widest uppercase">Manajemen Sekolah</span>
-                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Struktur Organisasi</h2>
-                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy mt-1">Struktur Organisasi</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-gold to-gold-dark mx-auto mt-2 rounded-full"></div>
             </div>
 
-            <!-- CONTAINER BAGAN STRUKTUR DENGAN HIRARKI -->
-            <div id="firebase-org-list" class="space-y-8">
+            <!-- CONTAINER BAGAN DENGAN WIDGET RINGKAS ELEGAN -->
+            <div id="firebase-org-list" class="space-y-6">
                 <p class="text-gray-400 text-xs italic text-center">Memuat struktur organisasi...</p>
             </div>
         </div>
@@ -470,7 +470,7 @@
             container.innerHTML = html;
         });
 
-        // Fetch Organisasi & Buat Bagan Struktur Berjenjang (Dinas, Komite, Kepsek, Guru & Staf)
+        // Fetch Organisasi & Render Tampilan Super Elegan Ringkasan (Kecil 50%)
         onSnapshot(query(collection(db, "organization"), orderBy("createdAt", "desc")), (snapshot) => {
             const container = document.getElementById('firebase-org-list');
             if (snapshot.empty) {
@@ -497,53 +497,53 @@
 
             let fullHtml = '';
 
-            // 1. TINGKAT PEMBINA / DINAS
+            // 1. LEVEL DINAS / PEMBINA
             if (dinasItems.length > 0) {
-                fullHtml += `<div class="max-w-xl mx-auto space-y-4">`;
+                fullHtml += `<div class="max-w-md mx-auto space-y-3">`;
                 dinasItems.forEach(item => {
                     fullHtml += `
-                        <div class="bg-navy-dark text-white border-2 border-gold p-5 rounded-2xl text-center shadow-md flex flex-col items-center justify-center">
-                            <span class="text-gold text-xs font-bold uppercase tracking-widest mb-1"><i class="fa-solid fa-building-columns mr-1"></i> ${item.role}</span>
-                            <h4 class="font-serif font-bold text-lg text-white">${item.name}</h4>
-                            <p class="text-gray-300 text-xs mt-0.5">${item.info || ''}</p>
+                        <div class="bg-gradient-to-r from-navy-dark via-navy to-navy-dark text-white border border-gold/40 p-3.5 rounded-xl text-center shadow-lg hover:border-gold transition transform hover:-translate-y-0.5">
+                            <span class="text-gold text-[10px] font-bold uppercase tracking-widest block"><i class="fa-solid fa-building-columns mr-1"></i> ${item.role}</span>
+                            <h4 class="font-serif font-bold text-sm text-white mt-0.5">${item.name}</h4>
+                            ${item.info ? `<p class="text-gray-300 text-[11px] mt-0.5">${item.info}</p>` : ''}
                         </div>
                     `;
                 });
-                fullHtml += `</div><div class="w-0.5 h-6 bg-gold mx-auto my-2"></div>`;
+                fullHtml += `</div><div class="w-0.5 h-4 bg-gradient-to-b from-gold to-gold/20 mx-auto"></div>`;
             }
 
-            // 2. TINGKAT PIMPINAN & KOMITE
+            // 2. LEVEL PIMPINAN & KOMITE
             if (pimpinanItems.length > 0) {
-                fullHtml += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">`;
+                fullHtml += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl mx-auto">`;
                 pimpinanItems.forEach(item => {
                     let isKepsek = item.role.toLowerCase().includes('kepala');
                     let iconName = isKepsek ? 'fa-user-tie' : 'fa-users-between-lines';
                     fullHtml += `
-                        <div class="bg-navy text-white border border-gold/60 p-6 rounded-2xl text-center shadow-md flex flex-col items-center justify-center space-y-2">
-                            <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-gold mb-1">
-                                <i class="fa-solid ${iconName} text-lg"></i>
+                        <div class="bg-gradient-to-b from-navy to-navy-dark text-white border border-gold/50 p-4 rounded-xl text-center shadow-md flex flex-col items-center justify-center space-y-1 hover:border-gold transition transform hover:-translate-y-0.5">
+                            <div class="w-9 h-9 rounded-full bg-gold/20 flex items-center justify-center text-gold border border-gold/30">
+                                <i class="fa-solid ${iconName} text-xs"></i>
                             </div>
-                            <span class="text-gold text-xs font-bold uppercase tracking-widest">${item.role}</span>
-                            <h4 class="font-serif font-bold text-base text-white">${item.name}</h4>
-                            <p class="text-gray-300 text-xs">${item.info || ''}</p>
+                            <span class="text-gold text-[10px] font-bold uppercase tracking-wider">${item.role}</span>
+                            <h4 class="font-serif font-bold text-xs sm:text-sm text-white">${item.name}</h4>
+                            ${item.info ? `<p class="text-gray-300 text-[10px]">${item.info}</p>` : ''}
                         </div>
                     `;
                 });
-                fullHtml += `</div><div class="w-0.5 h-6 bg-gold mx-auto my-2"></div>`;
+                fullHtml += `</div><div class="w-0.5 h-4 bg-gradient-to-b from-gold to-gold/20 mx-auto"></div>`;
             }
 
-            // 3. TINGKAT GURU, STAF & PENJAGA
+            // 3. LEVEL GURU, STAF & PENJAGA (GRID COMPACT 3 KOLOM)
             if (guruStafItems.length > 0) {
-                fullHtml += `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">`;
+                fullHtml += `<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">`;
                 guruStafItems.forEach(item => {
                     fullHtml += `
-                        <div class="bg-white text-navy border border-gray-200 p-6 rounded-2xl text-center shadow-sm hover:border-gold transition flex flex-col items-center justify-center space-y-2">
-                            <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold-dark mb-1">
-                                <i class="fa-solid fa-chalkboard-user text-base"></i>
+                        <div class="bg-white/90 backdrop-blur-sm text-navy border border-gray-200/80 p-3 rounded-xl text-center shadow-sm hover:border-gold/60 hover:shadow-md transition transform hover:-translate-y-0.5 flex flex-col items-center justify-center space-y-1">
+                            <div class="w-8 h-8 rounded-full bg-navy/5 flex items-center justify-center text-navy mb-0.5 border border-navy/10">
+                                <i class="fa-solid fa-chalkboard-user text-xs text-gold-dark"></i>
                             </div>
-                            <span class="text-gold-dark text-xs font-bold uppercase tracking-wider">${item.role}</span>
-                            <h4 class="font-serif font-bold text-sm text-navy">${item.name}</h4>
-                            <p class="text-gray-500 text-xs">${item.info || ''}</p>
+                            <span class="text-gold-dark text-[9px] font-bold uppercase tracking-wider block">${item.role}</span>
+                            <h4 class="font-serif font-bold text-xs text-navy leading-tight">${item.name}</h4>
+                            ${item.info ? `<p class="text-gray-400 text-[10px]">${item.info}</p>` : ''}
                         </div>
                     `;
                 });
