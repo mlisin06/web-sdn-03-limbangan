@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Siswa - SDN 03 Limbangan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; }
+        .card-custom { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); background: #ffffff; }
+        .form-control { border-radius: 10px; padding: 10px 15px; height: calc(1.5em + 1rem + 2px); }
+        textarea.form-control { height: auto; }
+        .btn-custom { border-radius: 10px; padding: 10px 20px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <!-- HEADER PORTAL SISWA -->
+    <header class="bg-primary text-white py-3 px-4 shadow-sm mb-4">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4 class="font-weight-bold mb-0">🎓 Portal Siswa & Ujian Online</h4>
+                <small class="text-white-50">SDN 03 Limbangan</small>
+            </div>
+            <div class="d-flex align-items-center mt-2 mt-md-0">
+                <span id="siswa-info-login" class="small text-warning mr-3 font-weight-bold">Belum Login</span>
+                <a href="index.html" class="btn btn-light btn-sm font-weight-bold mr-2"><i class="fa-solid fa-globe"></i> Web Utama</a>
+                <button id="logout-siswa-btn" class="btn btn-danger btn-sm font-weight-bold d-none" onclick="logoutSiswa()"><i class="fa-solid fa-right-from-bracket"></i> Ganti Akun</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container py-2 pb-5">
+        
+        <!-- CARD LOGIN / CEK NISN SISWA -->
+        <div id="section-login-siswa" class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-custom p-4 text-center">
+                    <h3 class="text-primary font-weight-bold mb-2">🔐 Masuk Portal Siswa</h3>
+                    <p class="text-muted small mb-4">Masukkan NISN Anda yang terdaftar untuk mulai mengerjakan soal dan mengecek nilai.</p>
+                    <div class="form-group text-left">
+                        <label class="small font-weight-bold">Nomor Induk Siswa Nasional (NISN)</label>
+                        <input type="text" id="login-nisn-input" class="form-control" placeholder="Contoh: 0012345678">
+                    </div>
+                    <button class="btn btn-primary btn-custom btn-block shadow-sm" onclick="prosesLoginSiswa()">Masuk ke Portal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD UTAMA SISWA (TERSEMBUNYI SEBELUM LOGIN) -->
+        <div id="section-dashboard-siswa" class="d-none">
+            
+            <!-- NAVIGASI TAB SISWA -->
+            <ul class="nav nav-pills mb-4 bg-white p-2 rounded shadow-sm justify-content-center" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active font-weight-bold px-4 rounded-pill" data-toggle="pill" href="#tab-kerjakan-soal" role="tab"><i class="fa-solid fa-pen-to-square mr-1"></i> Kerjakan Soal & Kuis</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link font-weight-bold px-4 rounded-pill" data-toggle="pill" href="#tab-cek-nilai" role="tab"><i class="fa-solid fa-chart-line mr-1"></i> Cek Nilai Saya</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                
+                <!-- TAB 1: KERJAKAN SOAL -->
+                <div class="tab-pane fade show active" id="tab-kerjakan-soal" role="tabpanel">
+                    <div class="card card-custom p-4 mb-4">
+                        <h4 class="text-primary font-weight-bold mb-3">📝 Daftar Soal & Tugas Tersedia</h4>
+                        <p class="text-muted small mb-4">Berikut adalah daftar kuis atau tugas yang diberikan oleh guru Anda secara real-time.</p>
+                        
+                        <div id="daftar-soal-siswa-container" class="space-y-4">
+                            <p class="text-muted text-center py-4">Memuat daftar soal...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CEK NILAI -->
+                <div class="tab-pane fade" id="tab-cek-nilai" role="tabpanel">
+                    <div class="card card-custom p-4 mb-4">
+                        <h4 class="text-success font-weight-bold mb-3">📊 Riwayat & Rekap Nilai Anda</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-center">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mata Pelajaran</th>
+                                        <th>Jenis Kuis</th>
+                                        <th>Nilai / Skor</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabel-nilai-siswa-body">
+                                    <tr><td colspan="5" class="text-muted py-4">Memuat data nilai Anda...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL MENGERJAKAN SOAL -->
+    <div class="modal fade" id="modalKerjakanSoal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 15px;">
+          <div class="modal-header bg-primary text-white" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <h5 class="modal-title font-weight-bold" id="modal-soal-title">Kerjakan Soal</h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-4">
+            <input type="hidden" id="active-soal-id">
+            <input type="hidden" id="active-soal-jenis">
+            <input type="hidden" id="active-soal-mapel">
+            <input type="hidden" id="active-soal-kelas">
+
+            <div class="mb-3">
+                <span id="badge-jenis-modal" class="badge badge-info mb-2">Jenis Soal</span>
+                <h5 id="teks-pertanyaan-modal" class="font-weight-bold text-dark">Pertanyaan...</h5>
+                <div id="gambar-soal-modal" class="my-3"></div>
+            </div>
+
+            <!-- CONTAINER PILIHAN GANDA -->
+            <div id="form-pilihan-ganda" class="d-none space-y-2">
+                <div class="custom-control custom-radio mb-2">
+                    <input type="radio" id="optA" name="jawabanPG" value="A" class="custom-control-input">
+                    <label class="custom-control-label" for="optA" id="label-optA">Opsi A</label>
+                </div>
+                <div class="custom-control custom-radio mb-2">
+                    <input type="radio" id="optB" name="jawabanPG" value="B" class="custom-control-input">
+                    <label class="custom-control-label" for="optB" id="label-optB">Opsi B</label>
+                </div>
+                <div class="custom-control custom-radio mb-2">
+                    <input type="radio" id="optC" name="jawabanPG" value="C" class="custom-control-input">
+                    <label class="custom-control-label" for="optC" id="label-optC">Opsi C</label>
+                </div>
+                <div class="custom-control custom-radio mb-2">
+                    <input type="radio" id="optD" name="jawabanPG" value="D" class="custom-control-input">
+                    <label class="custom-control-label" for="optD" id="label-optD">Opsi D</label>
+                </div>
+            </div>
+
+            <!-- CONTAINER ESSAY / MERANGKUM / PUZZLE -->
+            <div id="form-teks-bebas" class="d-none">
+                <label class="small font-weight-bold">Jawaban / Hasil Ketikan Anda:</label>
+                <textarea id="input-jawaban-teks" class="form-control" rows="5" placeholder="Tuliskan jawaban lengkap Anda di sini..."></textarea>
+            </div>
+
+            <button class="btn btn-success btn-block font-weight-bold mt-4 py-2" onclick="kirimJawabanSiswa()">📤 Kirim Jawaban ke Guru</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT FIREBASE & LOGIC SISWA -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
+            authDomain: "sdn03limbangan-portal.firebaseapp.com",
+            projectId: "sdn03limbangan-portal",
+            storageBucket: "sdn03limbangan-portal.firebasestorage.app",
+            messagingSenderId: "940789591995",
+            appId: "1:940789591995:web:cc8355aa291e41a2d29e9e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let currentUserSiswa = null;
+
+        window.prosesLoginSiswa = async function() {
+            let nisn = document.getElementById("login-nisn-input").value.trim();
+            if (!nisn) {
+                alert("Harap masukkan NISN Anda!");
+                return;
+            }
+
+            try {
+                const q = query(collection(db, "students"), where("nisn", "==", nisn));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    alert("NISN tidak ditemukan! Pastikan NISN sudah didaftarkan oleh Guru di Panel Guru.");
+                    return;
+                }
+
+                snap.forEach((doc) => {
+                    currentUserSiswa = { id: doc.id, ...doc.data() };
+                });
+
+                document.getElementById("siswa-info-login").innerText = `${currentUserSiswa.nama} (${currentUserSiswa.kelas})`;
+                document.getElementById("section-login-siswa").classList.add("d-none");
+                document.getElementById("section-dashboard-siswa").classList.remove("d-none");
+                document.getElementById("logout-siswa-btn").classList.remove("d-none");
+
+                muatSoalUntukSiswa();
+                muatNilaiSiswa();
+            } catch (err) {
+                alert("Terjadi kesalahan saat login: " + err.message);
+            }
+        };
+
+        window.logoutSiswa = function() {
+            currentUserSiswa = null;
+            document.getElementById("section-login-siswa").classList.remove("d-none");
+            document.getElementById("section-dashboard-siswa").classList.add("d-none");
+            document.getElementById("logout-siswa-btn").classList.add("d-none");
+            document.getElementById("siswa-info-login").innerText = "Belum Login";
+            document.getElementById("login-nisn-input").value = "";
+        };
+
+        window.muatSoalUntukSiswa = async function() {
+            let container = document.getElementById("daftar-soal-siswa-container");
+            container.innerHTML = `<p class="text-muted text-center py-4">Memuat daftar soal...</p>`;
+
+            try {
+                const q = query(collection(db, "exams"), orderBy("createdAt", "desc"));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    container.innerHTML = `<p class="text-muted text-center py-4">Belum ada soal atau tugas dari guru.</p>`;
+                    return;
+                }
+
+                let html = '';
+                snap.forEach((docSnap) => {
+                    let d = docSnap.data();
+                    // Filter berdasarkan kelas siswa atau tampilkan semua
+                    if (d.kelas && currentUserSiswa.kelas && d.kelas !== currentUserSiswa.kelas) return;
+
+                    html += `
+                        <div class="p-4 border rounded bg-light mb-3 d-flex justify-content-between align-items-center flex-wrap">
+                            <div>
+                                <span class="badge badge-secondary">${d.mapel}</span>
+                                <span class="badge badge-info">${d.jenis}</span>
+                                <h5 class="font-weight-bold text-dark mt-2 mb-1">${d.pertanyaan}</h5>
+                                <small class="text-muted">Kelas: ${d.kelas}</small>
+                            </div>
+                            <button class="btn btn-primary btn-sm font-weight-bold mt-2 mt-md-0" onclick='bukaModalSoal(${JSON.stringify({id: docSnap.id, ...d})})'>
+                                ✍️ Kerjakan Soal
+                            </button>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html || `<p class="text-muted text-center py-4">Tidak ada soal untuk kelas Anda saat ini.</p>`;
+            } catch (e) {
+                container.innerHTML = `<p class="text-danger text-center py-4">Gagal memuat soal.</p>`;
+            }
+        };
+
+        window.bukaModalSoal = function(dataSoal) {
+            document.getElementById("active-soal-id").value = dataSoal.id;
+            document.getElementById("active-soal-jenis").value = dataSoal.jenis;
+            document.getElementById("active-soal-mapel").value = dataSoal.mapel;
+            document.getElementById("active-soal-kelas").value = dataSoal.kelas;
+
+            document.getElementById("badge-jenis-modal").innerText = `${dataSoal.mapel} - ${dataSoal.jenis}`;
+            document.getElementById("teks-pertanyaan-modal").innerText = dataSoal.pertanyaan;
+
+            let gambarContainer = document.getElementById("gambar-soal-modal");
+            gambarContainer.innerHTML = dataSoal.gambar ? `<img src="${dataSoal.gambar}" class="img-fluid rounded border" style="max-height: 200px;">` : "";
+
+            let formPG = document.getElementById("form-pilihan-ganda");
+            let formTeks = document.getElementById("form-teks-bebas");
+
+            if (dataSoal.jenis === "Pilihan Ganda") {
+                formPG.classList.remove("d-none");
+                formTeks.classList.add("d-none");
+                document.getElementById("label-optA").innerText = dataSoal.opsiA || "-";
+                document.getElementById("label-optB").innerText = dataSoal.opsiB || "-";
+                document.getElementById("label-optC").innerText = dataSoal.opsiC || "-";
+                document.getElementById("label-optD").innerText = dataSoal.opsiD || "-";
+                // Reset radio
+                document.querySelectorAll('input[name="jawabanPG"]').forEach(el => el.checked = false);
+            } else {
+                formPG.classList.add("d-none");
+                formTeks.classList.remove("d-none");
+                document.getElementById("input-jawaban-teks").value = "";
+            }
+
+            $('#modalKerjakanSoal').modal('show');
+        };
+
+        window.kirimJawabanSiswa = async function() {
+            let jenis = document.getElementById("active-soal-jenis").value;
+            let mapel = document.getElementById("active-soal-mapel").value;
+            let kelas = document.getElementById("active-soal-kelas").value;
+            let pertanyaan = document.getElementById("teks-pertanyaan-modal").innerText;
+
+            let jawabanFinal = "";
+            let nilaiOtomatis = null;
+
+            if (jenis === "Pilihan Ganda") {
+                let selected = document.querySelector('input[name="jawabanPG"]:checked');
+                if (!selected) {
+                    alert("Pilih salah satu jawaban terlebih dahulu!");
+                    return;
+                }
+                jawabanFinal = selected.value;
+                // Untuk tahap awal, nilai PG dapat dikosongkan untuk dikoreksi guru atau diberi default
+                nilaiOtomatis = 100; // atau sistem koreksi otomatis jika kunci tersedia
+            } else {
+                jawabanFinal = document.getElementById("input-jawaban-teks").value.trim();
+                if (!jawabanFinal) {
+                    alert("Jawaban tidak boleh kosong!");
+                    return;
+                }
+                nilaiOtomatis = null; // Essay / Merangkum dinilai manual oleh guru di panel guru
+            }
+
+            try {
+                await addDoc(collection(db, "grades"), {
+                    nisn: currentUserSiswa.nisn,
+                    nama: currentUserSiswa.nama,
+                    kelas: kelas,
+                    mapel: mapel,
+                    jenis: jenis,
+                    nilai: nilaiOtomatis,
+                    detail: `Pertanyaan: ${pertanyaan}\nJawaban Siswa: ${jawabanFinal}`,
+                    createdAt: serverTimestamp()
+                });
+
+                $('#modalKerjakanSoal').modal('hide');
+                alert("🎉 Jawaban berhasil dikirim ke guru!");
+                muatNilaiSiswa();
+            } catch (err) {
+                alert("Gagal mengirim jawaban: " + err.message);
+            }
+        };
+
+        window.muatNilaiSiswa = async function() {
+            let tbody = document.getElementById("tabel-nilai-siswa-body");
+            tbody.innerHTML = `<tr><td colspan="5" class="text-muted py-4">Memuat nilai Anda...</td></tr>`;
+
+            try {
+                const q = query(collection(db, "grades"), where("nisn", "==", currentUserSiswa.nisn), orderBy("createdAt", "desc"));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-muted py-4">Belum ada riwayat nilai atau tugas yang dikerjakan.</td></tr>`;
+                    return;
+                }
+
+                let html = '';
+                let index = 1;
+                snap.forEach((docSnap) => {
+                    let d = docSnap.data();
+                    let valNilai = d.nilai !== null && d.nilai !== undefined !== "" ? d.nilai : '<span class="badge badge-warning">Menunggu Koreksi Guru</span>';
+
+                    html += `
+                        <tr>
+                            <td>${index++}</td>
+                            <td><span class="badge badge-secondary">${d.mapel}</span></td>
+                            <td><span class="badge badge-info">${d.jenis}</span></td>
+                            <td><b class="text-success" style="font-size: 15px;">${valNilai}</b></td>
+                            <td><small class="text-muted">${d.detail ? 'Sudah Dikumpulkan' : '-'}</small></td>
+                        </tr>
+                    `;
+                });
+
+                tbody.innerHTML = html;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-danger py-4">Gagal memuat rekap nilai.</td></tr>`;
+            }
+        };
+    </script>
+</body>
+</html>
