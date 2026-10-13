@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Negeri 03 Limbangan - Portal Resmi</title>
     
-    <!-- Favicon Default (Ikon Tab Browser) -->
+    <!-- Favicon Default -->
     <link id="dynamic-favicon" rel="icon" type="image/jpeg" href="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg">
 
     <!-- Open Graph untuk WhatsApp & Social Media Preview -->
     <meta property="og:title" content="SD Negeri 03 Limbangan">
     <meta property="og:description" content="Portal Resmi SD Negeri 03 Limbangan - Mencetak anak berakhlak mulia dan berprestasi Dunia & Akhirat.">
     <meta property="og:image" content="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="600">
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,85 +37,90 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
-    <!-- TOP BAR NAVIGASI -->
+    <!-- TOP BAR NAVIGASI (Presisi & Tidak Berdesakan) -->
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div id="logo-container" class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md overflow-hidden">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <div id="logo-container" class="w-11 h-11 rounded-full bg-gradient-to-tr from-gold to-gold-light flex items-center justify-center text-navy shadow-md overflow-hidden">
                     <img src="https://i.ibb.co.com/0pG9fmFg/logo-sekolah.jpg" class="w-full h-full object-cover" alt="Logo SD Negeri 03 Limbangan">
                 </div>
                 <div>
-                    <h1 class="font-serif text-white text-lg sm:text-xl font-bold tracking-wider leading-tight">SD NEGERI 03</h1>
-                    <p class="text-gold text-xs font-semibold tracking-widest uppercase">LIMBANGAN</p>
+                    <h1 class="font-serif text-white text-base sm:text-lg font-bold tracking-wider leading-tight">SD NEGERI 03</h1>
+                    <p class="text-gold text-[10px] sm:text-xs font-semibold tracking-widest uppercase">LIMBANGAN</p>
                 </div>
             </div>
 
-            <nav class="hidden lg:flex items-center space-x-6">
-                <a href="#home" class="text-gold text-sm font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
-                <a href="#academics" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Program & Pilar</a>
-                <a href="#habits" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Pembiasaan</a>
-                <a href="#org" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Struktur Organisasi</a>
-                <a href="#news" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Berita & Agenda</a>
-                <a href="#contact" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Kontak</a>
+            <!-- Menu Navigasi Tengah (Desktop Layar Besar) -->
+            <nav class="hidden xl:flex items-center space-x-6 text-xs sm:text-sm font-medium">
+                <a href="#home" class="text-gold font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
+                <a href="#academics" class="text-gray-300 hover:text-gold tracking-wide transition">Program & Pilar</a>
+                <a href="#habits" class="text-gray-300 hover:text-gold tracking-wide transition">Pembiasaan</a>
+                <a href="#org" class="text-gray-300 hover:text-gold tracking-wide transition">Struktur</a>
+                <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Agenda</a>
+                <a href="#contact" class="text-gray-300 hover:text-gold tracking-wide transition">Kontak</a>
             </nav>
 
-            <!-- Tombol Navigasi Desktop (Sudut Kanan Atas) -->
-            <div class="hidden sm:flex items-center space-x-3">
-                <a href="siswa.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3.5 py-2.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
+            <!-- Tombol Akses Portal Kanan Atas -->
+            <div class="hidden md:flex items-center space-x-2.5">
+                <a href="siswa.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
                     <i class="fa-solid fa-user-graduate"></i>
                     <span>Portal Siswa</span>
                 </a>
-                <a href="guru.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3.5 py-2.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
+                <a href="guru.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 shadow-sm">
                     <i class="fa-solid fa-chalkboard-user"></i>
-                    <span>Guru Login</span>
+                    <span>Panel Guru</span>
                 </a>
-                <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
+                <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-3.5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-1.5">
                     <i class="fa-solid fa-lock text-[10px]"></i>
-                    <span>Admin Login</span>
+                    <span>Admin</span>
                 </a>
             </div>
 
-            <!-- Tombol Tampilan Mobile / HP -->
-            <div class="lg:hidden flex items-center space-x-2">
-                <a href="siswa.html" class="bg-gold text-navy text-xs font-bold px-2.5 py-1.5 rounded"><i class="fa-solid fa-user-graduate"></i> Siswa</a>
-                <a href="guru.html" class="bg-navy-light text-gold border border-gold/30 text-xs font-bold px-2.5 py-1.5 rounded"><i class="fa-solid fa-chalkboard-user"></i> Guru</a>
-                <button id="menu-btn" onclick="toggleMobileMenu()" class="text-white focus:outline-none text-2xl"><i class="fa-solid fa-bars"></i></button>
+            <!-- Tombol Hamburger Mobile -->
+            <div class="md:hidden flex items-center space-x-2">
+                <button onclick="toggleMobileMenu()" class="text-white focus:outline-none text-2xl px-2">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden lg:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
-            <a href="#home" class="block text-gold font-medium">Home</a>
-            <a href="#academics" class="block text-gray-300 hover:text-gold">Program & Pilar</a>
-            <a href="#habits" class="block text-gray-300 hover:text-gold">Pembiasaan Siswa</a>
-            <a href="#org" class="block text-gray-300 hover:text-gold">Struktur Organisasi</a>
-            <a href="#news" class="block text-gray-300 hover:text-gold">Berita & Agenda</a>
-            <a href="#contact" class="block text-gray-300 hover:text-gold">Kontak</a>
+        <!-- Menu Dropdown Mobile / HP -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
+            <a href="#home" class="block text-gold font-medium" onclick="toggleMobileMenu()">Home</a>
+            <a href="#academics" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Program & Pilar</a>
+            <a href="#habits" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Pembiasaan Siswa</a>
+            <a href="#org" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Struktur Organisasi</a>
+            <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Agenda</a>
+            <a href="#contact" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kontak</a>
             <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
-                <a href="siswa.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-user-graduate"></i> Portal Siswa & Nilai</a>
-                <a href="guru.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-chalkboard-user"></i> Panel Guru</a>
-                <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-lock"></i> Admin Login</a>
+                <a href="siswa.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-user-graduate mr-1"></i> Portal Siswa</a>
+                <a href="guru.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-chalkboard-user mr-1"></i> Panel Guru</a>
+                <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-lock mr-1"></i> Admin Login</a>
             </div>
         </div>
     </header>
 
     <!-- HERO SECTION -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 space-y-6">
-                <span id="dyn-badge" class="inline-block bg-gold/20 text-gold border border-gold/30 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
+                <span id="dyn-badge" class="inline-block bg-gold/20 text-gold border border-gold/30 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
                     Unggul & Berkarakter Islami
                 </span>
-                <h1 id="dyn-hero-title" class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                <h1 id="dyn-hero-title" class="font-serif text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
                     MENCETAK ANAK BERAKHLAK MULIA DAN BERPRESTASI DUNIA & AKHIRAT.
                 </h1>
                 <p id="dyn-hero-desc" class="text-gray-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
                     Selamat datang di portal resmi SD Negeri 03 Limbangan.
                 </p>
             </div>
-            <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-gold/30 shadow-2xl space-y-6">
-                <div class="border-b border-navy pb-4">
+
+            <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 rounded-2xl border border-gold/30 shadow-2xl space-y-5">
+                <div class="border-b border-navy pb-3">
                     <span class="text-gold text-xs font-bold tracking-widest uppercase">Portal Akademik Terpadu</span>
-                    <h3 class="font-serif text-white text-xl font-bold mt-1">LAYANAN DIGITAL</h3>
+                    <h3 class="font-serif text-white text-xl font-bold mt-0.5">LAYANAN DIGITAL</h3>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a href="siswa.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
@@ -214,10 +216,9 @@
         </div>
     </section>
 
-    <!-- CONTACT & PPDB SECTION (DINAMIS BUKA/TUTUP) -->
+    <!-- CONTACT & PPDB SECTION -->
     <section id="contact" class="py-16 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
             <div class="space-y-6">
                 <span id="ppdb-badge" class="bg-gold/20 text-gold border border-gold/30 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
                     Informasi Pendaftaran
@@ -280,7 +281,8 @@
             if (snap.exists()) {
                 const data = snap.data();
                 if(data.logoUrl) {
-                    document.getElementById('logo-container').innerHTML = `<img src="${data.logoUrl}" class="w-full h-full object-cover">`;
+                    let logoHTML = `<img src="${data.logoUrl}" class="w-full h-full object-cover">`;
+                    document.getElementById('logo-container').innerHTML = logoHTML;
                     let favicon = document.getElementById('dynamic-favicon');
                     if (favicon) favicon.href = data.logoUrl;
                 }
@@ -300,7 +302,7 @@
                 if(data.ig) document.getElementById('dyn-ig').href = data.ig;
                 if(data.yt) document.getElementById('dyn-yt').href = data.yt;
 
-                // Logika Status PPDB (Buka / Tutup)
+                // Status PPDB (Buka / Tutup)
                 if (data.ppdbStatus === "BUKA") {
                     document.getElementById('ppdb-badge').innerText = "Pendaftaran Dibuka";
                     document.getElementById('ppdb-title').innerText = "Penerimaan Siswa Baru (PPDB) Sedang Dibuka!";
