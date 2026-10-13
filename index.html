@@ -58,7 +58,7 @@
                 <a href="#academics" class="text-gray-300 hover:text-gold tracking-wide transition">Program & Pilar</a>
                 <a href="#habits" class="text-gray-300 hover:text-gold tracking-wide transition">Pembiasaan</a>
                 <a href="#org" class="text-gray-300 hover:text-gold tracking-wide transition">Struktur</a>
-                <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Agenda</a>
+                <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Arsip</a>
                 <a href="#feedback" class="text-gray-300 hover:text-gold tracking-wide transition">Kritik & Saran</a>
                 <a href="#contact" class="text-gray-300 hover:text-gold tracking-wide transition">Kontak</a>
             </nav>
@@ -93,7 +93,7 @@
             <a href="#academics" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Program & Pilar</a>
             <a href="#habits" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Pembiasaan Siswa</a>
             <a href="#org" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Struktur Organisasi</a>
-            <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Agenda</a>
+            <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Arsip</a>
             <a href="#feedback" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kritik & Saran</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kontak</a>
             <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
@@ -196,24 +196,71 @@
         </div>
     </section>
 
-    <!-- BERITA & AGENDA -->
+    <!-- BERITA, AGENDA & ARSIP BLOG MODEL -->
     <section id="news" class="py-16 bg-gray-100 border-t">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-xl shadow-sm">
-                <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b flex items-center space-x-3">
-                    <i class="fa-solid fa-bullhorn text-gold"></i><span>BERITA & PENGUMUMAN</span>
-                </h3>
-                <div id="firebase-news-list" class="space-y-6">
-                    <p class="text-gray-400 text-xs italic">Memuat berita...</p>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-gold font-bold text-xs tracking-widest uppercase">Kabar Sekolah</span>
+                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Berita, Agenda & Arsip Publikasi</h2>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-sm">
-                <h3 class="font-serif text-xl font-bold text-navy mb-6 pb-3 border-b flex items-center space-x-3">
-                    <i class="fa-solid fa-calendar-days text-gold"></i><span>AGENDA KEGIATAN</span>
-                </h3>
-                <div id="firebase-events-list" class="space-y-6">
-                    <p class="text-gray-400 text-xs italic">Memuat agenda...</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- KOLOM KIRI (BERITA UTAMA & DAFTAR ARSIP) -->
+                <div class="lg:col-span-8 bg-white p-6 sm:p-8 rounded-xl shadow-sm space-y-6">
+                    <div class="flex justify-between items-center pb-4 border-b flex-wrap gap-2">
+                        <h3 class="font-serif text-xl font-bold text-navy flex items-center space-x-2">
+                            <i class="fa-solid fa-newspaper text-gold"></i>
+                            <span id="label-daftar-berita">BERITA & PENGUMUMAN TERBARU</span>
+                        </h3>
+                        <button id="btn-reset-filter" class="hidden text-xs bg-navy text-gold px-3 py-1.5 rounded-lg font-bold" onclick="resetFilterBerita()">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> Tampilkan Semua Berita
+                        </button>
+                    </div>
+
+                    <div id="firebase-news-list" class="space-y-6">
+                        <p class="text-gray-400 text-xs italic">Memuat berita...</p>
+                    </div>
                 </div>
+
+                <!-- KOLOM KANAN (AGENDA & WIDGET ARSIP BULAN/TAHUN) -->
+                <div class="lg:col-span-4 space-y-8">
+                    
+                    <!-- WIDGET ARSIP BERITA / BLOG HISTORI -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+                        <h3 class="font-serif text-lg font-bold text-navy pb-3 border-b flex items-center space-x-2">
+                            <i class="fa-solid fa-box-archive text-gold"></i>
+                            <span>📁 ARSIP BERITA</span>
+                        </h3>
+                        <p class="text-xs text-gray-500">Pilih bulan dan tahun untuk melihat berita yang pernah diterbitkan:</p>
+
+                        <!-- Kotak Filter / Dropdown Arsip Bulan Tahun -->
+                        <div class="space-y-2">
+                            <select id="select-arsip-bulan" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 font-semibold text-navy bg-gray-50" onchange="filterBeritaBerdasarBulan()">
+                                <option value="">-- Semua Bulan & Tahun --</option>
+                            </select>
+                        </div>
+
+                        <!-- Daftar Histori Bulan (List Style Blog) -->
+                        <div id="arsip-list-container" class="space-y-1.5 text-xs">
+                            <p class="text-gray-400 italic">Memuat arsip...</p>
+                        </div>
+                    </div>
+
+                    <!-- AGENDA KEGIATAN -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+                        <h3 class="font-serif text-lg font-bold text-navy pb-3 border-b flex items-center space-x-2">
+                            <i class="fa-solid fa-calendar-days text-gold"></i>
+                            <span>AGENDA KEGIATAN</span>
+                        </h3>
+                        <div id="firebase-events-list" class="space-y-4">
+                            <p class="text-gray-400 text-xs italic">Memuat agenda...</p>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </section>
@@ -320,7 +367,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Function Kirim Kritik & Saran
+        let globalNewsData = [];
+
+        // Kirim Kritik & Saran
         window.kirimKritikSaran = async function(e) {
             e.preventDefault();
             const btn = document.getElementById('btn-ks-submit');
@@ -440,29 +489,105 @@
             container.innerHTML = html;
         });
 
-        // Fetch Berita
+        // Fetch Berita & Generate Histori Arsip Bulan/Tahun
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
-            const container = document.getElementById('firebase-news-list');
-            if (snapshot.empty) {
-                container.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman.</p>';
+            globalNewsData = [];
+            snapshot.forEach((docSnap) => {
+                globalNewsData.push({ id: docSnap.id, ...docSnap.data() });
+            });
+            renderBeritaDanArsip(globalNewsData);
+        });
+
+        function renderBeritaDanArsip(newsArray, filterKey = null) {
+            const containerList = document.getElementById('firebase-news-list');
+            const selectArsip = document.getElementById('select-arsip-bulan');
+            const listArsipContainer = document.getElementById('arsip-list-container');
+            const btnReset = document.getElementById('btn-reset-filter');
+            const labelTitle = document.getElementById('label-daftar-berita');
+
+            if (newsArray.length === 0) {
+                containerList.innerHTML = '<p class="text-gray-500 text-xs">Belum ada pengumuman.</p>';
                 return;
             }
+
+            // Peta Arsip Bulan/Tahun
+            let arsipMap = {};
+
+            newsArray.forEach((item) => {
+                let dateObj = item.createdAt ? item.createdAt.toDate() : new Date();
+                let keyBulanTahun = dateObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+                if (!arsipMap[keyBulanTahun]) arsipMap[keyBulanTahun] = 0;
+                arsipMap[keyBulanTahun]++;
+            });
+
+            // Populate Dropdown & List Arsip
+            selectArsip.innerHTML = '<option value="">-- Semua Bulan & Tahun --</option>';
+            let listArsipHTML = '';
+
+            Object.keys(arsipMap).forEach(key => {
+                let selectedAttr = filterKey === key ? 'selected' : '';
+                selectArsip.innerHTML += `<option value="${key}" ${selectedAttr}>${key} (${arsipMap[key]})</option>`;
+                listArsipHTML += `
+                    <button onclick="filterBeritaByGroup('${key}')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg border hover:bg-gold/10 hover:border-gold transition text-left text-navy font-semibold">
+                        <span><i class="fa-regular fa-folder-open text-gold mr-1.5"></i> ${key}</span>
+                        <span class="bg-navy text-gold text-[10px] px-2 py-0.5 rounded-full font-bold">${arsipMap[key]}</span>
+                    </button>
+                `;
+            });
+            listArsipContainer.innerHTML = listArsipHTML;
+
+            // Render Daftar Berita yang Dikerjakan / Difilter
+            let filteredArray = newsArray;
+            if (filterKey) {
+                btnReset.classList.remove('hidden');
+                labelTitle.innerText = `ARSIP BERITA: ${filterKey.toUpperCase()}`;
+                filteredArray = newsArray.filter(item => {
+                    let dObj = item.createdAt ? item.createdAt.toDate() : new Date();
+                    return dObj.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' }) === filterKey;
+                });
+            } else {
+                btnReset.classList.add('hidden');
+                labelTitle.innerText = `BERITA & PENGUMUMAN TERBARU`;
+            }
+
+            if (filteredArray.length === 0) {
+                containerList.innerHTML = '<p class="text-gray-500 text-xs">Tidak ada berita pada arsip periode ini.</p>';
+                return;
+            }
+
             let html = '', isFirst = true;
-            snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
+            filteredArray.forEach((data) => {
                 const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
                 html += `
-                    <div class="${isFirst ? '' : 'pt-4 border-t'}">
-                        <span class="text-gold text-xs font-semibold">${tgl}</span>
-                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
-                        ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
-                        <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
-                    </div>
+                    <article class="${isFirst ? '' : 'pt-6 border-t'} space-y-2">
+                        <div class="flex items-center space-x-2 text-xs text-gold font-semibold">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>${tgl}</span>
+                        </div>
+                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer">${data.title}</h4>
+                        ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-56 object-cover rounded-xl my-3 shadow-sm border">` : ''}
+                        <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line">${data.content}</p>
+                    </article>
                 `;
                 isFirst = false;
             });
-            container.innerHTML = html;
-        });
+            containerList.innerHTML = html;
+        }
+
+        window.filterBeritaBerdasarBulan = function() {
+            let val = document.getElementById('select-arsip-bulan').value;
+            renderBeritaDanArsip(globalNewsData, val || null);
+        };
+
+        window.filterBeritaByGroup = function(key) {
+            document.getElementById('select-arsip-bulan').value = key;
+            renderBeritaDanArsip(globalNewsData, key);
+        };
+
+        window.resetFilterBerita = function() {
+            document.getElementById('select-arsip-bulan').value = '';
+            renderBeritaDanArsip(globalNewsData, null);
+        };
 
         // Fetch Agenda
         onSnapshot(query(collection(db, "events"), orderBy("createdAt", "desc")), (snapshot) => {
@@ -475,10 +600,10 @@
             snapshot.forEach((docSnap) => {
                 const data = docSnap.data();
                 html += `
-                    <div class="${isFirst ? '' : 'pt-4 border-t'}">
+                    <div class="${isFirst ? '' : 'pt-3 border-t'}">
                         <span class="text-gold text-xs font-semibold">${data.dateStr}</span>
-                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
-                        <p class="text-gray-600 text-xs mt-1">${data.description}</p>
+                        <h4 class="font-bold text-navy text-sm mt-0.5">${data.title}</h4>
+                        <p class="text-gray-600 text-xs mt-0.5">${data.description}</p>
                     </div>
                 `;
                 isFirst = false;
