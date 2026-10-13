@@ -3,285 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Pengelola Sekolah - SDN 03 Limbangan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: { DEFAULT: '#0f1f38', dark: '#081120', light: '#1b335a' },
-                        gold: { DEFAULT: '#d4af37', light: '#f3e5ab', dark: '#aa8c2c' }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Panel Admin - SDN 03 Limbangan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f8f9fa; }
+        .card-custom { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); background: #ffffff; }
+        .form-control { border-radius: 10px; padding: 10px 15px; }
+        textarea.form-control { height: auto; }
+        .btn-custom { border-radius: 10px; padding: 10px 20px; font-weight: 600; }
+        .table th, .table td { vertical-align: middle !important; }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
-
-    <!-- Header Panel Admin -->
-    <header class="bg-navy text-white px-6 py-4 shadow-md flex justify-between items-center sticky top-0 z-50">
-        <div>
-            <h1 class="text-xl font-bold flex items-center gap-2">
-                <i class="fa-solid fa-graduation-cap text-gold"></i>
-                <span>Panel Pengelola Sekolah</span>
-            </h1>
-            <p class="text-xs text-gray-300">SDN 03 Limbangan</p>
-        </div>
-        <div class="flex items-center space-x-4">
-            <span id="user-email" class="text-xs text-gold font-medium hidden sm:inline"></span>
-            <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
-                <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar
-            </button>
+<body>
+    <!-- HEADER NAVBAR ADMIN -->
+    <header class="bg-dark text-white py-3 px-4 shadow-sm mb-4">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h4 class="font-weight-bold mb-0 text-warning">⚙️ Panel Admin Sekolah</h4>
+                <small class="text-white-50">SDN 03 Limbangan - Pusat Konten & Sistem Utama</small>
+            </div>
+            <div class="d-flex align-items-center mt-2 mt-md-0">
+                <span id="admin-user-email" class="small text-info mr-3 font-weight-bold"></span>
+                <a href="index.html" class="btn btn-light btn-sm font-weight-bold mr-2"><i class="fa-solid fa-globe"></i> Lihat Web Utama</a>
+                <button id="admin-logout-btn" class="btn btn-danger btn-sm font-weight-bold"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            </div>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Navigation Tabs -->
-        <div class="flex flex-wrap border-b border-gray-300 mb-6 bg-white rounded-t-xl p-2 gap-2 shadow-sm overflow-x-auto">
-            <button id="tab-news-btn" onclick="switchTab('news')" class="px-4 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition bg-navy text-white shadow">
-                <i class="fa-solid fa-bullhorn mr-2"></i> Berita
-            </button>
-            <button id="tab-events-btn" onclick="switchTab('events')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-calendar-days mr-2"></i> Agenda
-            </button>
-            <button id="tab-habits-btn" onclick="switchTab('habits')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-mosque mr-2"></i> Pembiasaan
-            </button>
-            <button id="tab-org-btn" onclick="switchTab('org')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-sitemap mr-2"></i> Struktur Organisasi
-            </button>
-            <button id="tab-settings-btn" onclick="switchTab('settings')" class="px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition">
-                <i class="fa-solid fa-sliders mr-2"></i> Pengaturan Logo, Profil & PPDB
-            </button>
-        </div>
+    <div class="container py-2 pb-5">
+        
+        <!-- NAVIGASI TAB MENU ADMIN -->
+        <ul class="nav nav-pills mb-4 bg-white p-2 rounded shadow-sm justify-content-center flex-wrap" id="adminTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active font-weight-bold px-3 rounded-pill" data-toggle="pill" href="#tab-config" role="tab"><i class="fa-solid fa-sliders mr-1"></i> Pengaturan Web & PPDB</a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link font-weight-bold px-3 rounded-pill" data-toggle="pill" href="#tab-berita" role="tab"><i class="fa-solid fa-newspaper mr-1"></i> Berita & Pengumuman</a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link font-weight-bold px-3 rounded-pill" data-toggle="pill" href="#tab-agenda" role="tab"><i class="fa-solid fa-calendar-days mr-1"></i> Agenda Kegiatan</a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link font-weight-bold px-3 rounded-pill" data-toggle="pill" href="#tab-pembiasaan" role="tab"><i class="fa-solid fa-star mr-1"></i> Pembiasaan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold px-3 rounded-pill" data-toggle="pill" href="#tab-organisasi" role="tab"><i class="fa-solid fa-sitemap mr-1"></i> Struktur Organisasi</a>
+            </li>
+        </ul>
 
-        <!-- TAB 1: KELOLA BERITA -->
-        <div id="tab-news" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
-                    <i class="fa-solid fa-plus-circle text-gold"></i> Tambah Berita Baru
-                </h2>
-                <form id="news-form" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Berita / Pengumuman</label>
-                        <input type="text" id="news-title" required placeholder="Contoh: Pengumuman Pembagian Rapor" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Link/URL Foto Kegiatan (Opsional)</label>
-                        <input type="url" id="news-image-url" placeholder="https://i.ibb.co/xxxxx/foto.jpg" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Isi Pesan / Informasi</label>
-                        <textarea id="news-content" rows="5" required placeholder="Tuliskan rinci informasi pengumuman..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-navy outline-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Terbitkan ke Web Utama
-                    </button>
-                </form>
-            </div>
-            <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-list-check text-gold"></i> Daftar Berita Terbit</h2>
-                <div id="news-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
-            </div>
-        </div>
-
-        <!-- TAB 2: KELOLA AGENDA -->
-        <div id="tab-events" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
-            <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
-                    <i class="fa-solid fa-calendar-plus text-gold"></i> Tambah Agenda Kegiatan
-                </h2>
-                <form id="events-form" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Judul Agenda / Kegiatan</label>
-                        <input type="text" id="event-title" required placeholder="Contoh: Open House & Sosialisasi" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Tanggal & Waktu Kegiatan</label>
-                        <input type="text" id="event-date" required placeholder="Contoh: Nov 20, 2026 - 08:00 WIB" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi Singkat</label>
-                        <textarea id="event-desc" rows="4" required placeholder="Keterangan singkat kegiatan..." class="w-full border border-gray-300 rounded-lg p-2.5 text-sm outline-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3 rounded-lg text-sm transition flex justify-center items-center gap-2">
-                        <i class="fa-solid fa-calendar-check"></i> Simpan Agenda
-                    </button>
-                </form>
-            </div>
-            <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b"><i class="fa-solid fa-calendar-day text-gold"></i> Daftar Agenda Terbit</h2>
-                <div id="events-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
-            </div>
-        </div>
-
-        <!-- TAB 3: KELOLA PEMBIASAAN -->
-        <div id="tab-habits" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
-            <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
-                    <i class="fa-solid fa-mosque text-gold"></i> Tambah Pembiasaan Siswa
-                </h2>
-                <form id="habits-form" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Nama Kegiatan</label>
-                        <input type="text" id="habit-title" required placeholder="Contoh: Sholat Dhuha Berjamaah" class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Ikon FontAwesome</label>
-                        <input type="text" id="habit-icon" placeholder="Contoh: fa-solid fa-mosque" class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Deskripsi Singkat</label>
-                        <textarea id="habit-desc" rows="3" required placeholder="Penjelasan kegiatan..." class="w-full border rounded-lg p-2.5 text-sm outline-none"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-navy text-gold font-bold py-3 rounded-lg text-sm transition">Simpan Pembiasaan</button>
-                </form>
-            </div>
-            <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Pembiasaan</h2>
-                <div id="habits-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
-            </div>
-        </div>
-
-        <!-- TAB 4: KELOLA STRUKTUR ORGANISASI -->
-        <div id="tab-org" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
-            <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b flex items-center gap-2">
-                    <i class="fa-solid fa-sitemap text-gold"></i> Tambah Struktur Organisasi
-                </h2>
-                <form id="org-form" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Jabatan</label>
-                        <input type="text" id="org-role" required placeholder="Contoh: Kepala Sekolah / Komite" class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Nama Lengkap & Gelar</label>
-                        <input type="text" id="org-name" required placeholder="Contoh: Dra. Hj. Siti Aminah, M.Pd." class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">Informasi Tambahan / NIP</label>
-                        <input type="text" id="org-info" placeholder="Contoh: NIP. 19680512..." class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                    </div>
-                    <button type="submit" class="w-full bg-navy text-gold font-bold py-3 rounded-lg text-sm transition">Simpan Anggota</button>
-                </form>
-            </div>
-            <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-lg font-bold text-navy mb-4 pb-2 border-b">Daftar Organisasi</h2>
-                <div id="org-list" class="space-y-4"><p class="text-gray-400 text-sm">Memuat data...</p></div>
-            </div>
-        </div>
-
-        <!-- TAB 5: PENGATURAN LENGKAP -->
-        <div id="tab-settings" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hidden">
-            <h2 class="text-xl font-bold text-navy mb-6 pb-2 border-b flex items-center justify-between">
-                <span><i class="fa-solid fa-sliders text-gold mr-2"></i> Pengaturan Logo, Profil, Kontak & PPDB</span>
-                <span id="save-status" class="text-xs text-emerald-600 font-bold hidden"><i class="fa-solid fa-check-circle mr-1"></i> Berhasil disimpan!</span>
-            </h2>
-
-            <form id="settings-form" class="space-y-8">
-                <!-- Status PPDB (Buka / Tutup) -->
-                <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-user-plus text-gold"></i> Status Penerimaan Siswa Baru (PPDB)
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Status Pendaftaran</label>
-                            <select id="cfg-ppdb-status" class="w-full border rounded-lg p-2.5 text-sm bg-white outline-none">
-                                <option value="TUTUP">TUTUP (Pendaftaran Belum/Telah Selesai)</option>
-                                <option value="BUKA">BUKA (Pendaftaran Siswa Baru Aktif)</option>
-                            </select>
+        <div class="tab-content">
+            
+            <!-- ================= TAB 1: PENGATURAN WEB & PPDB ================= -->
+            <div class="tab-pane fade show active" id="tab-config" role="tabpanel">
+                <div class="card card-custom p-4 mb-4">
+                    <h4 class="text-primary font-weight-bold mb-3"><i class="fa-solid fa-gears mr-2"></i>Pengaturan Utama Identitas Web</h4>
+                    
+                    <form id="form-site-config" onsubmit="simpanKonfigurasiWeb(event)">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="small font-weight-bold">URL Logo Sekolah (Link Gambar)</label>
+                                <input type="text" id="cfg-logo" class="form-control" placeholder="https://i.ibb.co.com/.../logo.jpg">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small font-weight-bold">Badge Teks Atas</label>
+                                <input type="text" id="cfg-badge" class="form-control" placeholder="Unggul & Berkarakter Islami">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Link Form Pendaftaran (Google Form / WA)</label>
-                            <input type="url" id="cfg-ppdb-link" placeholder="https://forms.gle/..." class="w-full border rounded-lg p-2.5 text-sm outline-none">
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold">Judul Utama Halaman Depan (Hero Title)</label>
+                            <input type="text" id="cfg-hero-title" class="form-control" placeholder="MENCETAK ANAK BERAKHLAK MULIA...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold">Deskripsi Singkat Beranda</label>
+                            <textarea id="cfg-hero-desc" class="form-control" rows="2"></textarea>
+                        </div>
+
+                        <hr>
+                        <h5 class="text-secondary font-weight-bold mb-3">📢 Pengaturan PPDB Online</h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Status PPDB Saat Ini</label>
+                                <select id="cfg-ppdb-status" class="form-control font-weight-bold">
+                                    <option value="TUTUP">TUTUP (Pendaftaran Belum Dibuka)</option>
+                                    <option value="BUKA">BUKA (Pendaftaran Sedang Dibuka)</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label class="small font-weight-bold">Link Form Pendaftaran Online (Google Form/Lynk.id)</label>
+                                <input type="text" id="cfg-ppdb-link" class="form-control" placeholder="https://forms.gle/...">
+                            </div>
+                        </div>
+
+                        <hr>
+                        <h5 class="text-secondary font-weight-bold mb-3">📞 Kontak & Informasi Footer</h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Alamat Sekolah</label>
+                                <input type="text" id="cfg-address" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Nomor Telepon / WA</label>
+                                <input type="text" id="cfg-phone" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Email Sekolah</label>
+                                <input type="email" id="cfg-email" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Link Facebook</label>
+                                <input type="text" id="cfg-fb" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Link Instagram</label>
+                                <input type="text" id="cfg-ig" class="form-control">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="small font-weight-bold">Link YouTube</label>
+                                <input type="text" id="cfg-yt" class="form-control">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-custom shadow-sm"><i class="fa-solid fa-floppy-disk mr-2"></i>Simpan Perubahan Web</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ================= TAB 2: BERITA & PENGUMUMAN ================= -->
+            <div class="tab-pane fade" id="tab-berita" role="tabpanel">
+                <div class="card card-custom p-4 mb-4">
+                    <h4 class="text-primary font-weight-bold mb-3">📰 Tambah Berita / Pengumuman Baru</h4>
+                    <p class="text-muted small">Berita yang diposting di sini akan tersusun secara otomatis ke dalam **Arsip Bulan & Tahun** di halaman depan.</p>
+                    
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Judul Berita / Pengumuman</label>
+                        <input type="text" id="input-berita-judul" class="form-control" placeholder="Contoh: Pelaksanaan Ujian Akhir Semester...">
+                    </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold">URL Gambar Pendukung (Opsional)</label>
+                        <input type="text" id="input-berita-gambar" class="form-control" placeholder="https://i.ibb.co.com/.../foto.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Isi Berita Lengkap</label>
+                        <textarea id="input-berita-isi" class="form-control" rows="5" placeholder="Tuliskan berita lengkap di sini..."></textarea>
+                    </div>
+                    <button class="btn btn-success btn-custom" onclick="tambahBeritaBaru()"><i class="fa-solid fa-paper-plane mr-2"></i>Terbitkan Berita</button>
+                </div>
+
+                <div class="card card-custom p-4 mb-4">
+                    <h5 class="font-weight-bold text-secondary mb-3">Daftar Berita Diterbitkan</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="20%">Tanggal</th>
+                                    <th width="30%">Judul Berita</th>
+                                    <th width="35%">Ringkasan Isi</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-admin-berita-body">
+                                <tr><td colspan="5" class="text-center text-muted py-3">Memuat data berita...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 3: AGENDA KEGIATAN ================= -->
+            <div class="tab-pane fade" id="tab-agenda" role="tabpanel">
+                <div class="card card-custom p-4 mb-4">
+                    <h4 class="text-primary font-weight-bold mb-3">📅 Tambah Agenda Kegiatan</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Tanggal / Waktu Kegiatan</label>
+                            <input type="text" id="input-agenda-tgl" class="form-control" placeholder="Contoh: 15 Oktober 2026">
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="small font-weight-bold">Nama Agenda / Kegiatan</label>
+                            <input type="text" id="input-agenda-judul" class="form-control" placeholder="Contoh: Rapat Wali Murid Kelas 6">
                         </div>
                     </div>
-                </div>
-
-                <!-- Section Logo -->
-                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-image text-gold"></i> Logo Sekolah
-                    </h3>
-                    <input type="url" id="cfg-logo-url" placeholder="https://i.ibb.co/xxxxx/logo.png" class="w-full border rounded-lg p-2.5 text-sm outline-none">
-                </div>
-
-                <!-- Hero Section -->
-                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-desktop text-gold"></i> Banner Utama (Hero Section)
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="cfg-badge" placeholder="Tagline Atas" class="w-full border rounded-lg p-2.5 text-sm">
-                        <input type="text" id="cfg-hero-title" placeholder="Judul Utama" class="w-full border rounded-lg p-2.5 text-sm">
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Deskripsi Keterangan Agenda</label>
+                        <textarea id="input-agenda-desc" class="form-control" rows="2"></textarea>
                     </div>
-                    <textarea id="cfg-hero-desc" rows="3" placeholder="Deskripsi Singkat" class="w-full border rounded-lg p-2.5 text-sm"></textarea>
+                    <button class="btn btn-success btn-custom" onclick="tambahAgendaBaru()"><i class="fa-solid fa-plus mr-2"></i>Simpan Agenda</button>
                 </div>
 
-                <!-- Pilar / Program 1, 2, 3 -->
-                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-award text-gold"></i> Pilar Pendidikan / Program Unggulan
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-white p-3 rounded-lg border space-y-2">
-                            <label class="block text-xs font-bold text-navy">Program 1</label>
-                            <input type="text" id="cfg-p1-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
-                            <textarea id="cfg-p1-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
+                <div class="card card-custom p-4 mb-4">
+                    <h5 class="font-weight-bold text-secondary mb-3">Daftar Agenda Kegiatan</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Judul Agenda</th>
+                                    <th>Keterangan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-admin-agenda-body">
+                                <tr><td colspan="5" class="text-muted py-3">Memuat agenda...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= TAB 4: PEMBIASAAN ================= -->
+            <div class="tab-pane fade" id="tab-pembiasaan" role="tabpanel">
+                <div class="card card-custom p-4 mb-4">
+                    <h4 class="text-primary font-weight-bold mb-3">⭐ Tambah Pembiasaan Siswa</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Ikon FontAwesome</label>
+                            <input type="text" id="input-habit-icon" class="form-control" placeholder="fa-solid fa-hands-praying">
                         </div>
-                        <div class="bg-white p-3 rounded-lg border space-y-2">
-                            <label class="block text-xs font-bold text-navy">Program 2</label>
-                            <input type="text" id="cfg-p2-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
-                            <textarea id="cfg-p2-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
-                        </div>
-                        <div class="bg-white p-3 rounded-lg border space-y-2">
-                            <label class="block text-xs font-bold text-navy">Program 3</label>
-                            <input type="text" id="cfg-p3-title" placeholder="Judul" class="w-full border rounded p-2 text-xs mb-1">
-                            <textarea id="cfg-p3-desc" rows="2" placeholder="Deskripsi" class="w-full border rounded p-2 text-xs"></textarea>
+                        <div class="form-group col-md-8">
+                            <label class="small font-weight-bold">Judul Pembiasaan</label>
+                            <input type="text" id="input-habit-title" class="form-control" placeholder="Contoh: Sholat Dhuha Berjamaah">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="small font-weight-bold">Deskripsi Pembiasaan</label>
+                        <textarea id="input-habit-desc" class="form-control" rows="2"></textarea>
+                    </div>
+                    <button class="btn btn-success btn-custom" onclick="tambahPembiasaanBaru()"><i class="fa-solid fa-plus mr-2"></i>Simpan Pembiasaan</button>
                 </div>
 
-                <!-- Kontak & Alamat -->
-                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-address-book text-gold"></i> Kontak & Alamat Sekolah
-                    </h3>
-                    <textarea id="cfg-address" rows="2" placeholder="Alamat" class="w-full border rounded-lg p-2.5 text-sm mb-3"></textarea>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="cfg-phone" placeholder="Nomor Telepon / WhatsApp" class="w-full border rounded-lg p-2.5 text-sm">
-                        <input type="email" id="cfg-email" placeholder="Email Resmi" class="w-full border rounded-lg p-2.5 text-sm">
+                <div class="card card-custom p-4 mb-4">
+                    <h5 class="font-weight-bold text-secondary mb-3">Daftar Pembiasaan</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Ikon</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-admin-habit-body">
+                                <tr><td colspan="5" class="text-muted py-3">Memuat pembiasaan...</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Media Sosial -->
-                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-navy text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-share-nodes text-gold"></i> Link Media Sosial
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <input type="url" id="cfg-fb" placeholder="Link Facebook" class="w-full border rounded-lg p-2.5 text-sm">
-                        <input type="url" id="cfg-ig" placeholder="Link Instagram" class="w-full border rounded-lg p-2.5 text-sm">
-                        <input type="url" id="cfg-yt" placeholder="Link YouTube" class="w-full border rounded-lg p-2.5 text-sm">
+            <!-- ================= TAB 5: STRUKTUR ORGANISASI ================= -->
+            <div class="tab-pane fade" id="tab-organisasi" role="tabpanel">
+                <div class="card card-custom p-4 mb-4">
+                    <h4 class="text-primary font-weight-bold mb-3">👥 Tambah Struktur Organisasi</h4>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Jabatan / Role</label>
+                            <input type="text" id="input-org-role" class="form-control" placeholder="Contoh: Kepala Sekolah">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Nama Lengkap & Gelar</label>
+                            <input type="text" id="input-org-name" class="form-control" placeholder="Contoh: Ahmad, S.Pd.">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Informasi Tambahan / NIP (Opsional)</label>
+                            <input type="text" id="input-org-info" class="form-control" placeholder="NIP: 198001...">
+                        </div>
                     </div>
+                    <button class="btn btn-success btn-custom" onclick="tambahOrganisasiBaru()"><i class="fa-solid fa-plus mr-2"></i>Simpan Anggota</button>
                 </div>
 
-                <button type="submit" class="w-full bg-navy hover:bg-navy-dark text-gold font-bold py-4 rounded-xl text-sm transition uppercase tracking-wider">
-                    Simpan Semua Perubahan
-                </button>
-            </form>
+                <div class="card card-custom p-4 mb-4">
+                    <h5 class="font-weight-bold text-secondary mb-3">Daftar Struktur Organisasi</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Jabatan</th>
+                                    <th>Nama</th>
+                                    <th>Keterangan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-admin-org-body">
+                                <tr><td colspan="5" class="text-muted py-3">Memuat struktur organisasi...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <!-- SCRIPT JS & FIREBASE INTEGRATION -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, deleteDoc, doc, setDoc, getDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
@@ -296,161 +329,286 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Cek Login Admin
         onAuthStateChanged(auth, (user) => {
-            if (!user) window.location.href = "login.html";
-            else {
-                document.getElementById('user-email').innerText = user.email;
-                loadSettings();
+            if (!user) {
+                window.location.href = "login.html";
+            } else {
+                document.getElementById('admin-user-email').innerText = user.email;
+                muatKonfigurasiWeb();
+                tampilkanDaftarBerita();
+                tampilkanDaftarAgenda();
+                tampilkanDaftarPembiasaan();
+                tampilkanDaftarOrganisasi();
             }
         });
 
-        document.getElementById('logout-btn').addEventListener('click', () => {
+        document.getElementById('admin-logout-btn').addEventListener('click', () => {
             signOut(auth).then(() => window.location.href = "login.html");
         });
 
-        window.switchTab = function(tabName) {
-            ['news', 'events', 'habits', 'org', 'settings'].forEach(t => {
-                document.getElementById(`tab-${t}`).classList.add('hidden');
-                document.getElementById(`tab-${t}-btn`).className = "px-4 py-2.5 text-xs sm:text-sm font-bold text-gray-600 hover:bg-gray-100 rounded-lg transition";
-            });
-            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
-            document.getElementById(`tab-${tabName}-btn`).className = "px-4 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition bg-navy text-white shadow";
+        // --- 1. KONFIGURASI WEB & PPDB ---
+        window.muatKonfigurasiWeb = async function() {
+            try {
+                const docSnap = await getDoc(doc(db, "settings", "site_config"));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if(data.logoUrl) document.getElementById('cfg-logo').value = data.logoUrl;
+                    if(data.badge) document.getElementById('cfg-badge').value = data.badge;
+                    if(data.heroTitle) document.getElementById('cfg-hero-title').value = data.heroTitle;
+                    if(data.heroDesc) document.getElementById('cfg-hero-desc').value = data.heroDesc;
+                    if(data.ppdbStatus) document.getElementById('cfg-ppdb-status').value = data.ppdbStatus;
+                    if(data.ppdbLink) document.getElementById('cfg-ppdb-link').value = data.ppdbLink;
+                    if(data.address) document.getElementById('cfg-address').value = data.address;
+                    if(data.phone) document.getElementById('cfg-phone').value = data.phone;
+                    if(data.email) document.getElementById('cfg-email').value = data.email;
+                    if(data.fb) document.getElementById('cfg-fb').value = data.fb;
+                    if(data.ig) document.getElementById('cfg-ig').value = data.ig;
+                    if(data.yt) document.getElementById('cfg-yt').value = data.yt;
+                }
+            } catch (err) {
+                console.error("Gagal muat config: ", err);
+            }
         };
 
-        // --- BERITA ---
-        document.getElementById('news-form').addEventListener('submit', async (e) => {
+        window.simpanKonfigurasiWeb = async function(e) {
             e.preventDefault();
-            await addDoc(collection(db, "announcements"), {
-                title: document.getElementById('news-title').value,
-                content: document.getElementById('news-content').value,
-                imageUrl: document.getElementById('news-image-url').value,
-                createdAt: serverTimestamp()
-            });
-            e.target.reset();
-        });
-        onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snap) => {
-            let html = '';
-            snap.forEach(d => {
-                const data = d.data();
-                html += `<div class="p-4 rounded-xl border bg-gray-50 flex justify-between items-start"><div><h3 class="font-bold text-navy text-sm">${data.title}</h3><p class="text-xs text-gray-600 mt-1">${data.content}</p></div><button onclick="deleteItem('announcements', '${d.id}')" class="text-red-500 font-bold"><i class="fa-solid fa-trash"></i></button></div>`;
-            });
-            document.getElementById('news-list').innerHTML = html || '<p class="text-gray-400 text-sm">Belum ada berita.</p>';
-        });
-
-        // --- AGENDA ---
-        document.getElementById('events-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addDoc(collection(db, "events"), {
-                title: document.getElementById('event-title').value,
-                dateStr: document.getElementById('event-date').value,
-                description: document.getElementById('event-desc').value,
-                createdAt: serverTimestamp()
-            });
-            e.target.reset();
-        });
-        onSnapshot(query(collection(db, "events"), orderBy("createdAt", "desc")), (snap) => {
-            let html = '';
-            snap.forEach(d => {
-                const data = d.data();
-                html += `<div class="p-4 rounded-xl border bg-gray-50 flex justify-between items-start"><div><span class="text-gold text-xs font-bold">${data.dateStr}</span><h3 class="font-bold text-navy text-sm">${data.title}</h3><p class="text-xs text-gray-600">${data.description}</p></div><button onclick="deleteItem('events', '${d.id}')" class="text-red-500 font-bold"><i class="fa-solid fa-trash"></i></button></div>`;
-            });
-            document.getElementById('events-list').innerHTML = html || '<p class="text-gray-400 text-sm">Belum ada agenda.</p>';
-        });
-
-        // --- PEMBIASAAN ---
-        document.getElementById('habits-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addDoc(collection(db, "habits"), {
-                title: document.getElementById('habit-title').value,
-                icon: document.getElementById('habit-icon').value || 'fa-solid fa-star',
-                description: document.getElementById('habit-desc').value,
-                createdAt: serverTimestamp()
-            });
-            e.target.reset();
-        });
-        onSnapshot(query(collection(db, "habits"), orderBy("createdAt", "desc")), (snap) => {
-            let html = '';
-            snap.forEach(d => {
-                const data = d.data();
-                html += `<div class="p-4 rounded-xl border bg-gray-50 flex justify-between items-start"><div><h3 class="font-bold text-navy text-sm"><i class="${data.icon} text-gold mr-2"></i>${data.title}</h3><p class="text-xs text-gray-600">${data.description}</p></div><button onclick="deleteItem('habits', '${d.id}')" class="text-red-500 font-bold"><i class="fa-solid fa-trash"></i></button></div>`;
-            });
-            document.getElementById('habits-list').innerHTML = html || '<p class="text-gray-400 text-sm">Belum ada pembiasaan.</p>';
-        });
-
-        // --- ORGANISASI ---
-        document.getElementById('org-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addDoc(collection(db, "organization"), {
-                role: document.getElementById('org-role').value,
-                name: document.getElementById('org-name').value,
-                info: document.getElementById('org-info').value,
-                createdAt: serverTimestamp()
-            });
-            e.target.reset();
-        });
-        onSnapshot(query(collection(db, "organization"), orderBy("createdAt", "desc")), (snap) => {
-            let html = '';
-            snap.forEach(d => {
-                const data = d.data();
-                html += `<div class="p-4 rounded-xl border bg-gray-50 flex justify-between items-start"><div><span class="text-gold text-xs font-bold uppercase">${data.role}</span><h3 class="font-bold text-navy text-sm">${data.name}</h3><p class="text-xs text-gray-500">${data.info}</p></div><button onclick="deleteItem('organization', '${d.id}')" class="text-red-500 font-bold"><i class="fa-solid fa-trash"></i></button></div>`;
-            });
-            document.getElementById('org-list').innerHTML = html || '<p class="text-gray-400 text-sm">Belum ada data organisasi.</p>';
-        });
-
-        async function loadSettings() {
-            const snap = await getDoc(doc(db, "settings", "site_config"));
-            if (snap.exists()) {
-                const data = snap.data();
-                document.getElementById('cfg-ppdb-status').value = data.ppdbStatus || "TUTUP";
-                document.getElementById('cfg-ppdb-link').value = data.ppdbLink || "";
-                document.getElementById('cfg-logo-url').value = data.logoUrl || "";
-                document.getElementById('cfg-badge').value = data.badge || "";
-                document.getElementById('cfg-hero-title').value = data.heroTitle || "";
-                document.getElementById('cfg-hero-desc').value = data.heroDesc || "";
-                document.getElementById('cfg-p1-title').value = data.p1Title || "";
-                document.getElementById('cfg-p1-desc').value = data.p1Desc || "";
-                document.getElementById('cfg-p2-title').value = data.p2Title || "";
-                document.getElementById('cfg-p2-desc').value = data.p2Desc || "";
-                document.getElementById('cfg-p3-title').value = data.p3Title || "";
-                document.getElementById('cfg-p3-desc').value = data.p3Desc || "";
-                document.getElementById('cfg-address').value = data.address || "";
-                document.getElementById('cfg-phone').value = data.phone || "";
-                document.getElementById('cfg-email').value = data.email || "";
-                document.getElementById('cfg-fb').value = data.fb || "";
-                document.getElementById('cfg-ig').value = data.ig || "";
-                document.getElementById('cfg-yt').value = data.yt || "";
+            try {
+                await setDoc(doc(db, "settings", "site_config"), {
+                    logoUrl: document.getElementById('cfg-logo').value.trim(),
+                    badge: document.getElementById('cfg-badge').value.trim(),
+                    heroTitle: document.getElementById('cfg-hero-title').value.trim(),
+                    heroDesc: document.getElementById('cfg-hero-desc').value.trim(),
+                    ppdbStatus: document.getElementById('cfg-ppdb-status').value,
+                    ppdbLink: document.getElementById('cfg-ppdb-link').value.trim(),
+                    address: document.getElementById('cfg-address').value.trim(),
+                    phone: document.getElementById('cfg-phone').value.trim(),
+                    email: document.getElementById('cfg-email').value.trim(),
+                    fb: document.getElementById('cfg-fb').value.trim(),
+                    ig: document.getElementById('cfg-ig').value.trim(),
+                    yt: document.getElementById('cfg-yt').value.trim(),
+                    updatedAt: serverTimestamp()
+                });
+                alert("🎉 Konfigurasi website berhasil disimpan!");
+            } catch (err) {
+                alert("Gagal menyimpan: " + err.message);
             }
-        }
+        };
 
-        document.getElementById('settings-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await setDoc(doc(db, "settings", "site_config"), {
-                ppdbStatus: document.getElementById('cfg-ppdb-status').value,
-                ppdbLink: document.getElementById('cfg-ppdb-link').value,
-                logoUrl: document.getElementById('cfg-logo-url').value,
-                badge: document.getElementById('cfg-badge').value,
-                heroTitle: document.getElementById('cfg-hero-title').value,
-                heroDesc: document.getElementById('cfg-hero-desc').value,
-                p1Title: document.getElementById('cfg-p1-title').value,
-                p1Desc: document.getElementById('cfg-p1-desc').value,
-                p2Title: document.getElementById('cfg-p2-title').value,
-                p2Desc: document.getElementById('cfg-p2-desc').value,
-                p3Title: document.getElementById('cfg-p3-title').value,
-                p3Desc: document.getElementById('cfg-p3-desc').value,
-                address: document.getElementById('cfg-address').value,
-                phone: document.getElementById('cfg-phone').value,
-                email: document.getElementById('cfg-email').value,
-                fb: document.getElementById('cfg-fb').value,
-                ig: document.getElementById('cfg-ig').value,
-                yt: document.getElementById('cfg-yt').value
-            }, { merge: true });
-            const status = document.getElementById('save-status');
-            status.classList.remove('hidden');
-            setTimeout(() => status.classList.add('hidden'), 3000);
-        });
+        // --- 2. BERITA & PENGUMUMAN ---
+        window.tambahBeritaBaru = async function() {
+            let title = document.getElementById('input-berita-judul').value.trim();
+            let imageUrl = document.getElementById('input-berita-gambar').value.trim();
+            let content = document.getElementById('input-berita-isi').value.trim();
 
-        window.deleteItem = async function(coll, id) {
-            if(confirm("Hapus item ini?")) await deleteDoc(doc(db, coll, id));
+            if (!title || !content) {
+                alert("Judul dan isi berita wajib diisi!");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "announcements"), {
+                    title, imageUrl, content, createdAt: serverTimestamp()
+                });
+                alert("🎉 Berita berhasil diterbitkan!");
+                document.getElementById('input-berita-judul').value = "";
+                document.getElementById('input-berita-gambar').value = "";
+                document.getElementById('input-berita-isi').value = "";
+                tampilkanDaftarBerita();
+            } catch (err) {
+                alert("Gagal menterbitkan: " + err.message);
+            }
+        };
+
+        window.tampilkanDaftarBerita = async function() {
+            let tbody = document.getElementById('tabel-admin-berita-body');
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Memuat data berita...</td></tr>`;
+            try {
+                const snap = await getDocs(query(collection(db, "announcements"), orderBy("createdAt", "desc")));
+                tbody.innerHTML = "";
+                let count = 0;
+                snap.forEach((d) => {
+                    let b = d.data();
+                    count++;
+                    let tgl = b.createdAt ? new Date(b.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="text-center">${count}</td>
+                        <td class="text-center"><small class="badge badge-info">${tgl}</small></td>
+                        <td class="font-weight-bold">${b.title}</td>
+                        <td class="small text-muted">${b.content ? b.content.substring(0, 70) + '...' : '-'}</td>
+                        <td class="text-center"><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('announcements', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada berita.</td></tr>`;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat berita.</td></tr>`;
+            }
+        };
+
+        // --- 3. AGENDA KEGIATAN ---
+        window.tambahAgendaBaru = async function() {
+            let dateStr = document.getElementById('input-agenda-tgl').value.trim();
+            let title = document.getElementById('input-agenda-judul').value.trim();
+            let description = document.getElementById('input-agenda-desc').value.trim();
+
+            if (!dateStr || !title) {
+                alert("Tanggal dan judul agenda wajib diisi!");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "events"), {
+                    dateStr, title, description, createdAt: serverTimestamp()
+                });
+                alert("🎉 Agenda kegiatan berhasil disimpan!");
+                document.getElementById('input-agenda-tgl').value = "";
+                document.getElementById('input-agenda-judul').value = "";
+                document.getElementById('input-agenda-desc').value = "";
+                tampilkanDaftarAgenda();
+            } catch (err) {
+                alert("Gagal menyimpan agenda: " + err.message);
+            }
+        };
+
+        window.tampilkanDaftarAgenda = async function() {
+            let tbody = document.getElementById('tabel-admin-agenda-body');
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Memuat agenda...</td></tr>`;
+            try {
+                const snap = await getDocs(query(collection(db, "events"), orderBy("createdAt", "desc")));
+                tbody.innerHTML = "";
+                let count = 0;
+                snap.forEach((d) => {
+                    let a = d.data();
+                    count++;
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${count}</td>
+                        <td><span class="badge badge-warning">${a.dateStr}</span></td>
+                        <td class="font-weight-bold">${a.title}</td>
+                        <td class="small text-muted">${a.description || '-'}</td>
+                        <td><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('events', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada agenda.</td></tr>`;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat agenda.</td></tr>`;
+            }
+        };
+
+        // --- 4. PEMBIASAAN SISWA ---
+        window.tambahPembiasaanBaru = async function() {
+            let icon = document.getElementById('input-habit-icon').value.trim();
+            let title = document.getElementById('input-habit-title').value.trim();
+            let description = document.getElementById('input-habit-desc').value.trim();
+
+            if (!title) {
+                alert("Judul pembiasaan wajib diisi!");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "habits"), {
+                    icon: icon || "fa-solid fa-star", title, description, createdAt: serverTimestamp()
+                });
+                alert("🎉 Pembiasaan berhasil ditambahkan!");
+                document.getElementById('input-habit-icon').value = "";
+                document.getElementById('input-habit-title').value = "";
+                document.getElementById('input-habit-desc').value = "";
+                tampilkanDaftarPembiasaan();
+            } catch (err) {
+                alert("Gagal menyimpan: " + err.message);
+            }
+        };
+
+        window.tampilkanDaftarPembiasaan = async function() {
+            let tbody = document.getElementById('tabel-admin-habit-body');
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Memuat pembiasaan...</td></tr>`;
+            try {
+                const snap = await getDocs(query(collection(db, "habits"), orderBy("createdAt", "desc")));
+                tbody.innerHTML = "";
+                let count = 0;
+                snap.forEach((d) => {
+                    let h = d.data();
+                    count++;
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${count}</td>
+                        <td><i class="${h.icon} text-warning font-weight-bold" style="font-size: 18px;"></i></td>
+                        <td class="font-weight-bold">${h.title}</td>
+                        <td class="small text-muted">${h.description || '-'}</td>
+                        <td><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('habits', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada pembiasaan.</td></tr>`;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat pembiasaan.</td></tr>`;
+            }
+        };
+
+        // --- 5. STRUKTUR ORGANISASI ---
+        window.tambahOrganisasiBaru = async function() {
+            let role = document.getElementById('input-org-role').value.trim();
+            let name = document.getElementById('input-org-name').value.trim();
+            let info = document.getElementById('input-org-info').value.trim();
+
+            if (!role || !name) {
+                alert("Jabatan dan Nama wajib diisi!");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "organization"), {
+                    role, name, info, createdAt: serverTimestamp()
+                });
+                alert("🎉 Anggota organisasi berhasil ditambahkan!");
+                document.getElementById('input-org-role').value = "";
+                document.getElementById('input-org-name').value = "";
+                document.getElementById('input-org-info').value = "";
+                tampilkanDaftarOrganisasi();
+            } catch (err) {
+                alert("Gagal menyimpan: " + err.message);
+            }
+        };
+
+        window.tampilkanDaftarOrganisasi = async function() {
+            let tbody = document.getElementById('tabel-admin-org-body');
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Memuat struktur organisasi...</td></tr>`;
+            try {
+                const snap = await getDocs(query(collection(db, "organization"), orderBy("createdAt", "desc")));
+                tbody.innerHTML = "";
+                let count = 0;
+                snap.forEach((d) => {
+                    let o = d.data();
+                    count++;
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${count}</td>
+                        <td><span class="badge badge-primary">${o.role}</span></td>
+                        <td class="font-weight-bold">${o.name}</td>
+                        <td class="small text-muted">${o.info || '-'}</td>
+                        <td><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('organization', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada data organisasi.</td></tr>`;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat data organisasi.</td></tr>`;
+            }
+        };
+
+        // FUNSI HAPUS ITEM UMUM
+        window.hapusAdminItem = async function(coll, id) {
+            if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                await deleteDoc(doc(db, coll, id));
+                if(coll === 'announcements') tampilkanDaftarBerita();
+                if(coll === 'events') tampilkanDaftarAgenda();
+                if(coll === 'habits') tampilkanDaftarPembiasaan();
+                if(coll === 'organization') tampilkanDaftarOrganisasi();
+            }
         };
     </script>
 </body>
