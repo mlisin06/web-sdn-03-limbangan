@@ -53,6 +53,7 @@
                 </div>
             </div>
 
+            <!-- Navigasi Utama Komputer -->
             <nav class="hidden lg:flex items-center space-x-7">
                 <a href="#home" class="text-gold text-sm font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">About Us</a>
@@ -61,26 +62,39 @@
                 <a href="#contact" class="text-gray-300 hover:text-gold text-sm font-medium tracking-wide transition">Contact Us</a>
             </nav>
 
+            <!-- Tombol Pintasan Layanan -->
             <div class="hidden sm:flex items-center space-x-3">
-                <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
+                <!-- Tombol Portal Siswa & Nilai -->
+                <a href="siswa.html" class="bg-navy-light hover:bg-navy text-gold border border-gold/40 px-3.5 py-2 rounded-lg text-xs font-bold transition flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <span>Portal Siswa</span>
+                </a>
+
+                <!-- Tombol Admin Login -->
+                <a href="login.html" class="bg-gradient-to-r from-gold to-gold-dark text-navy hover:brightness-110 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center space-x-2">
                     <i class="fa-solid fa-lock text-[10px]"></i>
-                    <span>Admin Login</span>
+                    <span>Admin</span>
                 </a>
             </div>
 
-            <div class="lg:hidden flex items-center">
-                <button id="menu-btn" class="text-white focus:outline-none text-2xl"><i class="fa-solid fa-bars"></i></button>
+            <div class="lg:hidden flex items-center space-x-2">
+                <a href="siswa.html" class="bg-gold text-navy text-xs font-bold px-2.5 py-1.5 rounded flex items-center gap-1">
+                    <i class="fa-solid fa-user-graduate"></i> Siswa
+                </a>
+                <button id="menu-btn" onclick="toggleMobileMenu()" class="text-white focus:outline-none text-2xl pl-2"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
 
+        <!-- Menu Seluler (Mobile Menu) -->
         <div id="mobile-menu" class="hidden lg:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
             <a href="#home" class="block text-gold font-medium">Home</a>
             <a href="#about" class="block text-gray-300 hover:text-gold">About Us</a>
             <a href="#academics" class="block text-gray-300 hover:text-gold">Academics</a>
             <a href="#news" class="block text-gray-300 hover:text-gold">News & Events</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold">Contact Us</a>
-            <div class="pt-3 border-t border-navy-light">
-                <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs">Admin Login</a>
+            <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
+                <a href="siswa.html" class="block bg-navy-light border border-gold/30 text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-user-graduate mr-1"></i> Portal Siswa & Cek Nilai</a>
+                <a href="login.html" class="block bg-gold text-navy text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-lock mr-1"></i> Admin Login</a>
             </div>
         </div>
     </header>
@@ -99,26 +113,33 @@
                     Selamat datang di portal resmi SD Negeri 03 Limbangan.
                 </p>
             </div>
+
+            <!-- Card Pintasan Layanan Digital -->
             <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-gold/30 shadow-2xl space-y-6">
                 <div class="border-b border-navy pb-4">
-                    <span class="text-gold text-xs font-bold tracking-widest uppercase">Administrative Management</span>
-                    <h3 class="font-serif text-white text-xl font-bold mt-1">FACULTY & STAFF PORTAL</h3>
+                    <span class="text-gold text-xs font-bold tracking-widest uppercase">Portal Akademik Terpadu</span>
+                    <h3 class="font-serif text-white text-xl font-bold mt-1">LAYANAN DIGITAL SEKOLAH</h3>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="login.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md">
-                        <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2"></i>
-                        <h4 class="text-white font-bold text-sm">GURU LOGIN</h4>
+                    <!-- Pintasan Portal Siswa -->
+                    <a href="siswa.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-laptop-code text-gold text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="text-white font-bold text-sm">PORTAL SISWA</h4>
+                        <span class="text-[10px] text-gray-400 mt-0.5">Ulangan & Cek Nilai</span>
                     </a>
-                    <a href="login.html" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md">
-                        <i class="fa-solid fa-user-shield text-navy text-2xl mb-2"></i>
-                        <h4 class="font-bold text-sm">ADMIN LOGIN</h4>
+                    
+                    <!-- Pintasan Panel Admin/Guru -->
+                    <a href="login.html" class="bg-gold hover:bg-gold-dark text-navy border border-gold p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-user-shield text-navy text-3xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <h4 class="font-bold text-sm">GURU / ADMIN</h4>
+                        <span class="text-[10px] text-navy/70 mt-0.5">Kelola Web & Nilai</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION PROGRAM -->
+    <!-- SECTION PROGRAM KEUNGGULAN -->
     <section id="academics" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
@@ -127,17 +148,17 @@
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-book-open-reader"></i></div>
                     <h3 id="dyn-p1-title" class="font-serif text-xl font-bold text-navy mb-3">AKADEMIK UNGGUL</h3>
                     <p id="dyn-p1-desc" class="text-gray-600 text-sm leading-relaxed">Kurikulum nasional dipadu nilai keagamaan.</p>
                 </div>
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-globe"></i></div>
                     <h3 id="dyn-p2-title" class="font-serif text-xl font-bold text-navy mb-3">KARAKTER & PRESTASI</h3>
                     <p id="dyn-p2-desc" class="text-gray-600 text-sm leading-relaxed">Pengembangan bakat siswa melalui ekstrakurikuler.</p>
                 </div>
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-user-graduate"></i></div>
                     <h3 id="dyn-p3-title" class="font-serif text-xl font-bold text-navy mb-3">PPDB ONLINE</h3>
                     <p id="dyn-p3-desc" class="text-gray-600 text-sm leading-relaxed">Kemudahan akses pendaftaran siswa baru secara online.</p>
@@ -194,6 +215,14 @@
         </div>
         <p>&copy; 2026 SD Negeri 03 Limbangan. Powered by GitHub Pages & Firebase.</p>
     </footer>
+
+    <!-- LOGIK SKRIP FIREBASE & UTILITY -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -258,7 +287,8 @@
                 html += `
                     <div class="${isFirst ? '' : 'pt-4 border-t'}">
                         <span class="text-gold text-xs font-semibold">${tgl}</span>
-                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
+                        <h4 class="font-bold text-navy mt-1">${data.title}</h4>
+                        ${data.imageUrl ? `<img src="${data.imageUrl}" class="w-full h-48 object-cover rounded-lg my-3 shadow-sm">` : ''}
                         <p class="text-gray-600 text-xs mt-1 whitespace-pre-line">${data.content}</p>
                     </div>
                 `;
