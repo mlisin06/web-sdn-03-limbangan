@@ -125,7 +125,7 @@
         </div>
     </header>
 
-    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT & KOTAK KANAN BERBOBOT) -->
+    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT & SAMBUTAN PIMPINAN BERBOBOT) -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
@@ -150,7 +150,7 @@
                 </div>
             </div>
 
-            <!-- KANAN: SAMBUTAN KEPALA SEKOLAH & RINGKASAN SEKOLAH (JAUH LEBIH BERBOBOT) -->
+            <!-- KANAN: SAMBUTAN KEPALA SEKOLAH & RINGKASAN SEKOLAH -->
             <div class="lg:col-span-5 bg-gradient-to-b from-navy-light/95 to-navy-dark/95 backdrop-blur-md p-6 rounded-2xl border border-gold/40 shadow-2xl space-y-5">
                 <div class="border-b border-gold/20 pb-3 flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold border border-gold/40 shrink-0">
@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Kutipan Sambutan Singkat -->
-                <p class="text-gray-300 text-xs italic leading-relaxed">
+                <p id="dyn-kepsek-quote" class="text-gray-300 text-xs italic leading-relaxed">
                     "Pendidikan bukan sekadar transfer ilmu, melainkan pembentukan karakter dan akhlak mulia. Mari bersama-sama wujudkan generasi pembawa perubahan positif bagi agama, bangsa, dan negara."
                 </p>
 
@@ -173,8 +173,8 @@
                         <i class="fa-solid fa-user-tie text-base"></i>
                     </div>
                     <div>
-                        <h4 class="text-white font-bold text-xs sm:text-sm">Kepala Sekolah SDN 03 Limbangan</h4>
-                        <span class="text-gold text-[10px] font-semibold block">SD Negeri 03 Limbangan</span>
+                        <h4 id="dyn-kepsek-name" class="text-white font-bold text-xs sm:text-sm">Kepala Sekolah SDN 03 Limbangan</h4>
+                        <span id="dyn-kepsek-role" class="text-gold text-[10px] font-semibold block">SD Negeri 03 Limbangan</span>
                     </div>
                 </div>
 
@@ -418,13 +418,15 @@
         </div>
     </section>
 
+    <!-- FOOTER TERUPDATE (TAUTAN TIKTOK & HAK CIPTA CREATED BY MUHLISIN) -->
     <footer class="bg-navy-dark text-gray-400 py-8 border-t text-xs text-center space-y-4">
         <div class="flex justify-center space-x-4">
-            <a id="dyn-fb" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-facebook-f"></i></a>
-            <a id="dyn-ig" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-instagram"></i></a>
-            <a id="dyn-yt" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white"><i class="fa-brands fa-youtube"></i></a>
+            <a id="dyn-fb" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a id="dyn-ig" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-instagram"></i></a>
+            <a id="dyn-yt" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-youtube"></i></a>
+            <a id="dyn-tt" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-tiktok"></i></a>
         </div>
-        <p>&copy; 2026 SD Negeri 03 Limbangan. Powered by GitHub Pages & Firebase.</p>
+        <p>&copy; 2026 SD Negeri 03 Limbangan. Created By Muhlisin.</p>
     </footer>
 
     <!-- SCRIPT JAM REAL-TIME & KALENDER DIGITAL -->
@@ -570,6 +572,12 @@
                 if(data.badge) document.getElementById('dyn-badge').innerText = data.badge;
                 if(data.heroTitle) document.getElementById('dyn-hero-title').innerText = data.heroTitle;
                 if(data.heroDesc) document.getElementById('dyn-hero-desc').innerText = data.heroDesc;
+                if(data.runningText) {
+                    document.querySelectorAll('marquee').forEach(m => m.innerText = data.runningText);
+                }
+                if(data.kepsekQuote) document.getElementById('dyn-kepsek-quote').innerText = `"${data.kepsekQuote}"`;
+                if(data.kepsekName) document.getElementById('dyn-kepsek-name').innerText = data.kepsekName;
+                if(data.kepsekRole) document.getElementById('dyn-kepsek-role').innerText = data.kepsekRole;
                 if(data.p1Title) document.getElementById('dyn-p1-title').innerText = data.p1Title;
                 if(data.p1Desc) document.getElementById('dyn-p1-desc').innerText = data.p1Desc;
                 if(data.p2Title) document.getElementById('dyn-p2-title').innerText = data.p2Title;
@@ -582,6 +590,7 @@
                 if(data.fb) document.getElementById('dyn-fb').href = data.fb;
                 if(data.ig) document.getElementById('dyn-ig').href = data.ig;
                 if(data.yt) document.getElementById('dyn-yt').href = data.yt;
+                if(data.tt) document.getElementById('dyn-tt').href = data.tt;
 
                 // Status PPDB (Buka / Tutup)
                 if (data.ppdbStatus === "BUKA") {
