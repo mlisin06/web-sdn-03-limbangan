@@ -125,18 +125,20 @@
         </div>
     </header>
 
-    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT) -->
+    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT & KOTAK KANAN BERBOBOT) -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- KIRI: DESKRIPSI SINGKAT & SLOGAN -->
             <div class="lg:col-span-7 space-y-6">
                 <span id="dyn-badge" class="inline-block bg-gold/20 text-gold border border-gold/30 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
-                    Unggul & Berkarakter Islami
+                    Mencetak Generasi Berakhlak Mulia & Berprestasi
                 </span>
                 <h1 id="dyn-hero-title" class="font-serif text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
-                    MENCETAK ANAK BERAKHLAK MULIA DAN BERPRESTASI DUNIA & AKHIRAT.
+                    SDN 03 LIMBANGAN
                 </h1>
                 <p id="dyn-hero-desc" class="text-gray-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
-                    Selamat datang di portal resmi SD Negeri 03 Limbangan.
+                    Selamat datang di website resmi SD Negeri 03 Limbangan. Kami berkomitmen memberikan pendidikan dasar berkualitas, membentuk karakter siswa yang cerdas, kreatif, berakhlak mulia, serta siap menghadapi masa depan.
                 </p>
 
                 <!-- TEKS BERJALAN DI BAWAH DESKRIPSI SINGKAT -->
@@ -148,28 +150,51 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 rounded-2xl border border-gold/30 shadow-2xl space-y-5">
-                <div class="border-b border-navy pb-3">
-                    <span class="text-gold text-xs font-bold tracking-widest uppercase">Portal Akademik Terpadu</span>
-                    <h3 class="font-serif text-white text-xl font-bold mt-0.5">LAYANAN DIGITAL</h3>
+            <!-- KANAN: SAMBUTAN KEPALA SEKOLAH & RINGKASAN SEKOLAH (JAUH LEBIH BERBOBOT) -->
+            <div class="lg:col-span-5 bg-gradient-to-b from-navy-light/95 to-navy-dark/95 backdrop-blur-md p-6 rounded-2xl border border-gold/40 shadow-2xl space-y-5">
+                <div class="border-b border-gold/20 pb-3 flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold border border-gold/40 shrink-0">
+                        <i class="fa-solid fa-quote-left text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-gold text-[10px] font-bold tracking-widest uppercase block">Pesan Pimpinan</span>
+                        <h3 class="font-serif text-white text-base font-bold">SAMBUTAN KEPALA SEKOLAH</h3>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <a href="siswa.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-laptop-code text-gold text-2xl mb-2"></i>
-                        <h4 class="text-white font-bold text-sm">PORTAL SISWA</h4>
-                        <span class="text-[10px] text-gray-400">Ulangan & Cek Nilai</span>
-                    </a>
-                    <a href="guru.html" class="bg-navy hover:bg-navy-dark border border-gold/40 p-4 rounded-xl text-center transition group shadow-md flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-chalkboard-user text-gold text-2xl mb-2"></i>
-                        <h4 class="text-white font-bold text-sm">PANEL GURU</h4>
-                        <span class="text-[10px] text-gray-400">Kelola Soal & Nilai</span>
-                    </a>
+
+                <!-- Kutipan Sambutan Singkat -->
+                <p class="text-gray-300 text-xs italic leading-relaxed">
+                    "Pendidikan bukan sekadar transfer ilmu, melainkan pembentukan karakter dan akhlak mulia. Mari bersama-sama wujudkan generasi pembawa perubahan positif bagi agama, bangsa, dan negara."
+                </p>
+
+                <!-- Identitas Kepala Sekolah -->
+                <div class="flex items-center space-x-3 bg-navy/60 p-3 rounded-xl border border-gold/20">
+                    <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold shrink-0 border border-gold/30">
+                        <i class="fa-solid fa-user-tie text-base"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-xs sm:text-sm">Kepala Sekolah SDN 03 Limbangan</h4>
+                        <span class="text-gold text-[10px] font-semibold block">SD Negeri 03 Limbangan</span>
+                    </div>
+                </div>
+
+                <!-- Mini Grid Informasi Sekolah -->
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div class="bg-navy-dark/80 p-3 rounded-xl border border-gold/20 text-center">
+                        <span class="text-gold text-lg font-serif font-bold block"><i class="fa-solid fa-award text-xs mr-1"></i> Terakreditasi</span>
+                        <span class="text-gray-300 text-[10px] font-medium">Pendidikan Berkualitas</span>
+                    </div>
+                    <div class="bg-navy-dark/80 p-3 rounded-xl border border-gold/20 text-center">
+                        <span class="text-gold text-lg font-serif font-bold block"><i class="fa-solid fa-heart text-xs mr-1"></i> Islami</span>
+                        <span class="text-gray-300 text-[10px] font-medium">Berkarakter Mulia</span>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- 2. SECTION BERITA, AGENDA & KALENDER DIGITAL (HALAMAN KE-2 DIBETULKAN DENGAN POSISI BARU) -->
+    <!-- 2. SECTION BERITA, AGENDA & KALENDER DIGITAL -->
     <section id="news" class="py-16 bg-gray-100 border-t">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
