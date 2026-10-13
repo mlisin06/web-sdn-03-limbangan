@@ -37,7 +37,7 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
-    <!-- TOP BAR NAVIGASI (Presisi & Tidak Berdesakan) -->
+    <!-- TOP BAR NAVIGASI -->
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
@@ -52,13 +52,14 @@
                 </div>
             </div>
 
-            <!-- Menu Navigasi Tengah (Desktop Layar Besar) -->
-            <nav class="hidden xl:flex items-center space-x-6 text-xs sm:text-sm font-medium">
+            <!-- Menu Navigasi Tengah -->
+            <nav class="hidden xl:flex items-center space-x-5 text-xs sm:text-sm font-medium">
                 <a href="#home" class="text-gold font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
                 <a href="#academics" class="text-gray-300 hover:text-gold tracking-wide transition">Program & Pilar</a>
                 <a href="#habits" class="text-gray-300 hover:text-gold tracking-wide transition">Pembiasaan</a>
                 <a href="#org" class="text-gray-300 hover:text-gold tracking-wide transition">Struktur</a>
                 <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Agenda</a>
+                <a href="#feedback" class="text-gray-300 hover:text-gold tracking-wide transition">Kritik & Saran</a>
                 <a href="#contact" class="text-gray-300 hover:text-gold tracking-wide transition">Kontak</a>
             </nav>
 
@@ -86,13 +87,14 @@
             </div>
         </div>
 
-        <!-- Menu Dropdown Mobile / HP -->
+        <!-- Menu Dropdown Mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
             <a href="#home" class="block text-gold font-medium" onclick="toggleMobileMenu()">Home</a>
             <a href="#academics" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Program & Pilar</a>
             <a href="#habits" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Pembiasaan Siswa</a>
             <a href="#org" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Struktur Organisasi</a>
             <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Agenda</a>
+            <a href="#feedback" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kritik & Saran</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kontak</a>
             <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
                 <a href="siswa.html" class="block bg-navy-light text-gold text-center py-2 rounded font-bold text-xs"><i class="fa-solid fa-user-graduate mr-1"></i> Portal Siswa</a>
@@ -216,6 +218,48 @@
         </div>
     </section>
 
+    <!-- SECTION KRITIK & SARAN -->
+    <section id="feedback" class="py-16 bg-white border-t">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-gold font-bold text-xs tracking-widest uppercase">Layanan Aspirasi</span>
+                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Kritik & Saran</h2>
+                <p class="text-gray-500 text-sm mt-2">Masukan Anda sangat berharga untuk kemajuan SD Negeri 03 Limbangan.</p>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
+            </div>
+
+            <form id="form-kritik-saran" onsubmit="kirimKritikSaran(event)" class="bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Nama Lengkap</label>
+                        <input type="text" id="ks-nama" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-gold" placeholder="Contoh: Budi Santoso">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Status / Peran</label>
+                        <select id="ks-status" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-gold">
+                            <option value="Wali Murid">Wali Murid</option>
+                            <option value="Siswa">Siswa</option>
+                            <option value="Masyarakat Umum">Masyarakat Umum</option>
+                            <option value="Alumni">Alumni</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-navy mb-1">Nomor WhatsApp / HP (Opsional)</label>
+                    <input type="text" id="ks-kontak" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-gold" placeholder="Contoh: 081234567890">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-navy mb-1">Pesan / Kritik / Saran</label>
+                    <textarea id="ks-pesan" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:border-gold" placeholder="Tuliskan kritik atau saran Anda di sini..."></textarea>
+                </div>
+                <button type="submit" id="btn-ks-submit" class="w-full bg-navy hover:bg-navy-dark text-gold border border-gold/40 font-bold py-3 px-6 rounded-xl text-sm transition shadow-md flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Kirim Kritik & Saran</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
     <!-- CONTACT & PPDB SECTION -->
     <section id="contact" class="py-16 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -262,7 +306,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
@@ -275,6 +319,33 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        // Function Kirim Kritik & Saran
+        window.kirimKritikSaran = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-ks-submit');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>Mengirim...</span>`;
+
+            const nama = document.getElementById('ks-nama').value.trim();
+            const status = document.getElementById('ks-status').value;
+            const kontak = document.getElementById('ks-kontak').value.trim();
+            const pesan = document.getElementById('ks-pesan').value.trim();
+
+            try {
+                await addDoc(collection(db, "feedbacks"), {
+                    nama, status, kontak: kontak || "-", pesan,
+                    createdAt: serverTimestamp()
+                });
+                alert("🎉 Terima kasih! Kritik & saran Anda telah berhasil terkirim.");
+                document.getElementById('form-kritik-saran').reset();
+            } catch (err) {
+                alert("Gagal mengirim: " + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i><span>Kirim Kritik & Saran</span>`;
+            }
+        };
 
         // Fetch Settings & PPDB Status
         onSnapshot(doc(db, "settings", "site_config"), (snap) => {
