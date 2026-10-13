@@ -37,15 +37,25 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
-    <!-- RUNNING TEXT / TEKS BERJALAN PALING ATAS HALAMAN -->
-    <div class="bg-navy-dark border-b border-gold/30 text-gold text-xs py-1.5 px-4 font-semibold flex items-center overflow-hidden">
-        <div class="flex items-center space-x-2 shrink-0 bg-navy-dark pr-3 z-10 border-r border-gold/30">
-            <i class="fa-solid fa-bullhorn text-gold animate-pulse"></i>
-            <span class="uppercase tracking-wider text-[11px] font-bold">INFO:</span>
+    <!-- TOP BAR RUNNING TEXT & JAM DIGITAL REAL-TIME -->
+    <div class="bg-navy-dark border-b border-gold/30 text-gold text-xs py-1.5 px-4 font-semibold flex flex-col md:flex-row justify-between items-center gap-2">
+        <div class="flex items-center space-x-2 w-full md:w-auto overflow-hidden">
+            <div class="flex items-center space-x-2 shrink-0 bg-navy-dark pr-3 z-10 border-r border-gold/30">
+                <i class="fa-solid fa-bullhorn text-gold animate-pulse"></i>
+                <span class="uppercase tracking-wider text-[11px] font-bold">INFO:</span>
+            </div>
+            <marquee behavior="scroll" direction="left" class="w-full">
+                SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi &nbsp;&nbsp;&bull;&nbsp;&nbsp; Selamat datang di Portal Resmi SD Negeri 03 Limbangan &nbsp;&nbsp;&bull;&nbsp;&nbsp; SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi
+            </marquee>
         </div>
-        <marquee behavior="scroll" direction="left" class="w-full">
-            SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi &nbsp;&nbsp;&bull;&nbsp;&nbsp; Selamat datang di Portal Resmi SD Negeri 03 Limbangan &nbsp;&nbsp;&bull;&nbsp;&nbsp; SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi
-        </marquee>
+
+        <!-- JAM DIGITAL REAL-TIME TOP BAR -->
+        <div class="shrink-0 flex items-center space-x-2 bg-navy-light/80 px-3 py-1 rounded-lg border border-gold/30 text-white font-mono text-xs shadow-sm">
+            <i class="fa-regular fa-clock text-gold"></i>
+            <span id="topbar-clock" class="font-bold text-gold">00:00:00 WIB</span>
+            <span class="text-gray-400">|</span>
+            <span id="topbar-date" class="text-gray-200 text-[11px]">...</span>
+        </div>
     </div>
 
     <!-- TOP BAR NAVIGASI -->
@@ -217,12 +227,12 @@
         </div>
     </section>
 
-    <!-- BERITA, AGENDA & ARSIP BLOG MODEL -->
+    <!-- BERITA, AGENDA & WIDGET KALENDER REAL-TIME -->
     <section id="news" class="py-16 bg-gray-100 border-t">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="text-gold font-bold text-xs tracking-widest uppercase">Kabar Sekolah</span>
-                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Berita, Agenda & Arsip Publikasi</h2>
+                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Berita, Agenda & Kalender Kegiatan</h2>
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
 
@@ -245,8 +255,35 @@
                     </div>
                 </div>
 
-                <!-- KOLOM KANAN (AGENDA & WIDGET ARSIP BULAN/TAHUN) -->
+                <!-- KOLOM KANAN (KALENDER DIGITAL & AGENDA KEGIATAN) -->
                 <div class="lg:col-span-4 space-y-8">
+
+                    <!-- WIDGET KALENDER & JAM REAL-TIME ELEGAN -->
+                    <div class="bg-navy text-white p-6 rounded-2xl shadow-lg border border-gold/30 space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gold/20">
+                            <h3 class="font-serif text-base font-bold text-gold flex items-center space-x-2">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>KALENDER DIGITAL</span>
+                            </h3>
+                            <span id="widget-month-year" class="text-xs font-bold bg-navy-light text-gold px-2.5 py-1 rounded-md border border-gold/30">...</span>
+                        </div>
+
+                        <!-- DISPLAY JAM BESAR -->
+                        <div class="text-center bg-navy-dark/80 p-4 rounded-xl border border-gold/20 shadow-inner">
+                            <div id="big-clock" class="text-3xl sm:text-4xl font-mono font-bold text-gold tracking-widest">00:00:00</div>
+                            <div id="big-date" class="text-xs text-gray-300 font-medium mt-1">...</div>
+                        </div>
+
+                        <!-- MATRIX KALENDER BULANAN -->
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gold">
+                                <div>Min</div><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+                            </div>
+                            <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 text-center text-xs">
+                                <!-- Hari Kalender Di-generate Otomatis oleh JavaScript -->
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- WIDGET ARSIP BERITA / BLOG HISTORI -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
@@ -272,7 +309,7 @@
                     <!-- AGENDA KEGIATAN -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <h3 class="font-serif text-lg font-bold text-navy pb-3 border-b flex items-center space-x-2">
-                            <i class="fa-solid fa-calendar-days text-gold"></i>
+                            <i class="fa-solid fa-list-check text-gold"></i>
                             <span>AGENDA KEGIATAN</span>
                         </h3>
                         <div id="firebase-events-list" class="space-y-4">
@@ -365,13 +402,91 @@
         <p>&copy; 2026 SD Negeri 03 Limbangan. Powered by GitHub Pages & Firebase.</p>
     </footer>
 
+    <!-- SCRIPT JAM REAL-TIME & KALENDER DIGITAL -->
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
+
+        // FUNGSI UPDATE JAM & TANGGAL REAL-TIME
+        function updateClockAndCalendar() {
+            const now = new Date();
+            
+            // Format Jam (HH:MM:SS)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeStr = `${hours}:${minutes}:${seconds} WIB`;
+
+            // Format Hari & Tanggal Lengkap
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            const dayName = days[now.getDay()];
+            const dayNum = now.getDate();
+            const monthName = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            const dateStr = `${dayName}, ${dayNum} ${monthName} ${year}`;
+
+            // Update DOM Topbar Clock
+            const topbarClock = document.getElementById('topbar-clock');
+            const topbarDate = document.getElementById('topbar-date');
+            if (topbarClock) topbarClock.innerText = timeStr;
+            if (topbarDate) topbarDate.innerText = dateStr;
+
+            // Update DOM Big Clock Widget
+            const bigClock = document.getElementById('big-clock');
+            const bigDate = document.getElementById('big-date');
+            if (bigClock) bigClock.innerText = timeStr;
+            if (bigDate) bigDate.innerText = dateStr;
+        }
+
+        // GENERATE MATRIX KALENDER BULANAN REAL-TIME
+        function generateCalendarGrid() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            const monthYearHeader = document.getElementById('widget-month-year');
+            if (monthYearHeader) monthYearHeader.innerText = `${months[month]} ${year}`;
+
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+
+            const gridContainer = document.getElementById('calendar-days-grid');
+            if (!gridContainer) return;
+
+            let gridHTML = '';
+
+            // Blank Days dari Bulan Sebelumnya
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                gridHTML += `<div class="py-1 text-gray-600 opacity-20">-</div>`;
+            }
+
+            // Days Hari Ini & Tanggal dalam Bulan
+            for (let date = 1; date <= lastDateOfMonth; date++) {
+                if (date === today) {
+                    gridHTML += `<div class="py-1.5 font-bold rounded-lg bg-gold text-navy shadow-md transform scale-105">${date}</div>`;
+                } else {
+                    gridHTML += `<div class="py-1.5 rounded hover:bg-navy-light text-gray-300 transition">${date}</div>`;
+                }
+            }
+
+            gridContainer.innerHTML = gridHTML;
+        }
+
+        // Jalankan Timer Jam & Kalender
+        setInterval(updateClockAndCalendar, 1000);
+        updateClockAndCalendar();
+        generateCalendarGrid();
     </script>
 
+    <!-- SCRIPT FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
