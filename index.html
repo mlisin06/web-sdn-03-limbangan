@@ -37,6 +37,17 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 antialiased selection:bg-gold selection:text-navy">
 
+    <!-- RUNNING TEXT / TEKS BERJALAN PALING ATAS HALAMAN -->
+    <div class="bg-navy-dark border-b border-gold/30 text-gold text-xs py-1.5 px-4 font-semibold flex items-center overflow-hidden">
+        <div class="flex items-center space-x-2 shrink-0 bg-navy-dark pr-3 z-10 border-r border-gold/30">
+            <i class="fa-solid fa-bullhorn text-gold animate-pulse"></i>
+            <span class="uppercase tracking-wider text-[11px] font-bold">INFO:</span>
+        </div>
+        <marquee behavior="scroll" direction="left" class="w-full">
+            SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi &nbsp;&nbsp;&bull;&nbsp;&nbsp; Selamat datang di Portal Resmi SD Negeri 03 Limbangan &nbsp;&nbsp;&bull;&nbsp;&nbsp; SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi
+        </marquee>
+    </div>
+
     <!-- TOP BAR NAVIGASI -->
     <header class="bg-navy sticky top-0 z-50 shadow-lg border-b border-gold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -117,6 +128,14 @@
                 <p id="dyn-hero-desc" class="text-gray-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
                     Selamat datang di portal resmi SD Negeri 03 Limbangan.
                 </p>
+
+                <!-- TEKS BERJALAN DI BAWAH DESKRIPSI SINGKAT -->
+                <div class="mt-4 p-2.5 bg-navy-light/90 border border-gold/40 rounded-xl flex items-center space-x-3 text-gold text-xs shadow-inner">
+                    <span class="bg-gold text-navy font-bold text-[10px] px-2 py-0.5 rounded uppercase shrink-0">Slogan</span>
+                    <marquee behavior="scroll" direction="left" class="w-full font-semibold tracking-wide">
+                        SDN 03 Limbangan Mencetak siswa berakhlak dan berprestasi
+                    </marquee>
+                </div>
             </div>
 
             <div class="lg:col-span-5 bg-navy-light/85 backdrop-blur-md p-6 rounded-2xl border border-gold/30 shadow-2xl space-y-5">
