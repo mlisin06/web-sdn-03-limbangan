@@ -350,15 +350,31 @@
 
     <!-- 6. SECTION KRITIK & SARAN -->
     <section id="feedback" class="py-16 bg-white border-t">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="text-center max-w-2xl mx-auto">
                 <span class="text-gold font-bold text-xs tracking-widest uppercase">Layanan Aspirasi</span>
                 <h2 class="font-serif text-3xl font-bold text-navy mt-2">Kritik & Saran</h2>
                 <p class="text-gray-500 text-sm mt-2">Masukan Anda sangat berharga untuk kemajuan SD Negeri 03 Limbangan.</p>
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
 
+            <!-- TAMPILAN 4 KRITIK & SARAN TERAKHIR YAG MASUK -->
+            <div class="space-y-4">
+                <h3 class="font-serif text-lg font-bold text-navy flex items-center space-x-2 border-b pb-2">
+                    <i class="fa-solid fa-comments text-gold"></i>
+                    <span>Aspirasi & Masukan Terbaru</span>
+                </h3>
+                <div id="firebase-feedbacks-display" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <p class="text-gray-400 text-xs italic col-span-full">Memuat kritik & saran terbaru...</p>
+                </div>
+            </div>
+
+            <!-- FORM INPUT KRITIK & SARAN (TETAP DIPERTAHANKAN 100%) -->
             <form id="form-kritik-saran" onsubmit="kirimKritikSaran(event)" class="bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+                <h3 class="font-serif text-base font-bold text-navy mb-2 flex items-center space-x-2">
+                    <i class="fa-solid fa-pen-to-square text-gold"></i>
+                    <span>Sampaikan Kritik & Saran Anda</span>
+                </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-navy mb-1">Nama Lengkap</label>
@@ -516,7 +532,7 @@
     <!-- SCRIPT FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyApWcOiW-N2pmC--kfefgpvCk5z6gLhnxo",
@@ -558,6 +574,41 @@
                 btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i><span>Kirim Kritik & Saran</span>`;
             }
         };
+
+        // FETCH & TAMPILKAN MAKSIMAL 4 KRITIK & SARAN TERAKHIR
+        onSnapshot(query(collection(db, "feedbacks"), orderBy("createdAt", "desc"), limit(4)), (snapshot) => {
+            const displayContainer = document.getElementById('firebase-feedbacks-display');
+            if (snapshot.empty) {
+                displayContainer.innerHTML = `
+                    <div class="col-span-full bg-gray-50 p-4 rounded-xl border text-center text-xs text-gray-500 italic">
+                        <i class="fa-regular fa-comment-dots mr-1 text-gold"></i> Belum ada kritik & saran yang ditampilkan. Jadilah yang pertama memberikan masukan!
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            snapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const tglStr = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Baru saja';
+                
+                html += `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200/80 shadow-sm hover:border-gold/50 transition space-y-2 flex flex-col justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-bold text-navy"><i class="fa-solid fa-circle-user text-gold mr-1"></i>${data.nama}</span>
+                                <span class="bg-navy/10 text-navy px-2 py-0.5 rounded text-[10px] font-semibold">${data.status}</span>
+                            </div>
+                            <p class="text-xs text-gray-600 italic leading-relaxed whitespace-pre-line">"${data.pesan}"</p>
+                        </div>
+                        <div class="text-[10px] text-gray-400 text-right pt-2 border-t border-gray-200/50">
+                            <i class="fa-regular fa-clock mr-1"></i>${tglStr}
+                        </div>
+                    </div>
+                `;
+            });
+            displayContainer.innerHTML = html;
+        });
 
         // Fetch Settings & PPDB Status
         onSnapshot(doc(db, "settings", "site_config"), (snap) => {
