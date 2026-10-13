@@ -76,10 +76,10 @@
             <!-- Menu Navigasi Tengah -->
             <nav class="hidden xl:flex items-center space-x-5 text-xs sm:text-sm font-medium">
                 <a href="#home" class="text-gold font-semibold tracking-wide border-b-2 border-gold pb-1 transition">Home</a>
+                <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Arsip</a>
                 <a href="#academics" class="text-gray-300 hover:text-gold tracking-wide transition">Program & Pilar</a>
                 <a href="#habits" class="text-gray-300 hover:text-gold tracking-wide transition">Pembiasaan</a>
                 <a href="#org" class="text-gray-300 hover:text-gold tracking-wide transition">Struktur</a>
-                <a href="#news" class="text-gray-300 hover:text-gold tracking-wide transition">Berita & Arsip</a>
                 <a href="#feedback" class="text-gray-300 hover:text-gold tracking-wide transition">Kritik & Saran</a>
                 <a href="#contact" class="text-gray-300 hover:text-gold tracking-wide transition">Kontak</a>
             </nav>
@@ -111,10 +111,10 @@
         <!-- Menu Dropdown Mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-navy-dark border-t border-navy-light px-6 py-4 space-y-3">
             <a href="#home" class="block text-gold font-medium" onclick="toggleMobileMenu()">Home</a>
+            <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Arsip</a>
             <a href="#academics" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Program & Pilar</a>
             <a href="#habits" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Pembiasaan Siswa</a>
             <a href="#org" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Struktur Organisasi</a>
-            <a href="#news" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Berita & Arsip</a>
             <a href="#feedback" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kritik & Saran</a>
             <a href="#contact" class="block text-gray-300 hover:text-gold" onclick="toggleMobileMenu()">Kontak</a>
             <div class="pt-3 border-t border-navy-light flex flex-col gap-2">
@@ -125,9 +125,9 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT) -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-7 space-y-6">
                 <span id="dyn-badge" class="inline-block bg-gold/20 text-gold border border-gold/30 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
                     Unggul & Berkarakter Islami
@@ -169,65 +169,7 @@
         </div>
     </section>
 
-    <!-- SECTION PILAR / PROGRAM -->
-    <section id="academics" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs tracking-widest uppercase">Keunggulan Sekolah</span>
-                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Pilar Pendidikan & Program Unggulan</h2>
-                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-book-open-reader"></i></div>
-                    <h3 id="dyn-p1-title" class="font-serif text-xl font-bold text-navy mb-3">AKADEMIK UNGGUL</h3>
-                    <p id="dyn-p1-desc" class="text-gray-600 text-sm leading-relaxed">Kurikulum nasional dipadu nilai keagamaan.</p>
-                </div>
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-globe"></i></div>
-                    <h3 id="dyn-p2-title" class="font-serif text-xl font-bold text-navy mb-3">KARAKTER & PRESTASI</h3>
-                    <p id="dyn-p2-desc" class="text-gray-600 text-sm leading-relaxed">Pengembangan bakat siswa melalui ekstrakurikuler.</p>
-                </div>
-                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
-                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-user-graduate"></i></div>
-                    <h3 id="dyn-p3-title" class="font-serif text-xl font-bold text-navy mb-3">PPDB ONLINE</h3>
-                    <p id="dyn-p3-desc" class="text-gray-600 text-sm leading-relaxed">Kemudahan akses pendaftaran siswa baru secara online.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION PEMBIASAAN SISWA -->
-    <section id="habits" class="py-16 bg-gray-50 border-t">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs tracking-widest uppercase">Pembentukan Karakter</span>
-                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Daftar Pembiasaan Siswa</h2>
-                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
-            </div>
-            <div id="firebase-habits-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <p class="text-gray-400 text-xs italic col-span-full text-center">Memuat pembiasaan...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION STRUKTUR ORGANISASI (UKURAN RINGKAS 50% & TEMA SUPER ELEGAN) -->
-    <section id="org" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white border-t">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-gold font-bold text-xs tracking-widest uppercase">Manajemen Sekolah</span>
-                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy mt-1">Struktur Organisasi</h2>
-                <div class="w-12 h-1 bg-gradient-to-r from-gold to-gold-dark mx-auto mt-2 rounded-full"></div>
-            </div>
-
-            <!-- CONTAINER BAGAN DENGAN WIDGET RINGKAS ELEGAN -->
-            <div id="firebase-org-list" class="space-y-6">
-                <p class="text-gray-400 text-xs italic text-center">Memuat struktur organisasi...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- BERITA, AGENDA & WIDGET KALENDER REAL-TIME -->
+    <!-- 2. SECTION BERITA, AGENDA & KALENDER DIGITAL (HALAMAN KE-2 DIBETULKAN DENGAN POSISI BARU) -->
     <section id="news" class="py-16 bg-gray-100 border-t">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
@@ -255,7 +197,7 @@
                     </div>
                 </div>
 
-                <!-- KOLOM KANAN (KALENDER DIGITAL & AGENDA KEGIATAN) -->
+                <!-- KOLOM KANAN (KALENDER DIGITAL, JAM & AGENDA KEGIATAN) -->
                 <div class="lg:col-span-4 space-y-8">
 
                     <!-- WIDGET KALENDER & JAM REAL-TIME ELEGAN -->
@@ -323,7 +265,65 @@
         </div>
     </section>
 
-    <!-- SECTION KRITIK & SARAN -->
+    <!-- 3. SECTION PILAR / PROGRAM UNGGULAN -->
+    <section id="academics" class="py-16 bg-white border-t">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs tracking-widest uppercase">Keunggulan Sekolah</span>
+                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Pilar Pendidikan & Program Unggulan</h2>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-book-open-reader"></i></div>
+                    <h3 id="dyn-p1-title" class="font-serif text-xl font-bold text-navy mb-3">AKADEMIK UNGGUL</h3>
+                    <p id="dyn-p1-desc" class="text-gray-600 text-sm leading-relaxed">Kurikulum nasional dipadu nilai keagamaan.</p>
+                </div>
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-globe"></i></div>
+                    <h3 id="dyn-p2-title" class="font-serif text-xl font-bold text-navy mb-3">KARAKTER & PRESTASI</h3>
+                    <p id="dyn-p2-desc" class="text-gray-600 text-sm leading-relaxed">Pengembangan bakat siswa melalui ekstrakurikuler.</p>
+                </div>
+                <div class="bg-gray-50 border p-8 rounded-xl shadow-sm">
+                    <div class="w-14 h-14 bg-navy text-gold rounded-lg flex items-center justify-center text-2xl mb-6"><i class="fa-solid fa-user-graduate"></i></div>
+                    <h3 id="dyn-p3-title" class="font-serif text-xl font-bold text-navy mb-3">PPDB ONLINE</h3>
+                    <p id="dyn-p3-desc" class="text-gray-600 text-sm leading-relaxed">Kemudahan akses pendaftaran siswa baru secara online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECTION PEMBIASAAN SISWA -->
+    <section id="habits" class="py-16 bg-gray-50 border-t">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs tracking-widest uppercase">Pembentukan Karakter</span>
+                <h2 class="font-serif text-3xl font-bold text-navy mt-2">Daftar Pembiasaan Siswa</h2>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
+            </div>
+            <div id="firebase-habits-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <p class="text-gray-400 text-xs italic col-span-full text-center">Memuat pembiasaan...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SECTION STRUKTUR ORGANISASI (BAGAN ELEGAN COMPACT) -->
+    <section id="org" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white border-t">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-gold font-bold text-xs tracking-widest uppercase">Manajemen Sekolah</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy mt-1">Struktur Organisasi</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-gold to-gold-dark mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <!-- CONTAINER BAGAN DENGAN WIDGET RINGKAS ELEGAN -->
+            <div id="firebase-org-list" class="space-y-6">
+                <p class="text-gray-400 text-xs italic text-center">Memuat struktur organisasi...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SECTION KRITIK & SARAN -->
     <section id="feedback" class="py-16 bg-white border-t">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10">
@@ -365,7 +365,7 @@
         </div>
     </section>
 
-    <!-- CONTACT & PPDB SECTION -->
+    <!-- 7. CONTACT & PPDB SECTION -->
     <section id="contact" class="py-16 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
