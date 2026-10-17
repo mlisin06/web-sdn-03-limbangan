@@ -205,7 +205,7 @@
                             <i class="fa-solid fa-newspaper text-gold"></i>
                             <span id="label-daftar-berita">BERITA & PENGUMUMAN TERBARU</span>
                         </h3>
-                        <button id="btn-reset-filter" class="hidden text-xs bg-navy text-gold px-3 py-1.5 rounded-lg font-bold" onclick="resetFilterBerita()">
+                        <button id="btn-reset-filter" class="hidden text-xs bg-navy text-gold px-3 py-1.5 rounded-lg font-bold" onclick="window.resetFilterBerita()">
                             <i class="fa-solid fa-rotate-left mr-1"></i> Tampilkan Semua Berita
                         </button>
                     </div>
@@ -248,7 +248,7 @@
                         <p class="text-xs text-gray-500">Pilih bulan dan tahun untuk melihat berita yang pernah diterbitkan:</p>
 
                         <div class="space-y-2">
-                            <select id="select-arsip-bulan" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 font-semibold text-navy bg-gray-50" onchange="filterBeritaBerdasarBulan()">
+                            <select id="select-arsip-bulan" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 font-semibold text-navy bg-gray-50" onchange="window.filterBeritaBerdasarBulan()">
                                 <option value="">-- Semua Bulan & Tahun --</option>
                             </select>
                         </div>
@@ -351,7 +351,7 @@
                 </div>
             </div>
 
-            <form id="form-kritik-saran" onsubmit="kirimKritikSaran(event)" class="bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+            <form id="form-kritik-saran" onsubmit="window.kirimKritikSaran(event)" class="bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
                 <h3 class="font-serif text-base font-bold text-navy mb-2 flex items-center space-x-2">
                     <i class="fa-solid fa-pen-to-square text-gold"></i>
                     <span>Sampaikan Kritik & Saran Anda</span>
@@ -425,22 +425,22 @@
         <p>&copy; 2026 SD Negeri 03 Limbangan. Created By Muhlisin.</p>
     </footer>
 
-    <!-- MODAL POP-UP DETAIL BERITA (FOCUS VIEW) -->
-    <div id="modal-berita" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-        <div class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 transform transition-all">
+    <!-- MODAL POP-UP DETAIL BERITA (HIGH Z-INDEX & BG BACKDROP FOCUS) -->
+    <div id="modal-berita" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 transform transition-all border border-gold/30">
             <!-- Header Modal -->
-            <div class="bg-navy text-white px-6 py-4 flex justify-between items-center border-b border-gold/30">
+            <div class="bg-navy text-white px-6 py-4 flex justify-between items-center border-b border-gold/30 sticky top-0 z-10">
                 <div class="flex items-center space-x-2 text-gold text-xs font-bold uppercase tracking-wider">
                     <i class="fa-solid fa-newspaper"></i>
                     <span>Detail Berita & Pengumuman</span>
                 </div>
-                <button onclick="tutupModalBerita()" class="w-8 h-8 rounded-full bg-navy-light hover:bg-red-600 text-white flex items-center justify-center transition focus:outline-none">
+                <button onclick="window.tutupModalBerita()" class="w-8 h-8 rounded-full bg-navy-light hover:bg-red-600 text-white flex items-center justify-center transition focus:outline-none">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <!-- Konten Modal -->
-            <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+            <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
                 <div class="flex items-center space-x-2 text-xs text-gold font-semibold">
                     <i class="fa-regular fa-calendar"></i>
                     <span id="modal-berita-tgl">...</span>
@@ -460,7 +460,7 @@
 
             <!-- Footer Modal -->
             <div class="bg-gray-100 px-6 py-3 flex justify-end border-t">
-                <button onclick="tutupModalBerita()" class="bg-navy hover:bg-navy-dark text-gold font-bold px-5 py-2 rounded-xl text-xs transition">
+                <button onclick="window.tutupModalBerita()" class="bg-navy hover:bg-navy-dark text-gold font-bold px-5 py-2 rounded-xl text-xs transition">
                     Tutup Baca
                 </button>
             </div>
@@ -577,7 +577,7 @@
             return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
         }
 
-        // FUNGSI BUKA & TUTUP MODAL DETAIL BERITA
+        // DEKLARASI GLOBAL UNTUK BUKA MODAL DETAIL BERITA
         window.bukaModalBerita = function(id) {
             const item = globalNewsData.find(b => b.id === id);
             if (!item) return;
@@ -614,10 +614,10 @@
             document.body.style.overflow = 'hidden';
         };
 
+        // DEKLARASI GLOBAL UNTUK TUTUP MODAL
         window.tutupModalBerita = function() {
             document.getElementById('modal-berita').classList.add('hidden');
             document.body.style.overflow = 'auto';
-            // Stop Video saat Modal Ditutup
             document.getElementById('modal-berita-media').innerHTML = '';
         };
 
@@ -878,7 +878,7 @@
                 let selectedAttr = filterKey === key ? 'selected' : '';
                 selectArsip.innerHTML += `<option value="${key}" ${selectedAttr}>${key} (${arsipMap[key]})</option>`;
                 listArsipHTML += `
-                    <button onclick="filterBeritaByGroup('${key}')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg border hover:bg-gold/10 hover:border-gold transition text-left text-navy font-semibold">
+                    <button onclick="window.filterBeritaByGroup('${key}')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg border hover:bg-gold/10 hover:border-gold transition text-left text-navy font-semibold">
                         <span><i class="fa-regular fa-folder-open text-gold mr-1.5"></i> ${key}</span>
                         <span class="bg-navy text-gold text-[10px] px-2 py-0.5 rounded-full font-bold">${arsipMap[key]}</span>
                     </button>
@@ -908,7 +908,7 @@
             filteredArray.forEach((data) => {
                 const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
                 
-                // Ringkasan Teks
+                // Ringkasan Teks Singkat
                 let ringkasanTeks = data.content ? (data.content.length > 180 ? data.content.substring(0, 180) + '...' : data.content) : '';
 
                 // RENDER MEDIA (GAMBAR ATAU YOUTUBE VIDEO)
@@ -918,15 +918,20 @@
                         const embedUrl = getYouTubeEmbedUrl(data.imageUrl);
                         if (embedUrl) {
                             mediaHTML = `
-                                <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                                <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm cursor-pointer relative group" onclick="window.bukaModalBerita('${data.id}')">
                                     <iframe class="w-full h-full pointer-events-none" src="${embedUrl}" title="YouTube video player" frameborder="0"></iframe>
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition flex items-center justify-center">
+                                        <div class="bg-navy/80 text-gold text-xs px-3 py-1.5 rounded-full font-bold shadow-lg border border-gold/40">
+                                            <i class="fa-solid fa-play mr-1"></i> Klik Untuk Memutar Video
+                                        </div>
+                                    </div>
                                 </div>
                             `;
                         } else {
-                            mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                            mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="window.bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white hover:opacity-90 transition" alt="Foto Berita"></div>`;
                         }
                     } else {
-                        mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                        mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="window.bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white hover:opacity-90 transition" alt="Foto Berita"></div>`;
                     }
                 }
 
@@ -936,14 +941,14 @@
                             <i class="fa-regular fa-calendar"></i>
                             <span>${tgl}</span>
                         </div>
-                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer" onclick="window.bukaModalBerita('${data.id}')">
                             ${data.title}
                         </h4>
                         ${mediaHTML}
-                        <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                        <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line cursor-pointer" onclick="window.bukaModalBerita('${data.id}')">
                             ${ringkasanTeks}
                         </p>
-                        <button onclick="bukaModalBerita('${data.id}')" class="inline-flex items-center text-xs font-bold text-gold hover:text-gold-dark mt-1">
+                        <button onclick="window.bukaModalBerita('${data.id}')" class="inline-flex items-center text-xs font-bold text-gold hover:text-gold-dark mt-1">
                             <span>Baca Selengkapnya</span> <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
                         </button>
                     </article>
