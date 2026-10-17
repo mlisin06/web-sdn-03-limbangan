@@ -425,6 +425,48 @@
         <p>&copy; 2026 SD Negeri 03 Limbangan. Created By Muhlisin.</p>
     </footer>
 
+    <!-- MODAL POP-UP DETAIL BERITA (FOCUS VIEW) -->
+    <div id="modal-berita" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+        <div class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 transform transition-all">
+            <!-- Header Modal -->
+            <div class="bg-navy text-white px-6 py-4 flex justify-between items-center border-b border-gold/30">
+                <div class="flex items-center space-x-2 text-gold text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <span>Detail Berita & Pengumuman</span>
+                </div>
+                <button onclick="tutupModalBerita()" class="w-8 h-8 rounded-full bg-navy-light hover:bg-red-600 text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Konten Modal -->
+            <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                <div class="flex items-center space-x-2 text-xs text-gold font-semibold">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="modal-berita-tgl">...</span>
+                </div>
+
+                <h2 id="modal-berita-judul" class="font-serif font-bold text-navy text-xl sm:text-2xl leading-snug">
+                    Judul Berita
+                </h2>
+
+                <!-- Container Media Gambar / Video -->
+                <div id="modal-berita-media" class="w-full my-4"></div>
+
+                <p id="modal-berita-isi" class="text-gray-700 text-sm leading-relaxed whitespace-pre-line border-t pt-4">
+                    Isi berita lengkap...
+                </p>
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="bg-gray-100 px-6 py-3 flex justify-end border-t">
+                <button onclick="tutupModalBerita()" class="bg-navy hover:bg-navy-dark text-gold font-bold px-5 py-2 rounded-xl text-xs transition">
+                    Tutup Baca
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPT JAM REAL-TIME & KALENDER DIGITAL -->
     <script>
         function toggleMobileMenu() {
@@ -499,7 +541,7 @@
         generateCalendarGrid();
     </script>
 
-    <!-- SCRIPT FIREBASE -->
+    <!-- SCRIPT FIREBASE & MODAL BERITA -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -534,6 +576,50 @@
 
             return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
         }
+
+        // FUNGSI BUKA & TUTUP MODAL DETAIL BERITA
+        window.bukaModalBerita = function(id) {
+            const item = globalNewsData.find(b => b.id === id);
+            if (!item) return;
+
+            const tgl = item.createdAt ? new Date(item.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
+            
+            document.getElementById('modal-berita-tgl').innerText = tgl;
+            document.getElementById('modal-berita-judul').innerText = item.title;
+            document.getElementById('modal-berita-isi').innerText = item.content;
+
+            const containerMedia = document.getElementById('modal-berita-media');
+            containerMedia.innerHTML = '';
+
+            if (item.imageUrl) {
+                if (item.mediaType === 'video' || item.imageUrl.includes('youtube') || item.imageUrl.includes('youtu.be')) {
+                    const embedUrl = getYouTubeEmbedUrl(item.imageUrl);
+                    if (embedUrl) {
+                        containerMedia.innerHTML = `
+                            <div class="w-full aspect-video rounded-xl overflow-hidden border shadow-sm">
+                                <iframe class="w-full h-full" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    }
+                } else {
+                    containerMedia.innerHTML = `
+                        <div class="w-full flex justify-center">
+                            <img src="${item.imageUrl}" class="w-full max-h-[450px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita">
+                        </div>
+                    `;
+                }
+            }
+
+            document.getElementById('modal-berita').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.tutupModalBerita = function() {
+            document.getElementById('modal-berita').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            // Stop Video saat Modal Ditutup
+            document.getElementById('modal-berita-media').innerHTML = '';
+        };
 
         // Kirim Kritik & Saran
         window.kirimKritikSaran = async function(e) {
@@ -755,7 +841,7 @@
             container.innerHTML = fullHtml;
         });
 
-        // Fetch Berita (Handling Gambar & Player Video YouTube)
+        // Fetch Berita (Handling Gambar & Player Video YouTube + KLIK BUKA MODAL POPUP)
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
             globalNewsData = [];
             snapshot.forEach((docSnap) => {
@@ -822,6 +908,9 @@
             filteredArray.forEach((data) => {
                 const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
                 
+                // Ringkasan Teks
+                let ringkasanTeks = data.content ? (data.content.length > 180 ? data.content.substring(0, 180) + '...' : data.content) : '';
+
                 // RENDER MEDIA (GAMBAR ATAU YOUTUBE VIDEO)
                 let mediaHTML = '';
                 if (data.imageUrl) {
@@ -829,15 +918,15 @@
                         const embedUrl = getYouTubeEmbedUrl(data.imageUrl);
                         if (embedUrl) {
                             mediaHTML = `
-                                <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm">
-                                    <iframe class="w-full h-full" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                                    <iframe class="w-full h-full pointer-events-none" src="${embedUrl}" title="YouTube video player" frameborder="0"></iframe>
                                 </div>
                             `;
                         } else {
-                            mediaHTML = `<div class="w-full flex justify-center my-3"><img src="${data.imageUrl}" class="w-full max-h-[500px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                            mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
                         }
                     } else {
-                        mediaHTML = `<div class="w-full flex justify-center my-3"><img src="${data.imageUrl}" class="w-full max-h-[500px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                        mediaHTML = `<div class="w-full flex justify-center my-3 cursor-pointer" onclick="bukaModalBerita('${data.id}')"><img src="${data.imageUrl}" class="w-full max-h-[350px] object-cover rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
                     }
                 }
 
@@ -847,9 +936,16 @@
                             <i class="fa-regular fa-calendar"></i>
                             <span>${tgl}</span>
                         </div>
-                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer">${data.title}</h4>
+                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                            ${data.title}
+                        </h4>
                         ${mediaHTML}
-                        <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line">${data.content}</p>
+                        <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line cursor-pointer" onclick="bukaModalBerita('${data.id}')">
+                            ${ringkasanTeks}
+                        </p>
+                        <button onclick="bukaModalBerita('${data.id}')" class="inline-flex items-center text-xs font-bold text-gold hover:text-gold-dark mt-1">
+                            <span>Baca Selengkapnya</span> <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
+                        </button>
                     </article>
                 `;
                 isFirst = false;
