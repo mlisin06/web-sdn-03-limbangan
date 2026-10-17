@@ -163,20 +163,32 @@
                 </div>
             </div>
 
-            <!-- ================= TAB 2: BERITA & PENGUMUMAN ================= -->
+            <!-- ================= TAB 2: BERITA & PENGUMUMAN (MENDUKUNG FOTO / VIDEO YOUTUBE) ================= -->
             <div class="tab-pane fade" id="tab-berita" role="tabpanel">
                 <div class="card card-custom p-4 mb-4">
                     <h4 class="text-primary font-weight-bold mb-3">📰 Tambah Berita / Pengumuman Baru</h4>
-                    <p class="text-muted small">Berita yang diposting di sini akan tersusun secara otomatis ke dalam **Arsip Bulan & Tahun** di halaman depan.</p>
+                    <p class="text-muted small">Anda dapat mengunggah berita dengan lampiran **Foto** atau **Video YouTube**.</p>
                     
                     <div class="form-group">
                         <label class="small font-weight-bold">Judul Berita / Pengumuman</label>
-                        <input type="text" id="input-berita-judul" class="form-control" placeholder="Contoh: Pelaksanaan Ujian Akhir Semester...">
+                        <input type="text" id="input-berita-judul" class="form-control" placeholder="Contoh: Liputan Kegiatan Jalan Sehat Sekolah...">
                     </div>
-                    <div class="form-group">
-                        <label class="small font-weight-bold">URL Gambar Pendukung (Opsional)</label>
-                        <input type="text" id="input-berita-gambar" class="form-control" placeholder="https://i.ibb.co.com/.../foto.jpg">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="small font-weight-bold">Tipe Media Pendukung</label>
+                            <select id="input-berita-mediatype" class="form-control font-weight-bold">
+                                <option value="image">Gambar / Foto (URL)</option>
+                                <option value="video">Video YouTube (URL)</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="small font-weight-bold">URL Gambar atau Link Video YouTube (Opsional)</label>
+                            <input type="text" id="input-berita-gambar" class="form-control" placeholder="https://www.youtube.com/watch?v=... atau https://i.ibb.co/...">
+                            <small class="text-muted">Untuk YouTube, tempelkan link video penuh atau shortlink (youtu.be/...).</small>
+                        </div>
                     </div>
+
                     <div class="form-group">
                         <label class="small font-weight-bold">Isi Berita Lengkap</label>
                         <textarea id="input-berita-isi" class="form-control" rows="5" placeholder="Tuliskan berita lengkap di sini..."></textarea>
@@ -191,14 +203,15 @@
                             <thead class="thead-dark text-center">
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th width="20%">Tanggal</th>
+                                    <th width="15%">Tanggal</th>
+                                    <th width="10%">Media</th>
                                     <th width="30%">Judul Berita</th>
-                                    <th width="35%">Ringkasan Isi</th>
+                                    <th width="30%">Ringkasan Isi</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="tabel-admin-berita-body">
-                                <tr><td colspan="5" class="text-center text-muted py-3">Memuat data berita...</td></tr>
+                                <tr><td colspan="6" class="text-center text-muted py-3">Memuat data berita...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -436,7 +449,8 @@
         // --- 2. BERITA & PENGUMUMAN ---
         window.tambahBeritaBaru = async function() {
             let title = document.getElementById('input-berita-judul').value.trim();
-            let imageUrl = document.getElementById('input-berita-gambar').value.trim();
+            let mediaType = document.getElementById('input-berita-mediatype').value;
+            let mediaUrl = document.getElementById('input-berita-gambar').value.trim();
             let content = document.getElementById('input-berita-isi').value.trim();
 
             if (!title || !content) {
@@ -446,7 +460,11 @@
 
             try {
                 await addDoc(collection(db, "announcements"), {
-                    title, imageUrl, content, createdAt: serverTimestamp()
+                    title, 
+                    mediaType, 
+                    imageUrl: mediaUrl, 
+                    content, 
+                    createdAt: serverTimestamp()
                 });
                 alert("🎉 Berita berhasil diterbitkan!");
                 document.getElementById('input-berita-judul').value = "";
@@ -460,7 +478,7 @@
 
         window.tampilkanDaftarBerita = async function() {
             let tbody = document.getElementById('tabel-admin-berita-body');
-            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Memuat data berita...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">Memuat data berita...</td></tr>`;
             try {
                 const snap = await getDocs(query(collection(db, "announcements"), orderBy("createdAt", "desc")));
                 tbody.innerHTML = "";
@@ -469,19 +487,22 @@
                     let b = d.data();
                     count++;
                     let tgl = b.createdAt ? new Date(b.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
+                    let mediaBadge = b.mediaType === 'video' ? '<span class="badge badge-danger"><i class="fa-brands fa-youtube"></i> Video</span>' : '<span class="badge badge-primary"><i class="fa-regular fa-image"></i> Gambar</span>';
+                    
                     let tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td class="text-center">${count}</td>
                         <td class="text-center"><small class="badge badge-info">${tgl}</small></td>
+                        <td class="text-center">${mediaBadge}</td>
                         <td class="font-weight-bold">${b.title}</td>
-                        <td class="small text-muted">${b.content ? b.content.substring(0, 70) + '...' : '-'}</td>
+                        <td class="small text-muted">${b.content ? b.content.substring(0, 60) + '...' : '-'}</td>
                         <td class="text-center"><button class="btn btn-danger btn-sm" onclick="hapusAdminItem('announcements', '${d.id}')"><i class="fa-solid fa-trash"></i></button></td>
                     `;
                     tbody.appendChild(tr);
                 });
-                if (count === 0) tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Belum ada berita.</td></tr>`;
+                if (count === 0) tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">Belum ada berita.</td></tr>`;
             } catch (e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-3">Gagal memuat berita.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-3">Gagal memuat berita.</td></tr>`;
             }
         };
 
