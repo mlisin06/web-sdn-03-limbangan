@@ -125,11 +125,10 @@
         </div>
     </header>
 
-    <!-- 1. HERO SECTION (DESKRIPSI SINGKAT & SAMBUTAN PIMPINAN BERBOBOT) -->
+    <!-- 1. HERO SECTION -->
     <section id="home" class="relative bg-navy text-white overflow-hidden border-b border-gold/10">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            <!-- KIRI: DESKRIPSI SINGKAT & SLOGAN -->
             <div class="lg:col-span-7 space-y-6">
                 <span id="dyn-badge" class="inline-block bg-gold/20 text-gold border border-gold/30 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
                     Mencetak Generasi Berakhlak Mulia & Berprestasi
@@ -141,7 +140,6 @@
                     Selamat datang di website resmi SD Negeri 03 Limbangan. Kami berkomitmen memberikan pendidikan dasar berkualitas, membentuk karakter siswa yang cerdas, kreatif, berakhlak mulia, serta siap menghadapi masa depan.
                 </p>
 
-                <!-- TEKS BERJALAN DI BAWAH DESKRIPSI SINGKAT -->
                 <div class="mt-4 p-2.5 bg-navy-light/90 border border-gold/40 rounded-xl flex items-center space-x-3 text-gold text-xs shadow-inner">
                     <span class="bg-gold text-navy font-bold text-[10px] px-2 py-0.5 rounded uppercase shrink-0">Slogan</span>
                     <marquee behavior="scroll" direction="left" class="w-full font-semibold tracking-wide">
@@ -150,7 +148,6 @@
                 </div>
             </div>
 
-            <!-- KANAN: SAMBUTAN KEPALA SEKOLAH & RINGKASAN SEKOLAH -->
             <div class="lg:col-span-5 bg-gradient-to-b from-navy-light/95 to-navy-dark/95 backdrop-blur-md p-6 rounded-2xl border border-gold/40 shadow-2xl space-y-5">
                 <div class="border-b border-gold/20 pb-3 flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold border border-gold/40 shrink-0">
@@ -162,12 +159,10 @@
                     </div>
                 </div>
 
-                <!-- Kutipan Sambutan Singkat -->
                 <p id="dyn-kepsek-quote" class="text-gray-300 text-xs italic leading-relaxed">
                     "Pendidikan bukan sekadar transfer ilmu, melainkan pembentukan karakter dan akhlak mulia. Mari bersama-sama wujudkan generasi pembawa perubahan positif bagi agama, bangsa, dan negara."
                 </p>
 
-                <!-- Identitas Kepala Sekolah -->
                 <div class="flex items-center space-x-3 bg-navy/60 p-3 rounded-xl border border-gold/20">
                     <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold shrink-0 border border-gold/30">
                         <i class="fa-solid fa-user-tie text-base"></i>
@@ -178,7 +173,6 @@
                     </div>
                 </div>
 
-                <!-- Mini Grid Informasi Sekolah -->
                 <div class="grid grid-cols-2 gap-3 pt-1">
                     <div class="bg-navy-dark/80 p-3 rounded-xl border border-gold/20 text-center">
                         <span class="text-gold text-lg font-serif font-bold block"><i class="fa-solid fa-award text-xs mr-1"></i> Terakreditasi</span>
@@ -205,7 +199,6 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <!-- KOLOM KIRI (BERITA UTAMA & DAFTAR ARSIP) -->
                 <div class="lg:col-span-8 bg-white p-6 sm:p-8 rounded-xl shadow-sm space-y-6">
                     <div class="flex justify-between items-center pb-4 border-b flex-wrap gap-2">
                         <h3 class="font-serif text-xl font-bold text-navy flex items-center space-x-2">
@@ -222,10 +215,8 @@
                     </div>
                 </div>
 
-                <!-- KOLOM KANAN (KALENDER DIGITAL, JAM & AGENDA KEGIATAN) -->
                 <div class="lg:col-span-4 space-y-8">
 
-                    <!-- WIDGET KALENDER & JAM REAL-TIME ELEGAN -->
                     <div class="bg-navy text-white p-6 rounded-2xl shadow-lg border border-gold/30 space-y-4">
                         <div class="flex justify-between items-center pb-3 border-b border-gold/20">
                             <h3 class="font-serif text-base font-bold text-gold flex items-center space-x-2">
@@ -235,24 +226,20 @@
                             <span id="widget-month-year" class="text-xs font-bold bg-navy-light text-gold px-2.5 py-1 rounded-md border border-gold/30">...</span>
                         </div>
 
-                        <!-- DISPLAY JAM BESAR -->
                         <div class="text-center bg-navy-dark/80 p-4 rounded-xl border border-gold/20 shadow-inner">
                             <div id="big-clock" class="text-3xl sm:text-4xl font-mono font-bold text-gold tracking-widest">00:00:00</div>
                             <div id="big-date" class="text-xs text-gray-300 font-medium mt-1">...</div>
                         </div>
 
-                        <!-- MATRIX KALENDER BULANAN -->
                         <div class="space-y-2">
                             <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gold">
                                 <div>Min</div><div>Sen</div><div>Sel</div><div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
                             </div>
                             <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 text-center text-xs">
-                                <!-- Hari Kalender Di-generate Otomatis oleh JavaScript -->
                             </div>
                         </div>
                     </div>
                     
-                    <!-- WIDGET ARSIP BERITA / BLOG HISTORI -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <h3 class="font-serif text-lg font-bold text-navy pb-3 border-b flex items-center space-x-2">
                             <i class="fa-solid fa-box-archive text-gold"></i>
@@ -260,20 +247,17 @@
                         </h3>
                         <p class="text-xs text-gray-500">Pilih bulan dan tahun untuk melihat berita yang pernah diterbitkan:</p>
 
-                        <!-- Kotak Filter / Dropdown Arsip Bulan Tahun -->
                         <div class="space-y-2">
                             <select id="select-arsip-bulan" class="w-full text-xs p-2.5 rounded-lg border border-gray-300 font-semibold text-navy bg-gray-50" onchange="filterBeritaBerdasarBulan()">
                                 <option value="">-- Semua Bulan & Tahun --</option>
                             </select>
                         </div>
 
-                        <!-- Daftar Histori Bulan (List Style Blog) -->
                         <div id="arsip-list-container" class="space-y-1.5 text-xs">
                             <p class="text-gray-400 italic">Memuat arsip...</p>
                         </div>
                     </div>
 
-                    <!-- AGENDA KEGIATAN -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
                         <h3 class="font-serif text-lg font-bold text-navy pb-3 border-b flex items-center space-x-2">
                             <i class="fa-solid fa-list-check text-gold"></i>
@@ -332,7 +316,7 @@
         </div>
     </section>
 
-    <!-- 5. SECTION STRUKTUR ORGANISASI (BAGAN ELEGAN COMPACT) -->
+    <!-- 5. SECTION STRUKTUR ORGANISASI -->
     <section id="org" class="py-16 bg-gradient-to-b from-white via-gray-50 to-white border-t">
         <div class="max-w-3xl mx-auto px-4 sm:px-6">
             <div class="text-center max-w-xl mx-auto mb-10">
@@ -341,7 +325,6 @@
                 <div class="w-12 h-1 bg-gradient-to-r from-gold to-gold-dark mx-auto mt-2 rounded-full"></div>
             </div>
 
-            <!-- CONTAINER BAGAN DENGAN WIDGET RINGKAS ELEGAN -->
             <div id="firebase-org-list" class="space-y-6">
                 <p class="text-gray-400 text-xs italic text-center">Memuat struktur organisasi...</p>
             </div>
@@ -358,7 +341,6 @@
                 <div class="w-16 h-1 bg-gold mx-auto mt-3"></div>
             </div>
 
-            <!-- TAMPILAN 4 KRITIK & SARAN TERAKHIR YAG MASUK -->
             <div class="space-y-4">
                 <h3 class="font-serif text-lg font-bold text-navy flex items-center space-x-2 border-b pb-2">
                     <i class="fa-solid fa-comments text-gold"></i>
@@ -369,7 +351,6 @@
                 </div>
             </div>
 
-            <!-- FORM INPUT KRITIK & SARAN (TETAP DIPERTAHANKAN 100%) -->
             <form id="form-kritik-saran" onsubmit="kirimKritikSaran(event)" class="bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4">
                 <h3 class="font-serif text-base font-bold text-navy mb-2 flex items-center space-x-2">
                     <i class="fa-solid fa-pen-to-square text-gold"></i>
@@ -422,7 +403,6 @@
                 <div id="ppdb-action-container"></div>
             </div>
 
-            <!-- Kontak & Lokasi Sekolah -->
             <div class="bg-navy-light p-8 rounded-2xl border border-gold/30 space-y-4">
                 <h3 class="font-serif text-xl font-bold text-gold">Kontak & Lokasi Sekolah</h3>
                 <div class="space-y-3 text-sm text-gray-300">
@@ -434,7 +414,7 @@
         </div>
     </section>
 
-    <!-- FOOTER TERUPDATE (TAUTAN TIKTOK & HAK CIPTA CREATED BY MUHLISIN) -->
+    <!-- FOOTER -->
     <footer class="bg-navy-dark text-gray-400 py-8 border-t text-xs text-center space-y-4">
         <div class="flex justify-center space-x-4">
             <a id="dyn-fb" href="#" target="_blank" class="w-8 h-8 rounded bg-navy-light hover:bg-gold hover:text-navy flex items-center justify-center text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
@@ -452,17 +432,13 @@
             menu.classList.toggle('hidden');
         }
 
-        // FUNGSI UPDATE JAM & TANGGAL REAL-TIME
         function updateClockAndCalendar() {
             const now = new Date();
-            
-            // Format Jam (HH:MM:SS)
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             const timeStr = `${hours}:${minutes}:${seconds} WIB`;
 
-            // Format Hari & Tanggal Lengkap
             const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
             const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
             
@@ -473,20 +449,17 @@
 
             const dateStr = `${dayName}, ${dayNum} ${monthName} ${year}`;
 
-            // Update DOM Topbar Clock
             const topbarClock = document.getElementById('topbar-clock');
             const topbarDate = document.getElementById('topbar-date');
             if (topbarClock) topbarClock.innerText = timeStr;
             if (topbarDate) topbarDate.innerText = dateStr;
 
-            // Update DOM Big Clock Widget
             const bigClock = document.getElementById('big-clock');
             const bigDate = document.getElementById('big-date');
             if (bigClock) bigClock.innerText = timeStr;
             if (bigDate) bigDate.innerText = dateStr;
         }
 
-        // GENERATE MATRIX KALENDER BULANAN REAL-TIME
         function generateCalendarGrid() {
             const now = new Date();
             const year = now.getFullYear();
@@ -506,12 +479,10 @@
 
             let gridHTML = '';
 
-            // Blank Days dari Bulan Sebelumnya
             for (let i = 0; i < firstDayOfMonth; i++) {
                 gridHTML += `<div class="py-1 text-gray-600 opacity-20">-</div>`;
             }
 
-            // Days Hari Ini & Tanggal dalam Bulan
             for (let date = 1; date <= lastDateOfMonth; date++) {
                 if (date === today) {
                     gridHTML += `<div class="py-1.5 font-bold rounded-lg bg-gold text-navy shadow-md transform scale-105">${date}</div>`;
@@ -523,7 +494,6 @@
             gridContainer.innerHTML = gridHTML;
         }
 
-        // Jalankan Timer Jam & Kalender
         setInterval(updateClockAndCalendar, 1000);
         updateClockAndCalendar();
         generateCalendarGrid();
@@ -547,6 +517,23 @@
         const db = getFirestore(app);
 
         let globalNewsData = [];
+
+        // Helper Ekstrak ID Video YouTube dari berbagai format link
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return null;
+            let videoId = null;
+
+            if (url.includes('youtu.be/')) {
+                videoId = url.split('youtu.be/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/watch')) {
+                const urlParams = new URLSearchParams(url.split('?')[1]);
+                videoId = urlParams.get('v');
+            } else if (url.includes('youtube.com/embed/')) {
+                videoId = url.split('youtube.com/embed/')[1].split('?')[0];
+            }
+
+            return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+        }
 
         // Kirim Kritik & Saran
         window.kirimKritikSaran = async function(e) {
@@ -575,7 +562,7 @@
             }
         };
 
-        // FETCH & TAMPILKAN MAKSIMAL 4 KRITIK & SARAN TERAKHIR
+        // Tampilkan 4 Kritik & Saran Terakhir
         onSnapshot(query(collection(db, "feedbacks"), orderBy("createdAt", "desc"), limit(4)), (snapshot) => {
             const displayContainer = document.getElementById('firebase-feedbacks-display');
             if (snapshot.empty) {
@@ -643,7 +630,6 @@
                 if(data.yt) document.getElementById('dyn-yt').href = data.yt;
                 if(data.tt) document.getElementById('dyn-tt').href = data.tt;
 
-                // Status PPDB (Buka / Tutup)
                 if (data.ppdbStatus === "BUKA") {
                     document.getElementById('ppdb-badge').innerText = "Pendaftaran Dibuka";
                     document.getElementById('ppdb-title').innerText = "Penerimaan Siswa Baru (PPDB) Sedang Dibuka!";
@@ -689,7 +675,7 @@
             container.innerHTML = html;
         });
 
-        // Fetch Organisasi & Render Tampilan Super Elegan Ringkasan (Kecil 50%)
+        // Fetch Organisasi
         onSnapshot(query(collection(db, "organization"), orderBy("createdAt", "desc")), (snapshot) => {
             const container = document.getElementById('firebase-org-list');
             if (snapshot.empty) {
@@ -716,7 +702,6 @@
 
             let fullHtml = '';
 
-            // 1. LEVEL DINAS / PEMBINA
             if (dinasItems.length > 0) {
                 fullHtml += `<div class="max-w-md mx-auto space-y-3">`;
                 dinasItems.forEach(item => {
@@ -731,7 +716,6 @@
                 fullHtml += `</div><div class="w-0.5 h-4 bg-gradient-to-b from-gold to-gold/20 mx-auto"></div>`;
             }
 
-            // 2. LEVEL PIMPINAN & KOMITE
             if (pimpinanItems.length > 0) {
                 fullHtml += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl mx-auto">`;
                 pimpinanItems.forEach(item => {
@@ -751,7 +735,6 @@
                 fullHtml += `</div><div class="w-0.5 h-4 bg-gradient-to-b from-gold to-gold/20 mx-auto"></div>`;
             }
 
-            // 3. LEVEL GURU, STAF & PENJAGA (GRID COMPACT 3 KOLOM)
             if (guruStafItems.length > 0) {
                 fullHtml += `<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">`;
                 guruStafItems.forEach(item => {
@@ -772,7 +755,7 @@
             container.innerHTML = fullHtml;
         });
 
-        // Fetch Berita & Generate Histori Arsip Bulan/Tahun
+        // Fetch Berita (Handling Gambar & Player Video YouTube)
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
             globalNewsData = [];
             snapshot.forEach((docSnap) => {
@@ -793,7 +776,6 @@
                 return;
             }
 
-            // Peta Arsip Bulan/Tahun
             let arsipMap = {};
 
             newsArray.forEach((item) => {
@@ -803,7 +785,6 @@
                 arsipMap[keyBulanTahun]++;
             });
 
-            // Populate Dropdown & List Arsip
             selectArsip.innerHTML = '<option value="">-- Semua Bulan & Tahun --</option>';
             let listArsipHTML = '';
 
@@ -819,7 +800,6 @@
             });
             listArsipContainer.innerHTML = listArsipHTML;
 
-            // Render Daftar Berita yang Dikerjakan / Difilter
             let filteredArray = newsArray;
             if (filterKey) {
                 btnReset.classList.remove('hidden');
@@ -841,6 +821,26 @@
             let html = '', isFirst = true;
             filteredArray.forEach((data) => {
                 const tgl = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Baru saja';
+                
+                // RENDER MEDIA (GAMBAR ATAU YOUTUBE VIDEO)
+                let mediaHTML = '';
+                if (data.imageUrl) {
+                    if (data.mediaType === 'video' || data.imageUrl.includes('youtube') || data.imageUrl.includes('youtu.be')) {
+                        const embedUrl = getYouTubeEmbedUrl(data.imageUrl);
+                        if (embedUrl) {
+                            mediaHTML = `
+                                <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm">
+                                    <iframe class="w-full h-full" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                            `;
+                        } else {
+                            mediaHTML = `<div class="w-full flex justify-center my-3"><img src="${data.imageUrl}" class="w-full max-h-[500px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                        }
+                    } else {
+                        mediaHTML = `<div class="w-full flex justify-center my-3"><img src="${data.imageUrl}" class="w-full max-h-[500px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>`;
+                    }
+                }
+
                 html += `
                     <article class="${isFirst ? '' : 'pt-6 border-t'} space-y-2">
                         <div class="flex items-center space-x-2 text-xs text-gold font-semibold">
@@ -848,7 +848,7 @@
                             <span>${tgl}</span>
                         </div>
                         <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer">${data.title}</h4>
-                        ${data.imageUrl ? `<div class="w-full flex justify-center my-3"><img src="${data.imageUrl}" class="w-full max-h-[500px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita"></div>` : ''}
+                        ${mediaHTML}
                         <p class="text-gray-600 text-sm leading-relaxed whitespace-pre-line">${data.content}</p>
                     </article>
                 `;
