@@ -425,46 +425,52 @@
         <p>&copy; 2026 SD Negeri 03 Limbangan. Created By Muhlisin.</p>
     </footer>
 
-    <!-- MODAL POP-UP DETAIL BERITA (HIGH Z-INDEX & BG BACKDROP FOCUS) -->
-    <div id="modal-berita" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-        <div class="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden my-8 transform transition-all border border-gold/30">
-            <!-- Header Modal -->
-            <div class="bg-navy text-white px-6 py-4 flex justify-between items-center border-b border-gold/30 sticky top-0 z-10">
-                <div class="flex items-center space-x-2 text-gold text-xs font-bold uppercase tracking-wider">
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>Detail Berita & Pengumuman</span>
-                </div>
-                <button onclick="window.tutupModalBerita()" class="w-8 h-8 rounded-full bg-navy-light hover:bg-red-600 text-white flex items-center justify-center transition focus:outline-none">
-                    <i class="fa-solid fa-xmark"></i>
+    <!-- MODAL POP-UP FULLSCREEN READER VIEW (RESPONSIF DENGAN HEADER NAVIGASI MELAYANG) -->
+    <div id="modal-berita" class="fixed inset-0 z-[99999] hidden bg-white overflow-y-auto min-h-screen w-screen transition-all duration-300">
+        <!-- BAR HEADER LAYAR PENUH -->
+        <div class="sticky top-0 z-50 bg-navy text-white px-4 sm:px-8 py-3.5 shadow-md flex justify-between items-center border-b border-gold/30">
+            <div class="flex items-center space-x-3">
+                <button onclick="window.tutupModalBerita()" class="text-gold hover:text-white flex items-center space-x-1.5 text-xs sm:text-sm font-bold bg-navy-light/80 px-3 py-1.5 rounded-lg border border-gold/30 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kembali</span>
                 </button>
+                <span class="text-xs text-gray-300 hidden sm:inline-block">| Portal Resmi SD Negeri 03 Limbangan</span>
             </div>
-
-            <!-- Konten Modal -->
-            <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
-                <div class="flex items-center space-x-2 text-xs text-gold font-semibold">
-                    <i class="fa-regular fa-calendar"></i>
-                    <span id="modal-berita-tgl">...</span>
-                </div>
-
-                <h2 id="modal-berita-judul" class="font-serif font-bold text-navy text-xl sm:text-2xl leading-snug">
-                    Judul Berita
-                </h2>
-
-                <!-- Container Media Gambar / Video -->
-                <div id="modal-berita-media" class="w-full my-4"></div>
-
-                <p id="modal-berita-isi" class="text-gray-700 text-sm leading-relaxed whitespace-pre-line border-t pt-4">
-                    Isi berita lengkap...
-                </p>
-            </div>
-
-            <!-- Footer Modal -->
-            <div class="bg-gray-100 px-6 py-3 flex justify-end border-t">
-                <button onclick="window.tutupModalBerita()" class="bg-navy hover:bg-navy-dark text-gold font-bold px-5 py-2 rounded-xl text-xs transition">
-                    Tutup Baca
-                </button>
-            </div>
+            
+            <button onclick="window.tutupModalBerita()" class="text-gray-300 hover:text-red-400 text-xl px-2 focus:outline-none">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
+
+        <!-- CONTAINER KONTEN BERITA FULLSCREEN (DINAMIS SANGAT RAPI) -->
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-6">
+            <!-- TANGGAL & KATEGORI -->
+            <div class="flex items-center space-x-2 text-xs font-bold text-gold bg-navy/5 w-fit px-3 py-1 rounded-full border border-navy/10">
+                <i class="fa-regular fa-calendar"></i>
+                <span id="modal-berita-tgl">...</span>
+            </div>
+
+            <!-- JUDUL BESAR BACAAN -->
+            <h1 id="modal-berita-judul" class="font-serif font-bold text-navy text-2xl sm:text-4xl leading-tight">
+                Judul Berita
+            </h1>
+
+            <!-- MEDIA FOTO / VIDEO PLAYER LAYAR BESAR -->
+            <div id="modal-berita-media" class="w-full my-6"></div>
+
+            <!-- ISI BERITA UTUH -->
+            <div id="modal-berita-isi" class="text-gray-800 text-base sm:text-lg leading-relaxed whitespace-pre-line border-t pt-6 font-sans">
+                Isi berita...
+            </div>
+
+            <!-- TOMBOL KEMBALI DI BAWAH -->
+            <div class="pt-10 border-t flex justify-center">
+                <button onclick="window.tutupModalBerita()" class="bg-navy hover:bg-navy-dark text-gold border border-gold/40 font-bold px-8 py-3 rounded-xl text-sm transition shadow-lg flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Tutup & Kembali ke Beranda</span>
+                </button>
+            </div>
+        </main>
     </div>
 
     <!-- SCRIPT JAM REAL-TIME & KALENDER DIGITAL -->
@@ -577,7 +583,7 @@
             return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
         }
 
-        // DEKLARASI GLOBAL UNTUK BUKA MODAL DETAIL BERITA
+        // FUNGSI BUKA MODAL FULLSCREEN READER VIEW
         window.bukaModalBerita = function(id) {
             const item = globalNewsData.find(b => b.id === id);
             if (!item) return;
@@ -596,7 +602,7 @@
                     const embedUrl = getYouTubeEmbedUrl(item.imageUrl);
                     if (embedUrl) {
                         containerMedia.innerHTML = `
-                            <div class="w-full aspect-video rounded-xl overflow-hidden border shadow-sm">
+                            <div class="w-full aspect-video rounded-2xl overflow-hidden shadow-xl border border-gray-200">
                                 <iframe class="w-full h-full" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                             </div>
                         `;
@@ -604,19 +610,22 @@
                 } else {
                     containerMedia.innerHTML = `
                         <div class="w-full flex justify-center">
-                            <img src="${item.imageUrl}" class="w-full max-h-[450px] object-contain rounded-xl border shadow-sm bg-white" alt="Foto Berita">
+                            <img src="${item.imageUrl}" class="w-full max-h-[550px] object-cover rounded-2xl shadow-xl border border-gray-200 bg-white" alt="Foto Berita">
                         </div>
                     `;
                 }
             }
 
-            document.getElementById('modal-berita').classList.remove('hidden');
+            const modal = document.getElementById('modal-berita');
+            modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // DEKLARASI GLOBAL UNTUK TUTUP MODAL
+        // FUNGSI TUTUP MODAL
         window.tutupModalBerita = function() {
-            document.getElementById('modal-berita').classList.add('hidden');
+            const modal = document.getElementById('modal-berita');
+            modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
             document.getElementById('modal-berita-media').innerHTML = '';
         };
@@ -841,7 +850,7 @@
             container.innerHTML = fullHtml;
         });
 
-        // Fetch Berita (Handling Gambar & Player Video YouTube + KLIK BUKA MODAL POPUP)
+        // Fetch Berita (Handling Gambar & Player Video YouTube + KLIK BUKA FULLSCREEN READER VIEW)
         onSnapshot(query(collection(db, "announcements"), orderBy("createdAt", "desc")), (snapshot) => {
             globalNewsData = [];
             snapshot.forEach((docSnap) => {
@@ -921,8 +930,9 @@
                                 <div class="w-full aspect-video my-3 rounded-xl overflow-hidden border shadow-sm cursor-pointer relative group" onclick="window.bukaModalBerita('${data.id}')">
                                     <iframe class="w-full h-full pointer-events-none" src="${embedUrl}" title="YouTube video player" frameborder="0"></iframe>
                                     <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition flex items-center justify-center">
-                                        <div class="bg-navy/80 text-gold text-xs px-3 py-1.5 rounded-full font-bold shadow-lg border border-gold/40">
-                                            <i class="fa-solid fa-play mr-1"></i> Klik Untuk Memutar Video
+                                        <div class="bg-navy/90 text-gold text-xs px-4 py-2 rounded-full font-bold shadow-lg border border-gold/40 flex items-center space-x-1.5">
+                                            <i class="fa-solid fa-play"></i>
+                                            <span>Buka Berita & Putar Video</span>
                                         </div>
                                     </div>
                                 </div>
@@ -941,7 +951,7 @@
                             <i class="fa-regular fa-calendar"></i>
                             <span>${tgl}</span>
                         </div>
-                        <h4 class="font-serif font-bold text-navy text-lg leading-snug hover:text-gold transition cursor-pointer" onclick="window.bukaModalBerita('${data.id}')">
+                        <h4 class="font-serif font-bold text-navy text-lg sm:text-xl leading-snug hover:text-gold transition cursor-pointer" onclick="window.bukaModalBerita('${data.id}')">
                             ${data.title}
                         </h4>
                         ${mediaHTML}
